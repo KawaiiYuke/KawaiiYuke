@@ -7,18 +7,20 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
+    "bootstrap": "^5.2.0",
     "cheerio-without-node-native": "^1.0.0-rc.2",
+    "firebase": "^9.9.2",
     "genius-lyrics-api": "^3.2.0",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "node ./src/server",
-    "start:dev": "react-scripts start & npm run server",
-    "server": "nodemon ./src/server",
+    "start": "react-scripts start",
+    "start:dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
