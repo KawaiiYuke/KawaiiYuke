@@ -12,12 +12,6 @@ import UpdateProfile from "./UpdateProfile";
 
 const Paths = () => {
   return (
-    // <Router>
-    //   <Routes>
-    //     <Route path="/music" element={<MusicPlayer />} />
-    //     <Route path="/signup" element={<Signup />} />
-    //   </Routes>
-    // </Router>
     <Container
       className="d-flex align-items-center justify-content-center"
       style={{ minHeight: "100vh" }}
@@ -28,7 +22,7 @@ const Paths = () => {
             <Routes>
               <Route path="/music" element={<MusicPlayer />} />
               <Route
-                path="/"
+                path="/account"
                 element={
                   <PrivateRoute>
                     <Dashboard />

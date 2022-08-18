@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
+import firebase from "firebase/compat/app";
 
 export default function Login() {
   const emailRef = useRef();
@@ -50,6 +52,18 @@ export default function Login() {
           </div>
         </Card.Body>
       </Card>
+      <div className="w-100 text-center mt-2">
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          onClick={() => {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider);
+          }}
+        >
+          Sign in with Google
+        </button>
+      </div>
       <div className="w-100 text-center mt-2">
         Need an account? <Link to="/signup">Sign Up</Link>
       </div>
