@@ -22,7 +22,8 @@ const Paths = () => {
             <Routes>
               <Route path="/music" element={<MusicPlayer />} />
               <Route
-                path="/account"
+                exact
+                path="/"
                 element={
                   <PrivateRoute>
                     <Dashboard />

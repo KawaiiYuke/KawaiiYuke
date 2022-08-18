@@ -2,13 +2,11 @@ import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../firebase";
-import firebase from "firebase/compat/app";
 
 export default function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login } = useAuth();
+  const { login, loginwithGoogle } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useNavigate();
@@ -28,6 +26,18 @@ export default function Login() {
     setLoading(false);
   }
 
+  async function handleGoogleSignIn(e) {
+    try {
+      setError("");
+      setLoading(true);
+      await loginwithGoogle();
+      history.push("/");
+    } catch {
+      setError("Failed to log in");
+    }
+
+    setLoading(false);
+  }
   return (
     <>
       <Card>
@@ -55,11 +65,8 @@ export default function Login() {
       <div className="w-100 text-center mt-2">
         <button
           type="button"
-          class="btn btn-outline-primary"
-          onClick={() => {
-            const provider = new firebase.auth.GoogleAuthProvider();
-            auth.signInWithPopup(provider);
-          }}
+          className="btn btn-outline-primary"
+          onClick={handleGoogleSignIn}
         >
           Sign in with Google
         </button>
