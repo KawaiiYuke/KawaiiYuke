@@ -7,7 +7,9 @@ const Navigation = () => {
   return (
     <div class="wrapper">
       <div class="sidebar">
-        <h2>KawaiiYuke</h2>
+        <Link to="/">
+          <h2>KawaiiYuke</h2>
+        </Link>
         <ul>
           <li>
             <Link to="/explore">
