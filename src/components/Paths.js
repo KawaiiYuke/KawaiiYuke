@@ -6,6 +6,7 @@ import SignIn from './SignIn';
 import SignOut from './SignOut';
 import Home from './Home';
 import Navigation from './Navbar';
+import Room from './Room';
 
 const Paths = () => {
   return (
@@ -19,6 +20,7 @@ const Paths = () => {
           <Route path="/about" element={<Explore />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signout" element={<SignOut />} />
+          <Route path="/room" element={<Room />} />
         </Routes>
       </div>
     </Router>
