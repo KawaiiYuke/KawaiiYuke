@@ -12,24 +12,17 @@ export default function useAuth(code) {
         code,
       })
       .then((res) => {
-        console.log("res.data.accessToken: ", res.data);
-        // setAccessToken(res.data.accessToken);
-        // setRefreshToken(res.data.refreshToken);
-        // setExpiresIn(res.data.expiresIn);
-        // setExpiresIn(61);
-        // console.log("accessToken: ", accessToken);
-        // console.log("refreshToken: ", refreshToken);
-        // console.log("expiresIn: ", expiresIn);
+        setAccessToken(res.data.accessToken);
+        setRefreshToken(res.data.refreshToken);
+        setExpiresIn(res.data.expiresIn);
         // window.history.pushState({}, null, "/");
+      })
+      .catch(() => {
+        // window.location = "/";
       });
-    //   .catch(() => {
-    //     // window.location = "/";
-    //   });
   }, [code]);
 
   useEffect(() => {
-    console.log("refreshtoken: ", refreshToken);
-    console.log("expiresIn: ", expiresIn);
     if (!refreshToken || !expiresIn) return;
     const interval = setInterval(() => {
       axios
@@ -37,15 +30,16 @@ export default function useAuth(code) {
           refreshToken,
         })
         .then((res) => {
-          setAccessToken(res.data.body.accessToken);
+          setAccessToken(res.data.accessToken);
           setExpiresIn(res.data.expiresIn);
-          //   setExpiresIn(61);
-        })
-        .catch(() => {
-          window.location = "/";
         });
+      //   .catch(() => {
+      //     window.location = "/";
+      //   });
     }, (expiresIn - 60) * 1000);
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+    };
   }, [refreshToken, expiresIn]);
 
   return accessToken;
