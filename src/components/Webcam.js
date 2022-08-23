@@ -53,16 +53,16 @@
 
 //   // Push tracks from local stream to peer connection - manages stream
 //   //localStream will be state
-localStream.getTracks().forEach((track) => {
-  pc.addTrack(track, localStream);
-});
+// localStream.getTracks().forEach((track) => {
+//   pc.addTrack(track, localStream);
+// });
 
-// Pull tracks from remote stream, add to video stream
-pc.ontrack = (event) => {
-  event.streams[0].getTracks().forEach((track) => {
-    remoteStream.addTrack(track);
-  });
-};
+// // Pull tracks from remote stream, add to video stream
+// pc.ontrack = (event) => {
+//   event.streams[0].getTracks().forEach((track) => {
+//     remoteStream.addTrack(track);
+//   });
+// };
 
 //   webcamVideo.srcObject = localStream;
 //   remoteVideo.srcObject = remoteStream;

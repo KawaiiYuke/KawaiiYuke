@@ -7,10 +7,12 @@ import SignOut from "./SignOut";
 import Home from "./Home";
 import Navigation from "./Navbar";
 import Room from "./Room";
+
 // import Webcam from "./Webcam";
 import WebcamReact from "./WebcamReact";
 
 const Paths = () => {
+  const code = new URLSearchParams(window.location.search).get("code");
   return (
     <Router>
       <div className="Paths">
@@ -18,7 +20,12 @@ const Paths = () => {
           <Navigation />
         </div>
         <Routes>
-          <Route path="/" element={<Home />} />
+          {code ? (
+            <Route path="/" element={<Home code={code} />} />
+          ) : (
+            <Route path="/signin" element={<SignIn />} />
+          )}
+          {/* <Route path="/" element={<Home />} /> */}
           <Route path="/about" element={<Explore />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signout" element={<SignOut />} />
