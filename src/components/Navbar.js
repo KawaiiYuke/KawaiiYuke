@@ -7,6 +7,7 @@ const Navigation = () => {
     <div className="wrapper">
       <div className="sidebar">
         <Link to="/">
+          {/* <img src="https://i.imgur.com/aQWF5qB.png" alt="" /> */}
           <h2>KawaiiYuke</h2>
         </Link>
         <ul>
