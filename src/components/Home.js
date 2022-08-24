@@ -16,12 +16,25 @@ const Home = ({ code }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [playingTrack, setPlayingTrack] = useState();
   const [lyrics, setLyrics] = useState("");
+  const [categoryList, setCategoryList] = useState("");
+  console.log("categoryList: ", categoryList);
 
   function chooseTrack(track) {
     setPlayingTrack(track);
     setSearch("");
     setLyrics("");
   }
+
+  useEffect(() => {
+    axios("https://api.spotify.com/v1/browse/categories?locale=sv_US", {
+      method: "GET",
+      headers: { Authorization: "Bearer " + accessToken },
+    }).then((genreResponse) => {
+      setCategoryList({
+        listOfGenresFromAPI: genreResponse.data.categories.items,
+      });
+    });
+  });
 
   useEffect(() => {
     if (!playingTrack) return;
@@ -36,6 +49,7 @@ const Home = ({ code }) => {
         setLyrics(res.data.lyrics);
       });
   }, [playingTrack]);
+
   useEffect(() => {
     if (!accessToken) return;
     spotifyApi.setAccessToken(accessToken);
@@ -92,6 +106,7 @@ const Home = ({ code }) => {
           </div>
         )}
       </div>
+
       <div>
         <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
       </div>
