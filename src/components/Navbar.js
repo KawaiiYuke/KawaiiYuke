@@ -25,7 +25,7 @@ const Navigation = () => {
 
           <li>
             <a href={AUTH_URL}>
-              <i className="fas fa-address-card"></i>Search!
+              <i className="fas fa-address-card"></i>Search
             </a>
           </li>
           <li>
