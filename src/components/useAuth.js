@@ -42,5 +42,17 @@ export default function useAuth(code) {
     };
   }, [refreshToken, expiresIn]);
 
+  // axios("https://accounts.spotify.com/api/token", {
+  //   headers: {
+  //     "Content-Type": "application/x-www-form-urlencoded",
+  //     Authorization:
+  //       "Basic " +
+  //       btoa(process.env.CLIENT_ID + ":" + process.env.CLIENT_SECRET),
+  //   },
+  //   data: "grant_type=client_credentials",
+  //   method: "POST",
+  // }).then((tokenResponse) => {
+  //   setAccessToken(tokenResponse.data.access_token);
+  // });
   return accessToken;
 }
