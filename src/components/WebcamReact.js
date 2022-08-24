@@ -163,7 +163,7 @@ export default function WebcamReact() {
     iceCandidatePoolSize: 10,
   };
 
-  const pc = new RTCPeerConnection(servers);
+  // const pc = new RTCPeerConnection(servers);
 
   // controls if media input is on or off
   const [isStreaming, setIsStreaming] = useState(false);
@@ -172,10 +172,9 @@ export default function WebcamReact() {
 
   // ref that you use to set state
   const webcamVideo = useRef();
-
+  const pc = new RTCPeerConnection(servers);
   // get the user's media stream
   const startStream = async () => {
-    console.log("navigator.mediaDevices ", navigator.mediaDevices);
     webcamVideo.current.srcObject = await navigator.mediaDevices.getUserMedia({
       video: { width: 480, height: 240 },
       audio: true,
@@ -187,7 +186,6 @@ export default function WebcamReact() {
   // stops the user's media stream
   const stopStream = () => {
     webcamVideo.current.srcObject = null;
-
     setIsStreaming(false);
   };
 
@@ -206,7 +204,12 @@ export default function WebcamReact() {
         </span>
         <span>
           <h3>Remote Stream</h3>
-          <video id="remoteVideo" autoPlay playsInline></video>
+          <video
+            // ref={webcamVideo}
+            id="remoteVideo"
+            autoPlay
+            playsInline
+          ></video>
         </span>
       </div>
       {isStreaming ? (
@@ -214,7 +217,6 @@ export default function WebcamReact() {
       ) : (
         <button
           onClick={() => {
-            console.log("Webcam video before assignment", webcamVideo);
             startStream();
           }}
         >
@@ -227,7 +229,7 @@ export default function WebcamReact() {
           console.log("call button");
         }}
         id="callButton"
-        disabled
+        // disabled
       >
         Create Call (offer)
       </button>
