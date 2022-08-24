@@ -8,6 +8,9 @@ import Home from "./Home";
 import Navigation from "./Navbar";
 import Room from "./Room";
 
+// import Webcam from "./Webcam";
+import WebcamReact from "./WebcamReact";
+
 const Paths = () => {
   const code = new URLSearchParams(window.location.search).get("code");
   return (
@@ -27,6 +30,8 @@ const Paths = () => {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signout" element={<SignOut />} />
           <Route path="/room" element={<Room />} />
+          {/* <Route path="/webcam" element={<Webcam />} /> */}
+          <Route path="/test" element={<WebcamReact />} />
         </Routes>
       </div>
     </Router>
