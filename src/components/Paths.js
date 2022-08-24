@@ -26,7 +26,7 @@ const Paths = () => {
             <Route path="/signin" element={<SignIn />} />
           )}
           {/* <Route path="/" element={<Home />} /> */}
-          <Route path="/about" element={<Explore />} />
+          <Route path="/explore" element={<Explore />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signout" element={<SignOut />} />
           <Route path="/room" element={<Room />} />
