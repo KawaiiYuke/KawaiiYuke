@@ -7,6 +7,7 @@ import SignOut from "./SignOut";
 import Home from "./Home";
 import Navigation from "./Navbar";
 import Room from "./Room";
+import SingleCategoryView from "./SingleCategoryView";
 
 // import Webcam from "./Webcam";
 import WebcamReact from "./WebcamReact";
@@ -26,12 +27,19 @@ const Paths = () => {
             <Route path="/signin" element={<SignIn />} />
           )}
           {/* <Route path="/" element={<Home />} /> */}
-          <Route path="/explore" element={<Explore />} />
+          <Route path="/explore" element={<Explore code={code} />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signout" element={<SignOut />} />
           <Route path="/room" element={<Room />} />
+
+          <Route
+            path="/category/:categoryId"
+            element={<SingleCategoryView code={code} />}
+          />
+
           {/* <Route path="/webcam" element={<Webcam />} /> */}
           <Route path="/test" element={<WebcamReact />} />
+
         </Routes>
       </div>
     </Router>
