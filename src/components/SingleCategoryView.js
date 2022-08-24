@@ -3,6 +3,7 @@ import useAuth from "./useAuth";
 //import { Container, Form } from "react-bootstrap";
 import SpotifyWebApi from "spotify-web-api-node";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.CLIENT_ID,
@@ -10,9 +11,8 @@ const spotifyApi = new SpotifyWebApi({
 
 export default function SingleCategoryView({ code }) {
   const accessToken = useAuth(code);
-  //const [category, setCategory] = useState("");
-  const categoryId = "toplists";
   const [playlists, setPlaylists] = useState([]);
+  const categoryId = window.location.pathname.split("/").slice(-1)[0];
 
   useEffect(() => {
     axios(
@@ -41,6 +41,9 @@ export default function SingleCategoryView({ code }) {
           </div>
         );
       })}
+      <Link to="/explore">
+        <button> Return to All Categories</button>
+      </Link>
     </div>
   );
 }
