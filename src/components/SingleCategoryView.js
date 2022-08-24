@@ -23,10 +23,11 @@ export default function SingleCategoryView({ code }) {
         headers: {
           Authorization:
             "Bearer " +
-            "BQA0vRBjPcTJmJl-Kj3JkBZzpUW9JDNtVcYJFYsOwBIb0dC-97HuqsS1Eaf-cQZ8LhmtVI6sdplgOuM20H47yxp_SIK5bCyWlx8ce0JmOaIXqSLnPUHOUjoP8gKIBOaNkmL5W-lfj8wVLgoKrh0upMEN4hSZpsTLPwoA1eFHEecRGWSjRYcpBVbiH03FhLkWrdeP26Q",
+            "BQDZ63m-EZeiFfSnRrdk_rXeRoM_d8K3ddAw0ZjsP7iZqykNDMD9CLguLIe5FBSRe8TGvpiBZGqZlHXzhvoqpSO7JHjT6z8C2t5FEOIrAY1uviEK517Bd9rWTqDISQqXpKpn1tOAwiNCPGSyEtQLshJfIGCsl-JH7SxcUQxCY_K6CryQrua0Jo_wcjtvU6gnXN5aSuk",
         },
       }
     ).then((playlistsResponse) => {
+      console.log("playlistsResponse: ", playlistsResponse);
       setPlaylists(playlistsResponse.data.playlists.items);
     });
   });
