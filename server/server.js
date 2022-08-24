@@ -100,24 +100,16 @@ app.get("/lyrics", async (req, res) => {
 //     });
 // });
 
-// app.get("/categories", async (req, res) => {
-//   //   axios
-//   //     .get("https://api.spotify.com/v1/recommendations/available-genre-seeds")
-//   //     .then((res) => {
-//   //       console.log("categories data: ", res.data);
-//   //     });
-
-//   const result = await fetch(
-//     `https://api.spotify.com/v1/browse/categories?locale=sv_US`,
-//     {
-//       method: "GET",
-//       headers: { Authorization: "Bearer " + req.body.accessToken },
-//     }
-//   );
-//   console.log("result: ", result);
-//   const data = await result.json();
-//   console.log("caterogy data: ", data);
-//   return data.categories.items;
+// app.get("/category", async (req, res) => {
+//   const accessToken = req.body.accessToken;
+//   axios("https://api.spotify.com/v1/browse/categories?limit=50", {
+//     method: "GET",
+//     headers: {
+//       Authorization: "Bearer " + accessToken,
+//     },
+//   }).then((categoryResponse) => {
+//     res.json(categoryResponse.data.categories.items);
+//   });
 // });
 
 app.listen(3001);

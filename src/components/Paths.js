@@ -7,6 +7,7 @@ import SignOut from "./SignOut";
 import Home from "./Home";
 import Navigation from "./Navbar";
 import Room from "./Room";
+import SingleCategoryView from "./SingleCategoryView";
 
 const Paths = () => {
   const code = new URLSearchParams(window.location.search).get("code");
@@ -23,10 +24,14 @@ const Paths = () => {
             <Route path="/signin" element={<SignIn />} />
           )}
           {/* <Route path="/" element={<Home />} /> */}
-          <Route path="/explore" element={<Explore />} />
+          <Route path="/explore" element={<Explore code={code} />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signout" element={<SignOut />} />
           <Route path="/room" element={<Room />} />
+          <Route
+            path="/category/:categoryId"
+            element={<SingleCategoryView code={code} />}
+          />
         </Routes>
       </div>
     </Router>
