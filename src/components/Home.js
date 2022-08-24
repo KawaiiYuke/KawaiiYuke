@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import useAuth from "./useAuth";
-import { Container, Form } from "react-bootstrap";
-import SpotifyWebApi from "spotify-web-api-node";
-import TrackSearchResult from "./TrackSearchResult";
-import Player from "./Player";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import useAuth from './useAuth';
+import { Container, Form } from 'react-bootstrap';
+import SpotifyWebApi from 'spotify-web-api-node';
+import TrackSearchResult from './TrackSearchResult';
+import Player from './Player';
+import axios from 'axios';
 
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.CLIENT_ID,
@@ -12,23 +12,23 @@ const spotifyApi = new SpotifyWebApi({
 
 const Home = ({ code }) => {
   const accessToken = useAuth(code);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [playingTrack, setPlayingTrack] = useState();
-  const [lyrics, setLyrics] = useState("");
-  const [categoryList, setCategoryList] = useState("");
-  console.log("categoryList: ", categoryList);
+  const [lyrics, setLyrics] = useState('');
+  const [categoryList, setCategoryList] = useState('');
+  console.log('categoryList: ', categoryList);
 
   function chooseTrack(track) {
     setPlayingTrack(track);
-    setSearch("");
-    setLyrics("");
+    setSearch('');
+    setLyrics('');
   }
 
   useEffect(() => {
-    axios("https://api.spotify.com/v1/browse/categories?locale=sv_US", {
-      method: "GET",
-      headers: { Authorization: "Bearer " + accessToken },
+    axios('https://api.spotify.com/v1/browse/categories?locale=sv_US', {
+      method: 'GET',
+      headers: { Authorization: 'Bearer ' + accessToken },
     }).then((genreResponse) => {
       setCategoryList({
         listOfGenresFromAPI: genreResponse.data.categories.items,
@@ -39,7 +39,7 @@ const Home = ({ code }) => {
   useEffect(() => {
     if (!playingTrack) return;
     axios
-      .get("http://localhost:3001/lyrics", {
+      .get('http://localhost:3001/lyrics', {
         params: {
           track: playingTrack.title,
           artist: playingTrack.artist,
@@ -85,14 +85,17 @@ const Home = ({ code }) => {
   }, [search, accessToken]);
 
   return (
-    <Container className="d-flex flex-column py-2" style={{ height: "100vh" }}>
+    <Container
+      className="d-flex flex-column py-2"
+      style={{ height: '90vh', width: '50rem', paddingLeft: '15rem' }}
+    >
       <Form.Control
         type="search"
         placeholder="Search Songs/Artists"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      <div className="flex-grow-1 my-2" style={{ overflowY: "auto" }}>
+      <div className="flex-grow-1 my-2" style={{ overflowY: 'auto' }}>
         {searchResults.map((track) => (
           <TrackSearchResult
             track={track}
@@ -101,7 +104,7 @@ const Home = ({ code }) => {
           />
         ))}
         {searchResults.length === 0 && (
-          <div className="text-center" style={{ whiteSpace: "pre" }}>
+          <div className="text-center" style={{ whiteSpace: 'pre' }}>
             {lyrics}
           </div>
         )}

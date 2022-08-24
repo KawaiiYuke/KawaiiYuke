@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default function TrackSearchResult({ track, chooseTrack }) {
   function handlePlay() {
@@ -7,12 +7,12 @@ export default function TrackSearchResult({ track, chooseTrack }) {
   return (
     <div
       className="d-flex m-2 align-items-center"
-      style={{ cursor: "pointer" }}
+      style={{ cursor: 'pointer' }}
       onClick={handlePlay}
     >
       <img
         src={track.albumUrl}
-        style={{ heigh: "64px", width: "64px" }}
+        style={{ height: '64px', width: '64px' }}
         alt="album"
       />
       <div className="ml-3">
