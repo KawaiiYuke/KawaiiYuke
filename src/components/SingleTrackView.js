@@ -10,28 +10,37 @@ export default function SingleTrackView({ code }) {
   const trackId = window.location.pathname.split("/").slice(-1)[0];
   const [track, setTrack] = useState({});
   const [lyrics, setLyrics] = useState("");
-  //console.log(track);
 
   useEffect(() => {
-    axios(`	https://api.spotify.com/v1/tracks/${trackId}`, {
-      method: "GET",
-      //headers: { Authorization: "Bearer " + accessToken },
-      headers: {
-        Authorization:
-          "Bearer " +
-          "BQDXSikk0lFXrnxikZrL_WVnqTVrJCZiYn9zsQSKvJb7d-InJJW61tIqeUZetEV9CYMkONjnN_1Ws5kgJWPJdGcCVtz3u9wASWJ2FdWVH0rrPvuW2X_5KeNrCdoEHCGyr5w3C-1s-fALmU6WQ2QfPi_0DdgIwS5FAzdKrmLIek_LlaWlYtjKgj7kOTwezrCGj9LDHfw",
-      },
-    }).then((trackResponse) => {
-      setTrack(trackResponse.data);
-    });
-  });
+    const fetchTrack = async () => {
+      const data = await axios(`	https://api.spotify.com/v1/tracks/${trackId}`, {
+        method: "GET",
+        //headers: { Authorization: "Bearer " + accessToken },
+        headers: {
+          Authorization:
+            "Bearer " +
+            "BQDygyZDcyIWDiL_VOthX9vEbu6BzpR32i1bQFIsgRpqRlD_7U3U2TNzM2nM4A9jNHFATAKAWw9xmoSfCsS2LjZeOTTIXdJepD09YGebQ93jotT-TFjLkz0ERV8Jnq--w5dFyDOulun25E_ZXZA7HJWNcKxqZMvcLpchHKrO_WOdguB-A4QnYMQ33cDLWmWa7xhquRA",
+        },
+      });
 
+      // const json = await data.json();
+      // console.log("json", json);
+      setTrack(data.data);
+      // }).then((trackResponse) => {
+      //   setTrack(trackResponse.data);
+      // });
+    };
+    fetchTrack();
+  }, [trackId]);
+
+  // console.log(track);
+  // console.log(Array.isArray(track.artists));
   useEffect(() => {
     axios
       .get("http://localhost:3001/lyrics", {
         params: {
           track: track.name,
-          artist: track.artists[0].name,
+          //artist: track.artists[0].name,
         },
       })
       .then((res) => {
@@ -41,14 +50,18 @@ export default function SingleTrackView({ code }) {
 
   return (
     <div>
-      <h1>{track.name}</h1>
-      <h2>By: {track.artists[0].name}</h2>
+      {track && (
+        <div>
+          <h1>{track?.name}</h1>
+          {/* <h2>By: {track?.artists[0].name}</h2>
 
-      <img src={track.album.images[2].url} alt="album" />
+          <img src={track?.album.images[2].url} alt="album" /> */}
 
-      <div className="text-center" style={{ whiteSpace: "pre" }}>
-        Lyrics: {lyrics}
-      </div>
+          <div className="text-center" style={{ whiteSpace: "pre" }}>
+            Lyrics: {lyrics}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
