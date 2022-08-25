@@ -9,6 +9,7 @@ export default function SingleTrackView({ code }) {
   const accessToken = useAuth(code);
   const trackId = window.location.pathname.split("/").slice(-1)[0];
   const [track, setTrack] = useState({});
+  const [lyrics, setLyrics] = useState("");
   //console.log(track);
 
   useEffect(() => {
@@ -25,11 +26,29 @@ export default function SingleTrackView({ code }) {
     });
   });
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/lyrics", {
+        params: {
+          track: track.name,
+          artist: track.artists[0].name,
+        },
+      })
+      .then((res) => {
+        setLyrics(res.data.lyrics);
+      });
+  }, [track]);
+
   return (
     <div>
       <h1>{track.name}</h1>
       <h2>By: {track.artists[0].name}</h2>
+
       <img src={track.album.images[2].url} alt="album" />
+
+      <div className="text-center" style={{ whiteSpace: "pre" }}>
+        Lyrics: {lyrics}
+      </div>
     </div>
   );
 }
