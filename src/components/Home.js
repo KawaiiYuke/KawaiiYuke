@@ -37,6 +37,26 @@ const Home = ({ code }) => {
       });
   }, [playingTrack]);
 
+  // useEffect(() => {
+  //   axios(
+  //     `https://spclient.wg.spotify.com/color-lyrics/v2/track/${playingTrack?.id}`,
+  //     {
+  //       method: "GET",
+  //       // headers: {
+  //       //   Authorization: "Bearer " + accessToken,
+  //       // },
+  //       headers: {
+  //         Authorization:
+  //           "Bearer " +
+  //           "BQDGeOjFL7ulZYZobeVdJXB2WupxXQmHqUw41hIJ3TKamiyTudjLhx6YUq4ddXzklycKsyZADxarF5Qv6YDkT89MR_Cz10-RaL3XCVB644JNfn6hKpng6jOksznPrPsXVXePD7aw_8OP3ERnwLMPLKqoMJb5J_DXhBeiZgpbG0RGbj14cnfqEXSGYrtasUmzx6CaGt4",
+  //       },
+  //     }
+  //   ).then((lyricsResponse) => {
+  //     console.log("lyricsResponse: " + lyricsResponse);
+  //     //setLyrics(lyricsResponse);
+  //   });
+  // });
+
   useEffect(() => {
     if (!accessToken) return;
     spotifyApi.setAccessToken(accessToken);
@@ -63,6 +83,7 @@ const Home = ({ code }) => {
             title: track.name,
             uri: track.uri,
             albumUrl: smallestAlbumImage.url,
+            id: track.id,
           };
         })
       );

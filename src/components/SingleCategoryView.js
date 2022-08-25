@@ -13,6 +13,7 @@ export default function SingleCategoryView({ code }) {
   const accessToken = useAuth(code);
   const [playlists, setPlaylists] = useState([]);
   const categoryId = window.location.pathname.split("/").slice(-1)[0];
+  const [singlePlaylist, setSinglePlaylist] = useState([]);
 
   useEffect(() => {
     axios(
@@ -23,11 +24,10 @@ export default function SingleCategoryView({ code }) {
         headers: {
           Authorization:
             "Bearer " +
-            "BQDZ63m-EZeiFfSnRrdk_rXeRoM_d8K3ddAw0ZjsP7iZqykNDMD9CLguLIe5FBSRe8TGvpiBZGqZlHXzhvoqpSO7JHjT6z8C2t5FEOIrAY1uviEK517Bd9rWTqDISQqXpKpn1tOAwiNCPGSyEtQLshJfIGCsl-JH7SxcUQxCY_K6CryQrua0Jo_wcjtvU6gnXN5aSuk",
+            "BQBNl2HGIoK1kAGbBEE-VRkLOkS2074xVceWjlm26YOAZFi-gxcuZ4Dzv51AV21u3lEBZJd9VzRaDUcTrtgAJHeG5PBf0ZKGi7M_VFUXxAEW9qxLdUdUCikhmAkjvdcCqyiUvlOVTx0_zZ4rnvNuYWl6qvT28Nuocyuh8KadEfem0QH3VE1iBCQvcXbjtksH55iHYbI",
         },
       }
     ).then((playlistsResponse) => {
-      console.log("playlistsResponse: ", playlistsResponse);
       setPlaylists(playlistsResponse.data.playlists.items);
     });
   });
@@ -36,9 +36,11 @@ export default function SingleCategoryView({ code }) {
       single category page
       {playlists.map((playlist) => {
         return (
-          <div key={playlist.id}>
-            <img src={playlist.images[0].url} alt="cover" />
-            <h2>{playlist.name}</h2>
+          <div key={playlist.id} onClick={() => setSinglePlaylist(playlist.id)}>
+            <Link to={`/playlists/${playlist.id}`}>
+              <img src={playlist.images[0].url} alt="cover" />
+              <h2>{playlist.name}</h2>
+            </Link>
           </div>
         );
       })}

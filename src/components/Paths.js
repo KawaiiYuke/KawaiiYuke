@@ -8,6 +8,7 @@ import Home from "./Home";
 import Navigation from "./Navbar";
 import Room from "./Room";
 import SingleCategoryView from "./SingleCategoryView";
+import SinglePlaylistView from "./SinglePlaylistView";
 
 // import Webcam from "./Webcam";
 import WebcamReact from "./WebcamReact";
@@ -36,10 +37,13 @@ const Paths = () => {
             path="/category/:categoryId"
             element={<SingleCategoryView code={code} />}
           />
+          <Route
+            path="/playlists/:playlistId"
+            element={<SinglePlaylistView code={code} />}
+          />
 
           {/* <Route path="/webcam" element={<Webcam />} /> */}
           <Route path="/test" element={<WebcamReact />} />
-
         </Routes>
       </div>
     </Router>
