@@ -12,6 +12,7 @@ import SinglePlaylistView from "./SinglePlaylistView";
 
 // import Webcam from "./Webcam";
 import WebcamReact from "./WebcamReact";
+import SingleTrackView from "./SingleTrackView";
 
 const Paths = () => {
   const code = new URLSearchParams(window.location.search).get("code");
@@ -40,6 +41,10 @@ const Paths = () => {
           <Route
             path="/playlists/:playlistId"
             element={<SinglePlaylistView code={code} />}
+          />
+          <Route
+            path="/track/:trackid"
+            element={<SingleTrackView code={code} />}
           />
 
           {/* <Route path="/webcam" element={<Webcam />} /> */}

@@ -14,7 +14,6 @@ export default function SinglePlaylistView({ code }) {
   const playlistId = window.location.pathname.split("/").slice(-1)[0];
   const [playlist, setPlaylist] = useState([]);
   const [tracks, setTracks] = useState([]);
-
   useEffect(() => {
     axios(`https://api.spotify.com/v1/playlists/${playlistId}`, {
       method: "GET",
@@ -22,7 +21,7 @@ export default function SinglePlaylistView({ code }) {
       headers: {
         Authorization:
           "Bearer " +
-          "BQBNl2HGIoK1kAGbBEE-VRkLOkS2074xVceWjlm26YOAZFi-gxcuZ4Dzv51AV21u3lEBZJd9VzRaDUcTrtgAJHeG5PBf0ZKGi7M_VFUXxAEW9qxLdUdUCikhmAkjvdcCqyiUvlOVTx0_zZ4rnvNuYWl6qvT28Nuocyuh8KadEfem0QH3VE1iBCQvcXbjtksH55iHYbI",
+          "BQDXSikk0lFXrnxikZrL_WVnqTVrJCZiYn9zsQSKvJb7d-InJJW61tIqeUZetEV9CYMkONjnN_1Ws5kgJWPJdGcCVtz3u9wASWJ2FdWVH0rrPvuW2X_5KeNrCdoEHCGyr5w3C-1s-fALmU6WQ2QfPi_0DdgIwS5FAzdKrmLIek_LlaWlYtjKgj7kOTwezrCGj9LDHfw",
       },
     }).then((playlistResponse) => {
       setPlaylist(playlistResponse.data);
@@ -36,7 +35,7 @@ export default function SinglePlaylistView({ code }) {
       headers: {
         Authorization:
           "Bearer " +
-          "BQBNl2HGIoK1kAGbBEE-VRkLOkS2074xVceWjlm26YOAZFi-gxcuZ4Dzv51AV21u3lEBZJd9VzRaDUcTrtgAJHeG5PBf0ZKGi7M_VFUXxAEW9qxLdUdUCikhmAkjvdcCqyiUvlOVTx0_zZ4rnvNuYWl6qvT28Nuocyuh8KadEfem0QH3VE1iBCQvcXbjtksH55iHYbI",
+          "BQDXSikk0lFXrnxikZrL_WVnqTVrJCZiYn9zsQSKvJb7d-InJJW61tIqeUZetEV9CYMkONjnN_1Ws5kgJWPJdGcCVtz3u9wASWJ2FdWVH0rrPvuW2X_5KeNrCdoEHCGyr5w3C-1s-fALmU6WQ2QfPi_0DdgIwS5FAzdKrmLIek_LlaWlYtjKgj7kOTwezrCGj9LDHfw",
       },
     }).then((tracksResponse) => {
       setTracks(tracksResponse.data.items);
@@ -47,16 +46,39 @@ export default function SinglePlaylistView({ code }) {
     <div>
       <h1>Playlist: {playlist.name}</h1>
       {/* <img src={playlist.images[0].url} alt="album" /> */}
-      {tracks.map((track, index) => {
-        return (
-          <div key={index}>
-            <h3>{track.track.name}</h3>
-            <h4>artist: {track.track.artists[0].name}</h4>
-            <h4>album: {track.track.album.name}</h4>
-            <img src={track.track.album.images[2].url} alt="album" />
-          </div>
-        );
-      })}
+
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>Number</th>
+              <th>Track</th>
+              <th>Artist</th>
+              <th>Album</th>
+              <th>Option</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tracks.map((track, index) => {
+              return (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+
+                  <Link to={`/track/${track.track.id}`}>
+                    <td>
+                      <img src={track.track.album.images[2].url} alt="album" />
+                      {track.track.name}
+                    </td>
+                  </Link>
+                  <td>{track.track.artists[0].name}</td>
+                  <td>{track.track.album.name}</td>
+                  <td>+ play</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

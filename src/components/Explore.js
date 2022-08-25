@@ -22,7 +22,7 @@ const Explore = ({ code }) => {
       headers: {
         Authorization:
           "Bearer " +
-          "BQBNl2HGIoK1kAGbBEE-VRkLOkS2074xVceWjlm26YOAZFi-gxcuZ4Dzv51AV21u3lEBZJd9VzRaDUcTrtgAJHeG5PBf0ZKGi7M_VFUXxAEW9qxLdUdUCikhmAkjvdcCqyiUvlOVTx0_zZ4rnvNuYWl6qvT28Nuocyuh8KadEfem0QH3VE1iBCQvcXbjtksH55iHYbI",
+          "BQDXSikk0lFXrnxikZrL_WVnqTVrJCZiYn9zsQSKvJb7d-InJJW61tIqeUZetEV9CYMkONjnN_1Ws5kgJWPJdGcCVtz3u9wASWJ2FdWVH0rrPvuW2X_5KeNrCdoEHCGyr5w3C-1s-fALmU6WQ2QfPi_0DdgIwS5FAzdKrmLIek_LlaWlYtjKgj7kOTwezrCGj9LDHfw",
       },
     }).then((categoryResponse) => {
       setCategoryList(categoryResponse.data.categories.items);
