@@ -16,7 +16,7 @@ export default function SinglePlaylistView({ code }) {
   const [tracks, setTracks] = useState([]);
 
   useEffect(() => {
-    axios(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+    axios(`https://api.spotify.com/v1/playlists/${playlistId}`, {
       method: "GET",
       //headers: { Authorization: "Bearer " + accessToken },
       headers: {
@@ -25,24 +25,28 @@ export default function SinglePlaylistView({ code }) {
           "BQBNl2HGIoK1kAGbBEE-VRkLOkS2074xVceWjlm26YOAZFi-gxcuZ4Dzv51AV21u3lEBZJd9VzRaDUcTrtgAJHeG5PBf0ZKGi7M_VFUXxAEW9qxLdUdUCikhmAkjvdcCqyiUvlOVTx0_zZ4rnvNuYWl6qvT28Nuocyuh8KadEfem0QH3VE1iBCQvcXbjtksH55iHYbI",
       },
     }).then((playlistResponse) => {
-      console.log(
-        "playlistResponse",
-        playlistResponse.data.items[0].track.album.images[2]
-      );
-      setTracks(playlistResponse.data.items);
+      setPlaylist(playlistResponse.data);
     });
   });
 
-  //   function smallesetAlbumImage(imageArray) {
-  //     return imageArray.reduce((smallest, image) => {
-  //       if (image.height < smallest.height) return image;
-  //       return smallest;
-  //     }, imageArray[0]);
-  //   }
+  useEffect(() => {
+    axios(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+      method: "GET",
+      //headers: { Authorization: "Bearer " + accessToken },
+      headers: {
+        Authorization:
+          "Bearer " +
+          "BQBNl2HGIoK1kAGbBEE-VRkLOkS2074xVceWjlm26YOAZFi-gxcuZ4Dzv51AV21u3lEBZJd9VzRaDUcTrtgAJHeG5PBf0ZKGi7M_VFUXxAEW9qxLdUdUCikhmAkjvdcCqyiUvlOVTx0_zZ4rnvNuYWl6qvT28Nuocyuh8KadEfem0QH3VE1iBCQvcXbjtksH55iHYbI",
+      },
+    }).then((tracksResponse) => {
+      setTracks(tracksResponse.data.items);
+    });
+  });
 
   return (
     <div>
-      single playlist view:
+      <h1>Playlist: {playlist.name}</h1>
+      {/* <img src={playlist.images[0].url} alt="album" /> */}
       {tracks.map((track, index) => {
         return (
           <div key={index}>
