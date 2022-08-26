@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap");
 
 .wrapper * {
   text-decoration: none;
@@ -10,11 +10,13 @@
 }
 
 .wrapper .sidebar {
-  width: 200px;
+  width: 300px;
   height: 100%;
-  background: #5f6e4d;
-  padding: 30px 0px;
+  background: #747c43;
+  padding: 50px 0px;
   position: fixed;
+  transition: all 0.3s;
+  overflow: hidden;
 }
 
 .wrapper .sidebar h2 {
@@ -25,6 +27,8 @@
 }
 
 .wrapper .sidebar ul li {
+  width: 300px;
+  box-sizing: border-box;
   padding: 15px;
   border-bottom: 1px solid #bdb8d7;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -32,7 +36,7 @@
 }
 
 .wrapper .sidebar ul li a {
-  color: #bdb8d7;
+  color: #274d2c;
   display: block;
 }
 
@@ -41,11 +45,11 @@
 }
 
 .wrapper .sidebar ul li:hover {
-  background-color: #859b6b;
+  background-color: #e2c882;
 }
 
 .wrapper .sidebar ul li:hover a {
-  color: #fff;
+  color: rgb(114, 95, 10);
 }
 
 .wrapper .sidebar .social_media {
@@ -95,4 +99,17 @@
   .social_media {
     display: none !important;
   }
+}
+
+.menu {
+  width: 30px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 999;
+  cursor: pointer;
+}
+
+.menu > img {
+  width: 100%;
 }
