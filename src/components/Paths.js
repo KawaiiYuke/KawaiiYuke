@@ -15,8 +15,9 @@ import VideoTest from './VideoTest';
 import WebcamReact from './WebcamReact';
 import SingleTrackView from './SingleTrackView';
 
+import { useSearchParams } from 'react-router-dom';
+
 const Paths = () => {
-  const code = new URLSearchParams(window.location.search).get('code');
   return (
     <Router>
       <div className="Paths">
@@ -24,29 +25,22 @@ const Paths = () => {
           <Navigation />
         </div>
         <Routes>
-          {code ? (
-            <Route path="/" element={<Home code={code} />} />
-          ) : (
-            <Route path="/signin" element={<SignIn />} />
-          )}
-          {/* <Route path="/" element={<Home />} /> */}
-          <Route path="/explore" element={<Explore code={code} />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/explore" element={<Explore />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signout" element={<SignOut />} />
           <Route path="/room" element={<Room />} />
 
           <Route
             path="/category/:categoryId"
-            element={<SingleCategoryView code={code} />}
+            element={<SingleCategoryView />}
           />
           <Route
             path="/playlists/:playlistId"
-            element={<SinglePlaylistView code={code} />}
+            element={<SinglePlaylistView />}
           />
-          <Route
-            path="/track/:trackid"
-            element={<SingleTrackView code={code} />}
-          />
+          <Route path="/track/:trackid" element={<SingleTrackView />} />
 
           {/* <Route path="/webcam" element={<Webcam />} /> */}
           <Route path="/test" element={<VideoTest />} />
