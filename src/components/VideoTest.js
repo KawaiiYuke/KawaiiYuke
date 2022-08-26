@@ -206,15 +206,15 @@ function Videos({ mode, callId, setPage }) {
       await roomRef.delete();
     }
 
-    window.location.reload();
+    // window.location.reload();
   };
 
   return (
-    <div className="videos">
-      <video ref={localRef} autoPlay playsInline className="local" muted />
-      <video ref={remoteRef} autoPlay playsInline className="remote" />
-
-      <div className="buttonsContainer">
+    <div>
+      <video ref={localRef} autoPlay playsInline muted />
+      <video ref={remoteRef} autoPlay playsInline />
+      <div>{roomId}</div>
+      {/* <div className="buttonsContainer">
         <button
           onClick={hangUp}
           disabled={!webcamActive}
@@ -234,11 +234,11 @@ function Videos({ mode, callId, setPage }) {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {!webcamActive && (
-        <div className="modalContainer">
-          <div className="modal">
+        <div>
+          <div>
             <h3>Turn on your camera and microphone and start the call</h3>
             <div className="container">
               <button onClick={() => setPage('home')} className="secondary">
