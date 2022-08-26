@@ -85,7 +85,7 @@ const Home = ({ code }) => {
   }, [search, accessToken]);
 
   return (
-    <Container className="d-flex flex-column py-2" style={{ height: "100vh" }}>
+    <Container className="d-flex flex-column py-2" style={{ height: "90vh", width: "50rem", paddingLeft: "15rem" }}>
       <Form.Control
         type="search"
         placeholder="Search Songs/Artists"

@@ -1,16 +1,32 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './css/Navbar.css';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./css/Navbar.css";
+import menu from "../images/menu.png";
+import logo from "../images/kawaii_logo.png";
 
 const Navigation = () => {
+  const [navBar, setBar] = useState(false);
+
+  useEffect(() => {
+    window.onresize = function () {
+      if (document.body.offsetWidth < 960) {
+        setBar(true);
+      } else {
+        setBar(false);
+      }
+    };
+  });
   return (
     <div className="wrapper">
-      <div className="sidebar">
+      <div className="sidebar" style={{ width: navBar ? "50px" : "300px" }}>
         <Link to="/">
-          {/* <img src="https://i.imgur.com/aQWF5qB.png" alt="" /> */}
-          <h2>KawaiiYuke</h2>
+          <img src={logo} alt="" width="100%" />
         </Link>
         <ul>
+          <li>
+            <input type="search" placeholder="Search Songs" />
+          </li>
+
           <li>
             <Link to="/explore">
               <i className="fas fa-home"></i>Explore
@@ -27,6 +43,14 @@ const Navigation = () => {
             </Link>
           </li>
         </ul>
+        <div
+          className="menu"
+          onClick={() => {
+            setBar(!navBar);
+          }}
+        >
+          <img src={menu} alt="" />
+        </div>
       </div>
     </div>
   );
