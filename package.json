@@ -32,7 +32,7 @@
   },
   "scripts": {
     "start": "node ./server",
-    "start:dev": "react-scripts start & nodemon run server",
+    "start:dev": "react-scripts start",
     "server": "nodemon ./server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -58,5 +58,6 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
-  }
+  },
+  "proxy": "http://localhost:3001"
 }
