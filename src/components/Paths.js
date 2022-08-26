@@ -10,12 +10,11 @@ import Room from './Room';
 import SingleCategoryView from './SingleCategoryView';
 import SinglePlaylistView from './SinglePlaylistView';
 import VideoTest from './VideoTest';
+import './css/Paths.css';
 
-// import Webcam from "./Webcam";
+import Webcam from './Webcam';
 import WebcamReact from './WebcamReact';
 import SingleTrackView from './SingleTrackView';
-
-import { useSearchParams } from 'react-router-dom';
 
 const Paths = () => {
   return (
@@ -24,27 +23,26 @@ const Paths = () => {
         <div>
           <Navigation />
         </div>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/explore" element={<Explore />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signout" element={<SignOut />} />
-          <Route path="/room" element={<Room />} />
-
-          <Route
-            path="/category/:categoryId"
-            element={<SingleCategoryView />}
-          />
-          <Route
-            path="/playlists/:playlistId"
-            element={<SinglePlaylistView />}
-          />
-          <Route path="/track/:trackid" element={<SingleTrackView />} />
-
-          {/* <Route path="/webcam" element={<Webcam />} /> */}
-          <Route path="/test" element={<VideoTest />} />
-        </Routes>
+        <div className="main_content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/explore" element={<Explore />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signout" element={<SignOut />} />
+            <Route path="/room" element={<Room />} />
+            <Route
+              path="/category/:categoryId"
+              element={<SingleCategoryView />}
+            />
+            <Route
+              path="/playlists/:playlistId"
+              element={<SinglePlaylistView />}
+            />
+            <Route path="/track/:trackid" element={<SingleTrackView />} />
+            <Route path="/test" element={<VideoTest />} />
+          </Routes>
+        </div>
       </div>
     </Router>
   );
