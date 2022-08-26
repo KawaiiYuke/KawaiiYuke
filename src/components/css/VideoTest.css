@@ -16,7 +16,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-button {
+.videos button {
   display: inline-block;
   border: none;
   font: inherit;

@@ -5,6 +5,7 @@ import { Navigation } from 'swiper';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-fade';
 import './css/Carousel.scss';
+import Home from './Home';
 
 const Carousel = () => {
   return (
@@ -18,7 +19,8 @@ const Carousel = () => {
         className="myswiper"
       >
         <SwiperSlide className="swiperslide">
-          <img src="https://i.imgur.com/DtTzXpu.jpg" alt="" />
+          {/* <img src="https://i.imgur.com/DtTzXpu.jpg" alt="" /> */}
+          <Home />
         </SwiperSlide>
         <SwiperSlide className="swiperslide">
           <img src="https://i.imgur.com/N0kXRqz.jpg" alt="" />

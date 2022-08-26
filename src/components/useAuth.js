@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 export default function useAuth(code) {
   const [accessToken, setAccessToken] = useState();
@@ -8,7 +8,7 @@ export default function useAuth(code) {
 
   useEffect(() => {
     axios
-      .post("http://localhost:3001/login", {
+      .post('/login', {
         code,
       })
       .then((res) => {
@@ -26,7 +26,7 @@ export default function useAuth(code) {
     if (!refreshToken || !expiresIn) return;
     const interval = setInterval(() => {
       axios
-        .post("http://localhost:3001/refresh", {
+        .post('/refresh', {
           refreshToken,
         })
         .then((res) => {
@@ -41,6 +41,5 @@ export default function useAuth(code) {
       clearInterval(interval);
     };
   }, [refreshToken, expiresIn]);
-
   return accessToken;
 }
