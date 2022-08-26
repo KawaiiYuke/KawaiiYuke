@@ -8,7 +8,7 @@ export default function HomePage() {
       <Link to="/music">
         <div>Go to music page</div>
       </Link>
-      <Link to="/login">
+      <Link to="/signin">
         <div>Go to login page</div>
       </Link>
     </div>
