@@ -1,32 +1,35 @@
-import React, { useState, useEffect } from "react";
-import useAuth from "./useAuth";
-import { Container, Form } from "react-bootstrap";
-import SpotifyWebApi from "spotify-web-api-node";
-import TrackSearchResult from "./TrackSearchResult";
-import Player from "./Player";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import useAuth from './useAuth';
+import { Container, Form } from 'react-bootstrap';
+import SpotifyWebApi from 'spotify-web-api-node';
+import TrackSearchResult from './TrackSearchResult';
+import Player from './Player';
+import axios from 'axios';
+import { useSearchParams } from 'react-router-dom';
 
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.CLIENT_ID,
 });
 
-const Home = ({ code }) => {
+const Home = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const code = searchParams.get('code');
   const accessToken = useAuth(code);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [playingTrack, setPlayingTrack] = useState();
-  const [lyrics, setLyrics] = useState("");
+  const [lyrics, setLyrics] = useState('');
 
   function chooseTrack(track) {
     setPlayingTrack(track);
-    setSearch("");
-    setLyrics("");
+    setSearch('');
+    setLyrics('');
   }
 
   useEffect(() => {
     if (!playingTrack) return;
     axios
-      .get("http://localhost:3001/lyrics", {
+      .get('http://localhost:3001/lyrics', {
         params: {
           track: playingTrack.title,
           artist: playingTrack.artist,
@@ -95,7 +98,7 @@ const Home = ({ code }) => {
   return (
     <Container
       className="d-flex flex-column py-2"
-      style={{ height: "90vh", width: "50rem", paddingLeft: "15rem" }}
+      style={{ height: '90vh', width: '50rem', paddingLeft: '15rem' }}
     >
       <Form.Control
         type="search"
@@ -104,7 +107,7 @@ const Home = ({ code }) => {
         onChange={(e) => setSearch(e.target.value)}
       />
 
-      <div className="flex-grow-1 my-2" style={{ overflowY: "auto" }}>
+      <div className="flex-grow-1 my-2" style={{ overflowY: 'auto' }}>
         {searchResults.map((track) => (
           <>
             <TrackSearchResult
@@ -117,7 +120,7 @@ const Home = ({ code }) => {
         ))}
 
         {searchResults.length === 0 && (
-          <div className="text-center" style={{ whiteSpace: "pre" }}>
+          <div className="text-center" style={{ whiteSpace: 'pre' }}>
             {lyrics}
           </div>
         )}
