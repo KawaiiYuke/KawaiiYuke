@@ -16,25 +16,12 @@ const Home = ({ code }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [playingTrack, setPlayingTrack] = useState();
   const [lyrics, setLyrics] = useState("");
-  const [categoryList, setCategoryList] = useState("");
-  console.log("categoryList: ", categoryList);
 
   function chooseTrack(track) {
     setPlayingTrack(track);
     setSearch("");
     setLyrics("");
   }
-
-  useEffect(() => {
-    axios("https://api.spotify.com/v1/browse/categories?locale=sv_US", {
-      method: "GET",
-      headers: { Authorization: "Bearer " + accessToken },
-    }).then((genreResponse) => {
-      setCategoryList({
-        listOfGenresFromAPI: genreResponse.data.categories.items,
-      });
-    });
-  });
 
   useEffect(() => {
     if (!playingTrack) return;
@@ -49,6 +36,26 @@ const Home = ({ code }) => {
         setLyrics(res.data.lyrics);
       });
   }, [playingTrack]);
+
+  // useEffect(() => {
+  //   axios(
+  //     `https://spclient.wg.spotify.com/color-lyrics/v2/track/${playingTrack?.id}`,
+  //     {
+  //       method: "GET",
+  //       // headers: {
+  //       //   Authorization: "Bearer " + accessToken,
+  //       // },
+  //       headers: {
+  //         Authorization:
+  //           "Bearer " +
+  //           "BQDGeOjFL7ulZYZobeVdJXB2WupxXQmHqUw41hIJ3TKamiyTudjLhx6YUq4ddXzklycKsyZADxarF5Qv6YDkT89MR_Cz10-RaL3XCVB644JNfn6hKpng6jOksznPrPsXVXePD7aw_8OP3ERnwLMPLKqoMJb5J_DXhBeiZgpbG0RGbj14cnfqEXSGYrtasUmzx6CaGt4",
+  //       },
+  //     }
+  //   ).then((lyricsResponse) => {
+  //     console.log("lyricsResponse: " + lyricsResponse);
+  //     //setLyrics(lyricsResponse);
+  //   });
+  // });
 
   useEffect(() => {
     if (!accessToken) return;
@@ -76,6 +83,7 @@ const Home = ({ code }) => {
             title: track.name,
             uri: track.uri,
             albumUrl: smallestAlbumImage.url,
+            id: track.id,
           };
         })
       );
@@ -85,6 +93,7 @@ const Home = ({ code }) => {
   }, [search, accessToken]);
 
   return (
+
     <Container className="d-flex flex-column py-2" style={{ height: "90vh", width: "50rem", paddingLeft: "15rem" }}>
       <Form.Control
         type="search"
@@ -92,14 +101,19 @@ const Home = ({ code }) => {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
+
       <div className="flex-grow-1 my-2" style={{ overflowY: "auto" }}>
         {searchResults.map((track) => (
-          <TrackSearchResult
-            track={track}
-            key={track.uri}
-            chooseTrack={chooseTrack}
-          />
+          <>
+            <TrackSearchResult
+              track={track}
+              key={track.uri}
+              chooseTrack={chooseTrack}
+            />
+            <button>Add to Playlist</button>
+          </>
         ))}
+
         {searchResults.length === 0 && (
           <div className="text-center" style={{ whiteSpace: "pre" }}>
             {lyrics}

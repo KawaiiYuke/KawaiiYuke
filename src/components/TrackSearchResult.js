@@ -12,7 +12,7 @@ export default function TrackSearchResult({ track, chooseTrack }) {
     >
       <img
         src={track.albumUrl}
-        style={{ heigh: "64px", width: "64px" }}
+        style={{ height: "64px", width: "64px" }}
         alt="album"
       />
       <div className="ml-3">

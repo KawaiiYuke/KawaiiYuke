@@ -1,8 +1,15 @@
+
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./css/Navbar.css";
 import menu from "../images/menu.png";
 import logo from "../images/kawaii_logo.png";
+
+
+
+import { AUTH_URL } from "./SignIn";
+
+
 
 const Navigation = () => {
   const [navBar, setBar] = useState(false);
@@ -36,6 +43,12 @@ const Navigation = () => {
             <Link to="/signin">
               <i className="fas fa-user"></i>Sign In
             </Link>
+          </li>
+
+          <li>
+            <a href={AUTH_URL}>
+              <i className="fas fa-address-card"></i>Search
+            </a>
           </li>
           <li>
             <Link to="/signout">
