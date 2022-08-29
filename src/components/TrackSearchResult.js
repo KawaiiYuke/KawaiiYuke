@@ -7,12 +7,18 @@ export default function TrackSearchResult({ track, chooseTrack }) {
   return (
     <div
       className="d-flex m-2 align-items-center"
-      style={{ cursor: "pointer" }}
+      style={{
+        cursor: "pointer",
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        border: "solid",
+      }}
       onClick={handlePlay}
     >
       <img
         src={track.albumUrl}
-        style={{ height: "64px", width: "64px" }}
+        style={{ height: "64px", width: "64px", marginTop: ".7em" }}
         alt="album"
       />
       <div className="ml-3">

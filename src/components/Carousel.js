@@ -12,7 +12,7 @@ const Carousel = () => {
   return (
     <div className="swiperContainer">
       <div className="search_div">
-        <Form.Control type="search" placeholder="Search Songs/Artists" />
+        {/* <Form.Control type="search" placeholder="Search Songs/Artists" /> */}
       </div>
       <Swiper
         modules={[Navigation]}
