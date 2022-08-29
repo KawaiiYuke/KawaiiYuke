@@ -1,19 +1,17 @@
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import { Navigation } from "swiper";
-import "swiper/css/navigation";
-import "swiper/css/effect-fade";
-import "./css/Carousel.scss";
-import Home from "./Home";
-import { Form } from "react-bootstrap";
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import { Navigation } from 'swiper';
+import 'swiper/css/navigation';
+import 'swiper/css/effect-fade';
+import './css/Carousel.scss';
+import Home from './Home';
+import { Form } from 'react-bootstrap';
+import SignIn from './SignIn';
 
 const Carousel = () => {
   return (
     <div className="swiperContainer">
-      <div className="search_div">
-        <Form.Control type="search" placeholder="Search Songs/Artists" />
-      </div>
       <Swiper
         modules={[Navigation]}
         navigation
