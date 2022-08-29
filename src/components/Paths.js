@@ -11,9 +11,6 @@ import SingleCategoryView from "./SingleCategoryView";
 import SinglePlaylistView from "./SinglePlaylistView";
 import VideoTest from "./VideoTest";
 import "./css/Paths.css";
-
-import Webcam from "./Webcam";
-import WebcamReact from "./WebcamReact";
 import SingleTrackView from "./SingleTrackView";
 
 const Paths = () => {
