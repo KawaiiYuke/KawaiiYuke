@@ -6,7 +6,7 @@ import menu from "../images/menu.png";
 import logo from "../images/kawaii_logo.png";
 import explore from "../images/explore.png";
 import signout from "../images/signout.png";
-import seach from "../images/seach.png";
+import search from "../images/search.png";
 import signin from "../images/signin.png";
 
 
@@ -36,7 +36,7 @@ const Navigation = () => {
         <ul>
           <li>
             <div className="navIcon">
-              <img src={seach} alt="" />
+              <img src={search} alt="" />
             </div>
             <input type="search" placeholder="Search Songs" />
           </li>
