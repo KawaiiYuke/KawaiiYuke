@@ -19,6 +19,23 @@
   overflow: hidden;
 }
 
+.sidebar ul {
+  padding-left: 0 !important;
+}
+.sidebar ul li {
+  position: relative;
+}
+.navIcon {
+  position: absolute;
+  width: 2rem;
+  left: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.navIcon > img {
+  width: 100%;
+}
+
 .wrapper .sidebar h2 {
   color: #fff;
   text-transform: uppercase;
@@ -73,7 +90,7 @@
   border-top-right-radius: 5px;
 }
 
-.wrapper .main_content {
+/* .wrapper .main_content {
   width: 100%;
   margin-left: 200px;
 }
@@ -93,7 +110,7 @@
 
 .wrapper .main_content .info div {
   margin-bottom: 20px;
-}
+} */
 
 @media (max-height: 500px) {
   .social_media {
