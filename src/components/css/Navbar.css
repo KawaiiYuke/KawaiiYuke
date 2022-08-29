@@ -12,7 +12,7 @@
 .wrapper .sidebar {
   width: 300px;
   height: 100%;
-  background: #b3c062;
+  background: #220231;
   padding: 50px 0px;
   position: fixed;
   transition: all 0.3s;
@@ -39,7 +39,7 @@
 .wrapper .sidebar h2 {
   color: #fff;
   text-transform: uppercase;
-  text-align: center;
+  text-align: left;
   margin-bottom: 30px;
 }
 
@@ -53,7 +53,7 @@
 }
 
 .wrapper .sidebar ul li a {
-  color: #274d2c;
+  color: #fbfffc;
   display: block;
 }
 
@@ -66,7 +66,7 @@
 }
 
 .wrapper .sidebar ul li:hover a {
-  color: rgb(114, 95, 10);
+  color: rgb(50, 10, 114);
 }
 
 .wrapper .sidebar .social_media {
