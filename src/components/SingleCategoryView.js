@@ -4,13 +4,14 @@ import useAuth from "./useAuth";
 import SpotifyWebApi from "spotify-web-api-node";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.CLIENT_ID,
 });
 
-export default function SingleCategoryView({ code }) {
-  const accessToken = useAuth(code);
+function SingleCategoryView(props) {
+  const accessToken = props?.accessToken;
   const [playlists, setPlaylists] = useState([]);
   const categoryId = window.location.pathname.split("/").slice(-1)[0];
   const [singlePlaylist, setSinglePlaylist] = useState([]);
@@ -20,12 +21,7 @@ export default function SingleCategoryView({ code }) {
       `https://api.spotify.com/v1/browse/categories/${categoryId}/playlists`,
       {
         method: "GET",
-        //headers: { Authorization: "Bearer " + accessToken },
-        headers: {
-          Authorization:
-            "Bearer " +
-            "BQDygyZDcyIWDiL_VOthX9vEbu6BzpR32i1bQFIsgRpqRlD_7U3U2TNzM2nM4A9jNHFATAKAWw9xmoSfCsS2LjZeOTTIXdJepD09YGebQ93jotT-TFjLkz0ERV8Jnq--w5dFyDOulun25E_ZXZA7HJWNcKxqZMvcLpchHKrO_WOdguB-A4QnYMQ33cDLWmWa7xhquRA",
-        },
+        headers: { Authorization: "Bearer " + accessToken },
       }
     ).then((playlistsResponse) => {
       setPlaylists(playlistsResponse.data.playlists.items);
@@ -50,3 +46,9 @@ export default function SingleCategoryView({ code }) {
     </div>
   );
 }
+
+const mapState = (state) => {
+  return state;
+};
+
+export default connect(mapState)(SingleCategoryView);

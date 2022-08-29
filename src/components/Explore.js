@@ -1,29 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import useAuth from './useAuth';
+import React, { useState, useEffect } from "react";
+import useAuth from "./useAuth";
 //import { Container, Form } from "react-bootstrap";
-import SpotifyWebApi from 'spotify-web-api-node';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import SpotifyWebApi from "spotify-web-api-node";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.CLIENT_ID,
 });
 
-const Explore = ({ code }) => {
-  const accessToken = useAuth(code);
-  console.log('THIS IS ACCESSTOKEN: ', code);
+const Explore = (props) => {
+  const accessToken = props?.accessToken;
   const [categoryList, setCategoryList] = useState([]);
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState("");
   useEffect(() => {
-    axios('https://api.spotify.com/v1/browse/categories?limit=50', {
-      method: 'GET',
-      // headers: {
-      //   Authorization: "Bearer " + accessToken,
-      // },
+    axios("https://api.spotify.com/v1/browse/categories?limit=50", {
+      method: "GET",
       headers: {
-        Authorization:
-          'Bearer ' +
-          'BQDygyZDcyIWDiL_VOthX9vEbu6BzpR32i1bQFIsgRpqRlD_7U3U2TNzM2nM4A9jNHFATAKAWw9xmoSfCsS2LjZeOTTIXdJepD09YGebQ93jotT-TFjLkz0ERV8Jnq--w5dFyDOulun25E_ZXZA7HJWNcKxqZMvcLpchHKrO_WOdguB-A4QnYMQ33cDLWmWa7xhquRA',
+        Authorization: "Bearer " + accessToken,
       },
     }).then((categoryResponse) => {
       setCategoryList(categoryResponse.data.categories.items);
@@ -60,4 +55,8 @@ const Explore = ({ code }) => {
   );
 };
 
-export default Explore;
+const mapState = (state) => {
+  return state;
+};
+
+export default connect(mapState)(Explore);
