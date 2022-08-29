@@ -1,4 +1,3 @@
-import './App.css';
 import Paths from './components/Paths';
 
 function App() {

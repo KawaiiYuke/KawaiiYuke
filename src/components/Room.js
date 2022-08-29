@@ -1,9 +1,10 @@
 import React from 'react';
 import Carousel from './Carousel';
+import './css/Room.css';
 
 const Room = () => {
   return (
-    <div>
+    <div className="room">
       <Carousel />
     </div>
   );

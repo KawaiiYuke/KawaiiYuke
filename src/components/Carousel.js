@@ -1,11 +1,13 @@
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import { Navigation } from 'swiper';
-import 'swiper/css/navigation';
-import 'swiper/css/effect-fade';
-import './css/Carousel.scss';
-import Home from './Home';
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { Navigation } from "swiper";
+import "swiper/css/navigation";
+import "swiper/css/effect-fade";
+import "./css/Carousel.scss";
+import Home from "./Home";
+import { Form } from "react-bootstrap";
+import SignIn from "./SignIn";
 
 const Carousel = () => {
   return (
