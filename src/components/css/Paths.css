@@ -1,0 +1,21 @@
+.main_content {
+  width: 100%;
+  margin-left: 200px;
+}
+
+.main_content .header {
+  padding: 20px;
+  background: #fff;
+  color: #717171;
+  border-bottom: 1px solid #e0e4e8;
+}
+
+.main_content .info {
+  margin: 20px;
+  color: #717171;
+  line-height: 25px;
+}
+
+.main_content .info div {
+  margin-bottom: 20px;
+}

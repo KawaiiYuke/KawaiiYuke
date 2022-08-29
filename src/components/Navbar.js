@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./css/Navbar.css";
@@ -7,6 +8,12 @@ import explore from "../images/explore.png";
 import signout from "../images/signout.png";
 import seach from "../images/seach.png";
 import signin from "../images/signin.png";
+
+
+
+import { AUTH_URL } from "./SignIn";
+
+
 
 const Navigation = () => {
   const [navBar, setBar] = useState(false);
@@ -49,6 +56,12 @@ const Navigation = () => {
               </div>
               <i className="fas fa-user"></i>Sign In
             </Link>
+          </li>
+
+          <li>
+            <a href={AUTH_URL}>
+              <i className="fas fa-address-card"></i>Search
+            </a>
           </li>
           <li>
             <Link to="/signout">

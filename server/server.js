@@ -1,12 +1,12 @@
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const SpotifyWebApi = require("spotify-web-api-node");
-const axios = require("axios");
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const SpotifyWebApi = require('spotify-web-api-node');
+const axios = require('axios');
 //const querystring = require("node:querystring");
 
-const lyricsFinder = require("lyrics-finder");
+const lyricsFinder = require('lyrics-finder');
 // const Musixmatch = require("musixmatch-node");
 // const mxm = new Musixmatch(process.env.MUSIXMATCH_API_KEY);
 
@@ -17,7 +17,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.post("/refresh", (req, res) => {
+app.post('/refresh', (req, res) => {
   const refreshToken = req.body.refreshToken;
   const spotifyApi = new SpotifyWebApi({
     redirectUri: process.env.REDIRECT_URI,
@@ -39,7 +39,7 @@ app.post("/refresh", (req, res) => {
     });
 });
 
-app.post("/login", (req, res) => {
+app.post('/login', (req, res) => {
   const code = req.body.code;
   const spotifyApi = new SpotifyWebApi({
     redirectUri: process.env.REDIRECT_URI,
@@ -50,6 +50,7 @@ app.post("/login", (req, res) => {
   spotifyApi
     .authorizationCodeGrant(code)
     .then((data) => {
+      console.log('THIS IS DATA', data);
       res.json({
         accessToken: data.body.access_token,
         refreshToken: data.body.refresh_token,
@@ -57,15 +58,15 @@ app.post("/login", (req, res) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+      console.log('The error for app.post LOGIN: ', err);
       res.sendStatus(400);
     });
 });
 
-app.get("/lyrics", async (req, res) => {
+app.get('/lyrics', async (req, res) => {
   const lyrics =
     (await lyricsFinder(req.query.artist, req.query.track)) ||
-    "No Lyrics found";
+    'No Lyrics found';
   res.json({ lyrics });
 });
 
@@ -100,24 +101,16 @@ app.get("/lyrics", async (req, res) => {
 //     });
 // });
 
-// app.get("/categories", async (req, res) => {
-//   //   axios
-//   //     .get("https://api.spotify.com/v1/recommendations/available-genre-seeds")
-//   //     .then((res) => {
-//   //       console.log("categories data: ", res.data);
-//   //     });
-
-//   const result = await fetch(
-//     `https://api.spotify.com/v1/browse/categories?locale=sv_US`,
-//     {
-//       method: "GET",
-//       headers: { Authorization: "Bearer " + req.body.accessToken },
-//     }
-//   );
-//   console.log("result: ", result);
-//   const data = await result.json();
-//   console.log("caterogy data: ", data);
-//   return data.categories.items;
+// app.get("/category", async (req, res) => {
+//   const accessToken = req.body.accessToken;
+//   axios("https://api.spotify.com/v1/browse/categories?limit=50", {
+//     method: "GET",
+//     headers: {
+//       Authorization: "Bearer " + accessToken,
+//     },
+//   }).then((categoryResponse) => {
+//     res.json(categoryResponse.data.categories.items);
+//   });
 // });
 
 app.listen(3001);
