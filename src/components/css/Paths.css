@@ -1,6 +1,7 @@
 .main_content {
   width: 100%;
-  margin-left: 200px;
+  /* margin-left: 200px; */
+  min-height: 100vh;
 }
 
 .main_content .header {
