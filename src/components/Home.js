@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import useAuth from "./useAuth";
 import { Container, Form } from "react-bootstrap";
@@ -16,12 +17,14 @@ const spotifyApi = new SpotifyWebApi({
 
 const Home = (props) => {
   const [searchParams, setSearchParams] = useSearchParams();
+
   const code = searchParams.get("code");
   const accessToken = props?.accessToken;
   const [search, setSearch] = useState("");
+
   const [searchResults, setSearchResults] = useState([]);
   const [playingTrack, setPlayingTrack] = useState();
-  const [lyrics, setLyrics] = useState("");
+  const [lyrics, setLyrics] = useState('');
 
   useEffect(() => {
     console.log('home props', props)
@@ -33,14 +36,14 @@ const Home = (props) => {
 
   function chooseTrack(track) {
     setPlayingTrack(track);
-    setSearch("");
-    setLyrics("");
+    setSearch('');
+    setLyrics('');
   }
 
   useEffect(() => {
     if (!playingTrack) return;
     axios
-      .get("http://localhost:3001/lyrics", {
+      .get('http://localhost:3001/lyrics', {
         params: {
           track: playingTrack.title,
           artist: playingTrack.artist,
@@ -110,16 +113,18 @@ const Home = (props) => {
   return (
     <Container
       className="d-flex flex-column py-2"
-      style={{ height: "90vh", width: "40rem", paddingLeft: "0" }}
+      style={{ height: '90vh', width: '40rem', paddingLeft: '0' }}
     >
       <Form.Control
+
        type="search"
        placeholder="Search Songs/Artists"
        value={search}
        onChange={(e) => setSearch(e.target.value)}
+
       />
 
-      <div className="flex-grow-1 my-2" style={{ overflowY: "auto" }}>
+      <div className="flex-grow-1 my-2" style={{ overflowY: 'auto' }}>
         {searchResults.map((track) => (
           <>
             <TrackSearchResult
@@ -132,7 +137,7 @@ const Home = (props) => {
         ))}
 
         {searchResults.length === 0 && (
-          <div className="text-center" style={{ whiteSpace: "pre" }}>
+          <div className="text-center" style={{ whiteSpace: 'pre' }}>
             {lyrics}
           </div>
         )}
