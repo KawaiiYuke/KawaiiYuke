@@ -1,15 +1,13 @@
-
-import React, { useState, useEffect } from "react";
-import useAuth from "./useAuth";
-import { Container, Form } from "react-bootstrap";
-import SpotifyWebApi from "spotify-web-api-node";
-import TrackSearchResult from "./TrackSearchResult";
-import Player from "./Player";
-import axios from "axios";
-import { useSearchParams } from "react-router-dom";
-import { loggingIn } from '../redux/store'
+import React, { useState, useEffect } from 'react';
+import useAuth from './useAuth';
+import { Container, Form } from 'react-bootstrap';
+import SpotifyWebApi from 'spotify-web-api-node';
+import TrackSearchResult from './TrackSearchResult';
+import Player from './Player';
+import axios from 'axios';
+import { useSearchParams } from 'react-router-dom';
+import { loggingIn } from '../redux/store';
 import { connect } from 'react-redux';
-
 
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.CLIENT_ID,
@@ -18,21 +16,21 @@ const spotifyApi = new SpotifyWebApi({
 const Home = (props) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const code = searchParams.get("code");
+  const code = searchParams.get('code');
   const accessToken = props?.accessToken;
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
 
   const [searchResults, setSearchResults] = useState([]);
   const [playingTrack, setPlayingTrack] = useState();
   const [lyrics, setLyrics] = useState('');
 
   useEffect(() => {
-    console.log('home props', props)
-    if(!props.loggedIn){
-      console.log('loggin running')
-      props.loggingIn(code)
-    };
-  }, [code])
+    console.log('home props', props);
+    if (!props.loggedIn) {
+      console.log('loggin running');
+      props.loggingIn(code);
+    }
+  }, [code]);
 
   function chooseTrack(track) {
     setPlayingTrack(track);
@@ -113,15 +111,13 @@ const Home = (props) => {
   return (
     <Container
       className="d-flex flex-column py-2"
-      style={{ height: '90vh', width: '40rem', paddingLeft: '0' }}
+      style={{ height: '80vh', width: '30rem' }}
     >
       <Form.Control
-
-       type="search"
-       placeholder="Search Songs/Artists"
-       value={search}
-       onChange={(e) => setSearch(e.target.value)}
-
+        type="search"
+        placeholder="Search Songs/Artists"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
       />
 
       <div className="flex-grow-1 my-2" style={{ overflowY: 'auto' }}>
@@ -132,7 +128,6 @@ const Home = (props) => {
               key={track.uri}
               chooseTrack={chooseTrack}
             />
-            <button>Add to Playlist</button>
           </>
         ))}
 
@@ -150,15 +145,14 @@ const Home = (props) => {
   );
 };
 
-
 const mapState = (state) => {
-  return state
-}
+  return state;
+};
 
 const mapDispatch = (dispatch) => {
   return {
-    loggingIn: (code) => dispatch(loggingIn(code))
-  }
-}
+    loggingIn: (code) => dispatch(loggingIn(code)),
+  };
+};
 
 export default connect(mapState, mapDispatch)(Home);
