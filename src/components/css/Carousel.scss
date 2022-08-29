@@ -1,7 +1,10 @@
 .swiperContainer {
-  padding-left: 25rem;
+  width: 50%;
+  margin: 0 0 0 5rem;
+  padding-left: 2rem;
   padding-right: 5rem;
 }
+
 
 .swiperContainer .swiperslide {
   img {
@@ -13,6 +16,14 @@
 
 .swiper-button-next::after,
 .swiper-button-prev::after {
-  color: pink;
+  color: rgb(119, 156, 109);
   font-weight: bold;
+}
+
+.search_div{
+  width: 50%;
+  text-align: center;
+  margin: auto;
+  padding: 20px 0;
+  box-sizing: border-box;
 }
