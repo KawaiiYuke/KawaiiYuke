@@ -91,6 +91,8 @@ const Home = () => {
     <Container
       className="d-flex flex-column py-2"
       style={{ height: "90vh", width: "40rem", paddingLeft: "0" }}
+
+      //style={{ height: '80vh', width: '30rem' }}
     >
       <Form.Control
         type="search"
@@ -107,6 +109,7 @@ const Home = () => {
               key={track.uri}
               chooseTrack={chooseTrack}
             />
+
             <button>Add to Playlist</button>
           </div>
         ))}

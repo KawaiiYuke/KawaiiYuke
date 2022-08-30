@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Container } from "react-bootstrap";
 import { loggingIn } from "../redux/logIn";
+import "./css/SignIn.css";
 
 const redirect = window.location.href.split("/");
 
@@ -14,16 +15,24 @@ const SignIn = () => {
         className="d-flex justify-content-center align-items-center"
         style={{ minHeight: "100vh" }}
       >
+        <div className="mic-image">{/* <img src={hangMic} alt="" /> */}</div>
         <div className="welcome-box">
           <h1 className="welcome-sentence">WELCOME TO KAWAIIYUKE</h1>
-          <a className="btn btn-success btn-lg" href={AUTH_URL}>
-            Log in With Spotify
-          </a>
+          <button className="spotifyButton">
+            <a
+              href={AUTH_URL}
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              Log in With Spotify
+            </a>
+          </button>
         </div>
       </Container>
     </div>
   );
 };
+
+// btn btn-success btn-lg
 
 const mapState = (state) => {
   return state;
