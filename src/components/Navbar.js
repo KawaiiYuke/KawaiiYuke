@@ -11,7 +11,6 @@ import { AUTH_URL } from './SignIn';
 
 const Navigation = () => {
   const [navBar, setBar] = useState(false);
-
   useEffect(() => {
     window.onresize = function () {
       if (document.body.offsetWidth < 960) {
@@ -21,6 +20,7 @@ const Navigation = () => {
       }
     };
   });
+
   return (
     <div className="wrapper">
       <div className="sidebar" style={{ width: navBar ? '50px' : '225px' }}>
