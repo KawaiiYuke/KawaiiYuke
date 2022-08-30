@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import useAuth from "./useAuth";
 import { Container, Form } from "react-bootstrap";
@@ -16,18 +17,20 @@ const spotifyApi = new SpotifyWebApi({
 const Home = (props) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const code = searchParams.get("code");
+  const code = searchParams.get('code');
   const accessToken = props?.accessToken;
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
 
   const [searchResults, setSearchResults] = useState([]);
   const [playingTrack, setPlayingTrack] = useState();
   const [lyrics, setLyrics] = useState("");
 
   useEffect(() => {
+
     console.log("home props", props);
     if (!props.loggedIn) {
       console.log("loggin running");
+
       props.loggingIn(code);
     }
   }, [code]);
@@ -110,7 +113,11 @@ const Home = (props) => {
   return (
     <Container
       className="d-flex flex-column py-2"
+
       style={{ height: "90vh", width: "40rem", paddingLeft: "0" }}
+
+      //style={{ height: '80vh', width: '30rem' }}
+
     >
       <Form.Control
         type="search"
@@ -127,8 +134,10 @@ const Home = (props) => {
               key={track.uri}
               chooseTrack={chooseTrack}
             />
+
             <button>Add to Playlist</button>
           </div>
+
         ))}
 
         {searchResults.length === 0 && (
