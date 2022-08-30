@@ -14,11 +14,11 @@ export default function TrackSearchResult({ track, chooseTrack }) {
         justifyContent: 'center',
         flexDirection: 'column',
         border: 'solid',
-        borderColor: 'white',
+        borderColor: 'rgb(255, 255, 255, 0.5)',
       }}
       onClick={handlePlay}
     >
-      <div style={{ fontWeight: 'bold', color: 'white' }}>
+      <div style={{ fontWeight: 'bold', color: 'rgb(255, 255, 255, 0.8)' }}>
         {track.title} By {track.artist}
         <img
           src={track.albumUrl}

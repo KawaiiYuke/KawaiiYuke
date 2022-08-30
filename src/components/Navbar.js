@@ -1,23 +1,16 @@
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import './css/Navbar.css';
+import menu from '../images/menu.png';
+import logo from '../images/kawaii_logo.png';
+import explore from '../images/explore.png';
+import signin from '../images/signin.png';
+import search from '../images/search.png';
 
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import "./css/Navbar.css";
-import menu from "../images/menu.png";
-import logo from "../images/kawaii_logo.png";
-import explore from "../images/explore.png";
-import signout from "../images/signout.png";
-import search from "../images/search.png";
-import signin from "../images/signin.png";
-
-
-
-import { AUTH_URL } from "./SignIn";
-
-
+import { AUTH_URL } from './SignIn';
 
 const Navigation = () => {
   const [navBar, setBar] = useState(false);
-
   useEffect(() => {
     window.onresize = function () {
       if (document.body.offsetWidth < 960) {
@@ -27,49 +20,33 @@ const Navigation = () => {
       }
     };
   });
+
   return (
     <div className="wrapper">
-      <div className="sidebar" style={{ width: navBar ? "50px" : "300px" }}>
+      <div className="sidebar" style={{ width: navBar ? '50px' : '225px' }}>
         <Link to="/">
           <img src={logo} alt="" width="100%" />
         </Link>
         <ul>
           <li>
-            <div className="navIcon">
-              <img src={search} alt="" />
-            </div>
-            <input type="search" placeholder="Search Songs" />
+            <Link to="/explore">
+              <img className="navIcon" src={explore} alt="" />
+              Explore
+            </Link>
           </li>
 
           <li>
-            <Link to="/explore">
-              <div className="navIcon">
-                <img src={explore} alt="" />
-              </div>
-              <i className="fas fa-home"></i>Explore
-            </Link>
-          </li>
-          <li>
             <Link to="/signin">
-              <div className="navIcon">
-                <img src={signin} alt="" />
-              </div>
-              <i className="fas fa-user"></i>Sign In
+              <img className="navIcon" src={signin} alt="" />
+              Sign In
             </Link>
           </li>
 
           <li>
             <a href={AUTH_URL}>
-              <i className="fas fa-address-card"></i>Search
+              <img className="navIcon" src={search} alt="" />
+              Search
             </a>
-          </li>
-          <li>
-            <Link to="/signout">
-              <div className="navIcon">
-                <img src={signout} alt="" />
-              </div>
-              <i className="fas fa-address-card"></i>Sign Out
-            </Link>
           </li>
         </ul>
         <div
