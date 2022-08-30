@@ -1,9 +1,7 @@
-
-import React from 'react';
-import { connect } from 'react-redux';
-import { Container } from 'react-bootstrap';
-import { loggingIn } from '../redux/store'
-
+import React from "react";
+import { connect } from "react-redux";
+import { Container } from "react-bootstrap";
+import { loggingIn } from "../redux/logIn";
 
 const redirect = window.location.href.split("/");
 
@@ -28,13 +26,13 @@ const SignIn = () => {
 };
 
 const mapState = (state) => {
-  return state
-}
+  return state;
+};
 
 const mapDispatch = (dispatch) => {
   return {
-    loggingIn: (code) => dispatch(loggingIn(code))
-  }
-}
+    loggingIn: (code) => dispatch(loggingIn(code)),
+  };
+};
 
 export default connect(mapState, mapDispatch)(SignIn);

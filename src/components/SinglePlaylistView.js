@@ -4,14 +4,15 @@ import useAuth from "./useAuth";
 import SpotifyWebApi from "spotify-web-api-node";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.CLIENT_ID,
 });
 
-function SinglePlaylistView(props) {
-  const accessToken = props?.accessToken;
+function SinglePlaylistView() {
+  const logInState = useSelector((state) => state.logIn);
+  const accessToken = logInState?.accessToken;
   const playlistId = window.location.pathname.split("/").slice(-1)[0];
   const [playlist, setPlaylist] = useState([]);
   const [tracks, setTracks] = useState([]);
@@ -75,8 +76,4 @@ function SinglePlaylistView(props) {
   );
 }
 
-const mapState = (state) => {
-  return state;
-};
-
-export default connect(mapState)(SinglePlaylistView);
+export default SinglePlaylistView;

@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from "react";
-import useAuth from "./useAuth";
 import { Container, Form } from "react-bootstrap";
 import SpotifyWebApi from "spotify-web-api-node";
 import TrackSearchResult from "./TrackSearchResult";
 import Player from "./Player";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
-import { loggingIn } from "../redux/store";
-import { connect } from "react-redux";
+import { loggingIn } from "../redux/logIn";
+import { useSelector, useDispatch } from "react-redux";
 
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.CLIENT_ID,
 });
 
-const Home = (props) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+const Home = () => {
+  const logInState = useSelector((state) => state.logIn);
+  const dispatch = useDispatch();
 
+  const [searchParams, setSearchParams] = useSearchParams();
   const code = searchParams.get("code");
-  const accessToken = props?.accessToken;
+  const accessToken = logInState?.accessToken;
+
   const [search, setSearch] = useState("");
 
   const [searchResults, setSearchResults] = useState([]);
@@ -25,10 +27,8 @@ const Home = (props) => {
   const [lyrics, setLyrics] = useState("");
 
   useEffect(() => {
-    console.log("home props", props);
-    if (!props.loggedIn) {
-      console.log("loggin running");
-      props.loggingIn(code);
+    if (!logInState.loggedIn) {
+      dispatch(loggingIn(code));
     }
   }, [code]);
 
@@ -41,7 +41,7 @@ const Home = (props) => {
   useEffect(() => {
     if (!playingTrack) return;
     axios
-      .get("http://localhost:3001/lyrics", {
+      .get("/lyrics", {
         params: {
           track: playingTrack.title,
           artist: playingTrack.artist,
@@ -51,26 +51,6 @@ const Home = (props) => {
         setLyrics(res.data.lyrics);
       });
   }, [playingTrack]);
-
-  // useEffect(() => {
-  //   axios(
-  //     `https://spclient.wg.spotify.com/color-lyrics/v2/track/${playingTrack?.id}`,
-  //     {
-  //       method: "GET",
-  //       // headers: {
-  //       //   Authorization: "Bearer " + accessToken,
-  //       // },
-  //       headers: {
-  //         Authorization:
-  //           "Bearer " +
-  //           "BQDGeOjFL7ulZYZobeVdJXB2WupxXQmHqUw41hIJ3TKamiyTudjLhx6YUq4ddXzklycKsyZADxarF5Qv6YDkT89MR_Cz10-RaL3XCVB644JNfn6hKpng6jOksznPrPsXVXePD7aw_8OP3ERnwLMPLKqoMJb5J_DXhBeiZgpbG0RGbj14cnfqEXSGYrtasUmzx6CaGt4",
-  //       },
-  //     }
-  //   ).then((lyricsResponse) => {
-  //     console.log("lyricsResponse: " + lyricsResponse);
-  //     //setLyrics(lyricsResponse);
-  //   });
-  // });
 
   useEffect(() => {
     if (!accessToken) return;
@@ -145,14 +125,4 @@ const Home = (props) => {
   );
 };
 
-const mapState = (state) => {
-  return state;
-};
-
-const mapDispatch = (dispatch) => {
-  return {
-    loggingIn: (code) => dispatch(loggingIn(code)),
-  };
-};
-
-export default connect(mapState, mapDispatch)(Home);
+export default Home;

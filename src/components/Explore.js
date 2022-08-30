@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
-import useAuth from "./useAuth";
-//import { Container, Form } from "react-bootstrap";
 import SpotifyWebApi from "spotify-web-api-node";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.CLIENT_ID,
 });
 
-const Explore = (props) => {
-  const accessToken = props?.accessToken;
+const Explore = () => {
+  const logInState = useSelector((state) => state.logIn);
+  const accessToken = logInState?.accessToken;
   const [categoryList, setCategoryList] = useState([]);
   const [category, setCategory] = useState("");
   useEffect(() => {
@@ -55,8 +54,4 @@ const Explore = (props) => {
   );
 };
 
-const mapState = (state) => {
-  return state;
-};
-
-export default connect(mapState)(Explore);
+export default Explore;
