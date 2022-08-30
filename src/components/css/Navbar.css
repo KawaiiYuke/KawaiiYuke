@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
 
 .wrapper * {
   text-decoration: none;
@@ -12,7 +12,7 @@
 .wrapper .sidebar {
   width: 300px;
   height: 100%;
-  background: #220231;
+  background: rgb(97, 22, 101, 0.6);
   padding: 50px 0px;
   position: fixed;
   transition: all 0.3s;
