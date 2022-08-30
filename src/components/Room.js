@@ -7,7 +7,7 @@ const Room = () => {
   return (
     <div className="room">
       <Carousel />
-      <VideoTest />
+      {/* <VideoTest /> */}
     </div>
   );
 };

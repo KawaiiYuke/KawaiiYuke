@@ -22,7 +22,7 @@ const Paths = () => {
         </div>
         <div className="main_content">
           <Routes>
-            <Route path="/" element={<Room />} />
+            <Route path="/" element={<Home />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/explore" element={<Explore />} />
 
