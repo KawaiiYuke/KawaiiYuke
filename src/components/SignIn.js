@@ -1,9 +1,9 @@
-
-import React from 'react';
-import { connect } from 'react-redux';
-import { Container } from 'react-bootstrap';
-import { loggingIn } from '../redux/store'
-
+import React from "react";
+import { connect } from "react-redux";
+import { Container } from "react-bootstrap";
+import { loggingIn } from "../redux/store";
+import "./css/SignIn.css";
+// import hangMic from "../images/hangMic.png";
 
 const redirect = window.location.href.split("/");
 
@@ -16,8 +16,11 @@ const SignIn = () => {
         className="d-flex justify-content-center align-items-center"
         style={{ minHeight: "100vh" }}
       >
+        <div className="mic-image">{/* <img src={hangMic} alt="" /> */}</div>
         <div className="welcome-box">
-          <h1 className="welcome-sentence">WELCOME TO KAWAIIYUKE</h1>
+          <div className="welcome-sentence-box">
+            <h1 className="welcome-sentence">WELCOME TO KAWAIIYUKE</h1>
+          </div>
           <a className="btn btn-success btn-lg" href={AUTH_URL}>
             Log in With Spotify
           </a>
@@ -28,13 +31,13 @@ const SignIn = () => {
 };
 
 const mapState = (state) => {
-  return state
-}
+  return state;
+};
 
 const mapDispatch = (dispatch) => {
   return {
-    loggingIn: (code) => dispatch(loggingIn(code))
-  }
-}
+    loggingIn: (code) => dispatch(loggingIn(code)),
+  };
+};
 
 export default connect(mapState, mapDispatch)(SignIn);
