@@ -30,11 +30,7 @@
   padding: 0.7em 1.4em 0.7em 1.1em;
   color: white;
   background: #ad5389;
-  background: linear-gradient(
-    0deg,
-    rgba(20, 167, 62, 1) 0%,
-    rgba(102, 247, 113, 1) 100%
-  );
+  background: linear-gradient(0deg, rgb(14, 122, 44) 0%, rgb(73, 182, 82) 100%);
   border: none;
   box-shadow: 0 0.7em 1.5em -0.5em #14a73e98;
   letter-spacing: 0.05em;
