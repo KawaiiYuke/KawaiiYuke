@@ -5,6 +5,7 @@ import menu from '../images/menu.png';
 import logo from '../images/kawaii_logo.png';
 import explore from '../images/explore.png';
 import signin from '../images/signin.png';
+import search from '../images/search.png';
 
 import { AUTH_URL } from './SignIn';
 
@@ -46,6 +47,9 @@ const Navigation = () => {
 
           <li>
             <a href={AUTH_URL}>
+              <div className="navIcon">
+                <img src={search} alt="" />
+              </div>
               <i className="fas"></i>Search
             </a>
           </li>
