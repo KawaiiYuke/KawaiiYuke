@@ -23,34 +23,29 @@ const Navigation = () => {
   });
   return (
     <div className="wrapper">
-      <div className="sidebar" style={{ width: navBar ? '50px' : '300px' }}>
+      <div className="sidebar" style={{ width: navBar ? '50px' : '225px' }}>
         <Link to="/">
           <img src={logo} alt="" width="100%" />
         </Link>
         <ul>
           <li>
             <Link to="/explore">
-              <div className="navIcon">
-                <img src={explore} alt="" />
-              </div>
-              <i className="fas"></i>Explore
+              <img className="navIcon" src={explore} alt="" />
+              Explore
             </Link>
           </li>
+
           <li>
             <Link to="/signin">
-              <div className="navIcon">
-                <img src={signin} alt="" />
-              </div>
-              <i className="fas"></i>Sign In
+              <img className="navIcon" src={signin} alt="" />
+              Sign In
             </Link>
           </li>
 
           <li>
             <a href={AUTH_URL}>
-              <div className="navIcon">
-                <img src={search} alt="" />
-              </div>
-              <i className="fas"></i>Search
+              <img className="navIcon" src={search} alt="" />
+              Search
             </a>
           </li>
         </ul>

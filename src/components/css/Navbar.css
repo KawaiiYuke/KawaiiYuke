@@ -1,7 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
-
 .wrapper * {
   text-decoration: none;
+  font-family: Verdana;
+  font-weight: bold;
+  font-size: large;
 }
 
 .wrapper {
@@ -53,8 +54,8 @@
 }
 
 .wrapper .sidebar ul li a {
-  color: #fbfffc;
-  display: block;
+  color: #fbfcff;
+  padding-right: 4rem;
 }
 
 .wrapper .sidebar ul li a .fas {
@@ -63,31 +64,6 @@
 
 .wrapper .sidebar ul li:hover {
   background-color: #e2c882;
-}
-
-.wrapper .sidebar ul li:hover a {
-  color: rgb(50, 10, 114);
-}
-
-.wrapper .sidebar .social_media {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-}
-
-.wrapper .sidebar .social_media a {
-  display: block;
-  width: 40px;
-  background: #594f8d;
-  height: 40px;
-  line-height: 45px;
-  text-align: center;
-  margin: 0 5px;
-  color: #bdb8d7;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
 }
 
 @media (max-height: 500px) {
