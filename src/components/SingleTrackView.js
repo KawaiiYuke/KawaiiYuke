@@ -22,14 +22,14 @@ function SingleTrackView(props) {
       });
     };
     fetchTrack();
-  }, [trackId]);
+  }, [trackId, accessToken]);
 
   useEffect(() => {
     axios
       .get("http://localhost:3001/lyrics", {
         params: {
           track: track.name,
-          artist: track.artists[0].name,
+          //artist: track.artists[0].name,
         },
       })
       .then((res) => {
@@ -42,13 +42,13 @@ function SingleTrackView(props) {
       {track && (
         <div>
           <h1>{track.name}</h1>
-          <h2>By: {track.artists[0].name}</h2>
+          {/* <h2>By: {track.artists[0].name}</h2>
 
           <img src={track.album.images[2].url} alt="album" />
 
           <div className="text-center" style={{ whiteSpace: "pre" }}>
             Lyrics: {lyrics}
-          </div>
+          </div> */}
         </div>
       )}
     </div>
