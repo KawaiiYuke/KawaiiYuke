@@ -49,7 +49,6 @@ const Navigation = () => {
               <i className="fas"></i>Search
             </a>
           </li>
-          <li></li>
         </ul>
         <div
           className="menu"
