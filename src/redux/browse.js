@@ -23,7 +23,6 @@ export const setCategoryList = (accessToken) => {
       const { data } = await axios.get("/category", {
         headers: { Authorization: "Bearer " + accessToken },
       });
-      console.log("data: ", data);
       dispatch(_setCategoryList(data));
     } catch (error) {
       console.log("thunk error", error);

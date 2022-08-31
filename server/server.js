@@ -65,16 +65,12 @@ app.get("/lyrics", async (req, res) => {
 });
 
 app.get("/category", async (req, res) => {
-  //console.log("Access token in app.get: ", req.body);
-  console.log("req.headers: ", req.headers);
   try {
-    //const accessToken = req.body.accessToken;
-
     const categoryResponse = await axios.get(
       "https://api.spotify.com/v1/browse/categories?limit=50",
-      req.headers.Authorization
+      { headers: { Authorization: req.headers.authorization } }
     );
-    res.json(categoryResponse);
+    res.json(categoryResponse.data.categories.items);
   } catch (err) {
     console.log(err);
   }
