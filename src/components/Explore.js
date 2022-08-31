@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setCategoryList } from "../redux/browse";
+import { setSingleCategory } from "../redux/browse";
 
 const Explore = () => {
   const logInState = useSelector((state) => state.logIn);
@@ -19,7 +20,12 @@ const Explore = () => {
       <div>
         {categoryState?.map((category) => {
           return (
-            <div key={category.id}>
+            <div
+              key={category.id}
+              onClick={() =>
+                dispatch(setSingleCategory(category.id, category.name))
+              }
+            >
               <Link to={`/category/${category.id}`}>
                 <img src={category.icons[0].url} alt="icon" />
                 <h3>{category.name}</h3>

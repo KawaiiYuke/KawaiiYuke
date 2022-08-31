@@ -75,5 +75,18 @@ app.get("/category", async (req, res) => {
     console.log(err);
   }
 });
+
+app.get("/category/:categoryId", async (req, res) => {
+  try {
+    const singleCategoryResponse = await axios.get(
+      `https://api.spotify.com/v1/browse/categories/${req.params.categoryId}/playlists`,
+      { headers: { Authorization: req.headers.authorization } }
+    );
+    res.json(singleCategoryResponse.data.playlists.items);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 app.listen(3001);
 console.log("server is on");
