@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import './css/TrackSearch.css';
 
 export default function TrackSearchResult({ track, chooseTrack }) {
   function handlePlay() {
@@ -6,18 +7,25 @@ export default function TrackSearchResult({ track, chooseTrack }) {
   }
   return (
     <div
-      className="d-flex m-2 align-items-center"
-      style={{ cursor: "pointer" }}
+      className="d-flex m-1 justify-content-evenly TrackSearch container"
+      style={{
+        cursor: 'pointer',
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        border: 'solid',
+        borderColor: 'rgb(255, 255, 255, 0.5)',
+      }}
       onClick={handlePlay}
     >
-      <img
-        src={track.albumUrl}
-        style={{ height: "64px", width: "64px" }}
-        alt="album"
-      />
-      <div className="ml-3">
-        <div>{track.title}</div>
-        <div className="text-muted">{track.artist}</div>
+      <div style={{ fontWeight: 'bold', color: 'rgb(255, 255, 255, 0.8)' }}>
+        {track.title} By {track.artist}
+        <img
+          src={track.albumUrl}
+          style={{ height: '64px', width: '64px', marginTop: '.7em' }}
+          alt="album"
+        />
+        <button className="AddToPlaylist">Add to Playlist</button>
       </div>
     </div>
   );
