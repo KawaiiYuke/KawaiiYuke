@@ -3,49 +3,35 @@ import useAuth from "./useAuth";
 import { Container, Form } from "react-bootstrap";
 import SpotifyWebApi from "spotify-web-api-node";
 import axios from "axios";
+
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setCategoryList } from "../redux/browse";
+import { setSingleCategory } from "../redux/browse";
 
-const spotifyApi = new SpotifyWebApi({
-  clientId: process.env.CLIENT_ID,
-});
+const Explore = () => {
+  const logInState = useSelector((state) => state.logIn);
+  const categoryState = useSelector((state) => state.browse.categoryList);
+  const dispatch = useDispatch();
+  const accessToken = logInState?.accessToken;
 
-const Explore = (props) => {
-  const accessToken = props?.accessToken;
-  const [categoryList, setCategoryList] = useState([]);
-  const [category, setCategory] = useState("");
   useEffect(() => {
-    axios("https://api.spotify.com/v1/browse/categories?limit=50", {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + accessToken,
-      },
-    }).then((categoryResponse) => {
-      setCategoryList(categoryResponse.data.categories.items);
-    });
-  });
+    dispatch(setCategoryList(accessToken));
+  }, []);
 
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:3001/category", {
-  //       accessToken,
-  //     })
-  //     .then((res) => {
-  //       setCategoryList(res.data);
-  //     });
-  // });
   return (
     <div>
       <h1>Welcome to KAWAIIYUKE! </h1>
       <div className="container">
         <div className="row align-items-center">
-          {categoryList.map((category, index) => {
+          {categoryState?.map((category) => {
             return (
-              // <div key={index} onClick={() => setCategory(category.id)}>
               <div
                 className="col-sm-3"
                 key={category.id}
-                onClick={() => setCategory(category.id)}
+                onClick={() =>
+                  dispatch(setSingleCategory(category.id, category.name))
+                }
               >
                 <Link
                   to={`/category/${category.id}`}
@@ -68,8 +54,4 @@ const Explore = (props) => {
   );
 };
 
-const mapState = (state) => {
-  return state;
-};
-
-export default connect(mapState)(Explore);
+export default Explore;

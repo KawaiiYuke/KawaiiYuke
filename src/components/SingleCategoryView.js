@@ -1,33 +1,24 @@
-import React, { useState, useEffect } from "react";
-import useAuth from "./useAuth";
-//import { Container, Form } from "react-bootstrap";
-import SpotifyWebApi from "spotify-web-api-node";
-import axios from "axios";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+
 import "./css/SingleCategoryViewButton.css";
 
-const spotifyApi = new SpotifyWebApi({
-  clientId: process.env.CLIENT_ID,
-});
+import { useSelector, useDispatch } from "react-redux";
+import { setSingleCategoryList } from "../redux/browse";
 
-function SingleCategoryView(props) {
-  const accessToken = props?.accessToken;
-  const [playlists, setPlaylists] = useState([]);
-  const categoryId = window.location.pathname.split("/").slice(-1)[0];
-  const [singlePlaylist, setSinglePlaylist] = useState([]);
+function SingleCategoryView() {
+  const logInState = useSelector((state) => state.logIn);
+  const categoryId = useSelector((state) => state.browse.singleCategoryId);
+  const dispatch = useDispatch();
+  const accessToken = logInState?.accessToken;
+  const singleCategoryState = useSelector(
+    (state) => state.browse.singleCategoryLists
+  );
 
   useEffect(() => {
-    axios(
-      `https://api.spotify.com/v1/browse/categories/${categoryId}/playlists`,
-      {
-        method: "GET",
-        headers: { Authorization: "Bearer " + accessToken },
-      }
-    ).then((playlistsResponse) => {
-      setPlaylists(playlistsResponse.data.playlists.items);
-    });
-  });
+    dispatch(setSingleCategoryList(accessToken, categoryId.categoryId));
+  }, []);
+
   return (
     <div>
       <Link to="/explore" style={{ textDecoration: "none" }}>
@@ -35,16 +26,12 @@ function SingleCategoryView(props) {
           Return to All Categories
         </button>
       </Link>
-      single category page
+      <h1>{categoryId.categoryName}</h1>
       <div className="container">
         <div className="row align-items-center">
-          {playlists.map((playlist) => {
+          {singleCategoryState.map((playlist) => {
             return (
-              <div
-                className="col-sm-3"
-                key={playlist.id}
-                onClick={() => setSinglePlaylist(playlist.id)}
-              >
+              <div key={playlist.id} className="col-sm-3">
                 <Link
                   to={`/playlists/${playlist.id}`}
                   style={{ textDecoration: "none" }}
@@ -66,8 +53,4 @@ function SingleCategoryView(props) {
   );
 }
 
-const mapState = (state) => {
-  return state;
-};
-
-export default connect(mapState)(SingleCategoryView);
+export default SingleCategoryView;

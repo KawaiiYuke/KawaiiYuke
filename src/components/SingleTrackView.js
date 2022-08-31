@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import useAuth from "./useAuth";
-//import { Container, Form } from "react-bootstrap";
+
 import SpotifyWebApi from "spotify-web-api-node";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 
-function SingleTrackView(props) {
-  const accessToken = props?.accessToken;
+import { useSelector } from "react-redux";
+
+function SingleTrackView() {
+  const logInState = useSelector((state) => state.logIn);
+  const accessToken = logInState?.accessToken;
   const trackId = window.location.pathname.split("/").slice(-1)[0];
   const [track, setTrack] = useState("");
   const [lyrics, setLyrics] = useState("");
@@ -26,10 +27,10 @@ function SingleTrackView(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/lyrics", {
+      .get("/lyrics", {
         params: {
           track: track.name,
-          //artist: track.artists[0].name,
+          artist: track.artists[0].name,
         },
       })
       .then((res) => {
@@ -42,21 +43,17 @@ function SingleTrackView(props) {
       {track && (
         <div>
           <h1>{track.name}</h1>
-          {/* <h2>By: {track.artists[0].name}</h2>
+          <h2>By: {track.artists[0].name}</h2>
 
           <img src={track.album.images[2].url} alt="album" />
 
           <div className="text-center" style={{ whiteSpace: "pre" }}>
             Lyrics: {lyrics}
-          </div> */}
+          </div>
         </div>
       )}
     </div>
   );
 }
 
-const mapState = (state) => {
-  return state;
-};
-
-export default connect(mapState)(SingleTrackView);
+export default SingleTrackView;

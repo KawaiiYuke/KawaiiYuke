@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Container } from "react-bootstrap";
-import { loggingIn } from "../redux/store";
+import { loggingIn } from "../redux/logIn";
 import "./css/SignIn.css";
 
 const redirect = window.location.href.split("/");

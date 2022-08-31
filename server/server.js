@@ -36,7 +36,6 @@ app.post("/refresh", (req, res) => {
 
 app.post("/login", (req, res) => {
   const code = req.body.code;
-  console.log("CODE", code);
   const spotifyApi = new SpotifyWebApi({
     redirectUri: process.env.REDIRECT_URI,
     clientId: process.env.CLIENT_ID,
@@ -46,7 +45,6 @@ app.post("/login", (req, res) => {
   spotifyApi
     .authorizationCodeGrant(code)
     .then((data) => {
-      console.log("THIS IS DATA", data);
       res.json({
         accessToken: data.body.access_token,
         refreshToken: data.body.refresh_token,
@@ -66,9 +64,29 @@ app.get("/lyrics", async (req, res) => {
   res.json({ lyrics });
 });
 
-// app.get('/playlists', (req, res) => {
-//   const playlistsId = req.body.id;
+app.get("/category", async (req, res) => {
+  try {
+    const categoryResponse = await axios.get(
+      "https://api.spotify.com/v1/browse/categories?limit=50",
+      { headers: { Authorization: req.headers.authorization } }
+    );
+    res.json(categoryResponse.data.categories.items);
+  } catch (err) {
+    console.log(err);
+  }
+});
 
-// })
+app.get("/category/:categoryId", async (req, res) => {
+  try {
+    const singleCategoryResponse = await axios.get(
+      `https://api.spotify.com/v1/browse/categories/${req.params.categoryId}/playlists`,
+      { headers: { Authorization: req.headers.authorization } }
+    );
+    res.json(singleCategoryResponse.data.playlists.items);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 app.listen(3001);
 console.log("server is on");
