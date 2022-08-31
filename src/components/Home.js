@@ -112,7 +112,16 @@ const Home = () => {
         ))}
 
         {searchResults.length === 0 && (
-          <div className="text-center" style={{ whiteSpace: "pre" }}>
+          <div
+            className="text-center d-flex"
+            style={{
+              whiteSpace: "pre",
+              fontWeight: "bold",
+              color: "#ffffff",
+              backgroundColor: "hsla(0, 100%, 90%, 0.3)",
+              fontFamily: "Monaco",
+            }}
+          >
             {lyrics}
           </div>
         )}
