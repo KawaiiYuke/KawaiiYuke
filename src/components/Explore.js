@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useAuth from "./useAuth";
-//import { Container, Form } from "react-bootstrap";
+import { Container, Form } from "react-bootstrap";
 import SpotifyWebApi from "spotify-web-api-node";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -34,22 +34,34 @@ const Explore = (props) => {
   //       setCategoryList(res.data);
   //     });
   // });
-
   return (
     <div>
       <h1>Welcome to KAWAIIYUKE! </h1>
-      <div>
-        {categoryList.map((category, index) => {
-          return (
-            // <div key={index} onClick={() => setCategory(category.id)}>
-            <div key={category.id} onClick={() => setCategory(category.id)}>
-              <Link to={`/category/${category.id}`}>
-                <img src={category.icons[0].url} alt="icon" />
-                <h3>{category.name}</h3>
-              </Link>
-            </div>
-          );
-        })}
+      <div className="container">
+        <div className="row align-items-center">
+          {categoryList.map((category, index) => {
+            return (
+              // <div key={index} onClick={() => setCategory(category.id)}>
+              <div
+                className="col-sm-3"
+                key={category.id}
+                onClick={() => setCategory(category.id)}
+              >
+                <Link
+                  to={`/category/${category.id}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <img
+                    src={category.icons[0].url}
+                    alt="icon"
+                    className="img-fluid mb-3"
+                  />
+                  <h3>{category.name}</h3>
+                </Link>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
