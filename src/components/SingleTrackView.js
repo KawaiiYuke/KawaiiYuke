@@ -30,7 +30,7 @@ function SingleTrackView() {
       .get("/lyrics", {
         params: {
           track: track.name,
-          //artist: track.artists[0].name,
+          artist: track.artists[0].name,
         },
       })
       .then((res) => {

@@ -1,47 +1,43 @@
 import React, { useState, useEffect } from "react";
-import SpotifyWebApi from "spotify-web-api-node";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-
-const spotifyApi = new SpotifyWebApi({
-  clientId: process.env.CLIENT_ID,
-});
+import { useSelector, useDispatch } from "react-redux";
+import { setCategoryList } from "../redux/browse";
 
 const Explore = () => {
   const logInState = useSelector((state) => state.logIn);
+  const categoryState = useSelector((state) => state.browse.categoryList);
+  const dispatch = useDispatch();
   const accessToken = logInState?.accessToken;
-  const [categoryList, setCategoryList] = useState([]);
-  const [category, setCategory] = useState("");
-  useEffect(() => {
-    axios("https://api.spotify.com/v1/browse/categories?limit=50", {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + accessToken,
-      },
-    }).then((categoryResponse) => {
-      setCategoryList(categoryResponse.data.categories.items);
-    });
-  });
 
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:3001/category", {
-  //       accessToken,
-  //     })
-  //     .then((res) => {
-  //       setCategoryList(res.data);
-  //     });
-  // });
+  console.log("categoryState:", categoryState);
+
+  //const [categoryList, setCategoryList] = useState([]);
+  //const [category, setCategory] = useState("");
+  useEffect(() => {
+    console.log("accessToken in UE", accessToken);
+    dispatch(setCategoryList(accessToken));
+    // axios
+    //   .get("/category", {
+    //     params: {
+    //       accessToken,
+    //     },
+    //   })
+    //   .then((categoryResponse) => {
+    //     setCategoryList(categoryResponse.data.categories.items);
+    //   });
+  }, [categoryState]);
+  console.log("categoryState:", categoryState);
 
   return (
     <div>
       <h1>Welcome to KAWAIIYUKE! </h1>
       <div>
-        {categoryList.map((category, index) => {
+        {categoryState.map((category, index) => {
           return (
             // <div key={index} onClick={() => setCategory(category.id)}>
-            <div key={category.id} onClick={() => setCategory(category.id)}>
+            //<div key={category.id} onClick={() => setCategory(category.id)}>
+            <div key={category.id}>
               <Link to={`/category/${category.id}`}>
                 <img src={category.icons[0].url} alt="icon" />
                 <h3>{category.name}</h3>
