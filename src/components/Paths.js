@@ -11,24 +11,21 @@ import SingleCategoryView from './SingleCategoryView';
 import SinglePlaylistView from './SinglePlaylistView';
 import VideoTest from './VideoTest';
 import './css/Paths.css';
-
-import Webcam from './Webcam';
-import WebcamReact from './WebcamReact';
 import SingleTrackView from './SingleTrackView';
 
 const Paths = () => {
   return (
     <Router>
-      <div className="Paths">
+      <div className="allPaths">
         <div>
           <Navigation />
         </div>
-        <div className="main_content">
+        <div className="main_content" style={{ marginLeft: '250px' }}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/explore" element={<Explore />} />
-            <Route path="/signin" element={<SignIn />} />
+
             <Route path="/signout" element={<SignOut />} />
             <Route path="/room" element={<Room />} />
             <Route
