@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
+import "./css/SingleCategoryViewButton.css";
+
 import { useSelector, useDispatch } from "react-redux";
 import { setSingleCategoryList } from "../redux/browse";
 
@@ -19,20 +21,34 @@ function SingleCategoryView() {
 
   return (
     <div>
-      <h1>{categoryId.categoryName}</h1>
-      {singleCategoryState.map((playlist) => {
-        return (
-          <div key={playlist.id}>
-            <Link to={`/playlists/${playlist.id}`}>
-              <img src={playlist.images[0].url} alt="cover" />
-              <h2>{playlist.name}</h2>
-            </Link>
-          </div>
-        );
-      })}
-      <Link to="/explore">
-        <button> Return to All Categories</button>
+      <Link to="/explore" style={{ textDecoration: "none" }}>
+        <button className="button-return-categories">
+          Return to All Categories
+        </button>
       </Link>
+      <h1>{categoryId.categoryName}</h1>
+      <div className="container">
+        <div className="row align-items-center">
+          {singleCategoryState.map((playlist) => {
+            return (
+              <div key={playlist.id} className="col-sm-3">
+                <Link
+                  to={`/playlists/${playlist.id}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <img
+                    src={playlist.images[0].url}
+                    alt="cover"
+                    className="img-fluid mb-3"
+                    style={{ borderRadius: "4rem" }}
+                  />
+                  <h2>{playlist.name}</h2>
+                </Link>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }
