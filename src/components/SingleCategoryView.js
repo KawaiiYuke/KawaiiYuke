@@ -5,6 +5,7 @@ import SpotifyWebApi from "spotify-web-api-node";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import "./css/SingleCategoryViewButton.css";
 
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.CLIENT_ID,
@@ -29,20 +30,38 @@ function SingleCategoryView(props) {
   });
   return (
     <div>
-      single category page
-      {playlists.map((playlist) => {
-        return (
-          <div key={playlist.id} onClick={() => setSinglePlaylist(playlist.id)}>
-            <Link to={`/playlists/${playlist.id}`}>
-              <img src={playlist.images[0].url} alt="cover" />
-              <h2>{playlist.name}</h2>
-            </Link>
-          </div>
-        );
-      })}
-      <Link to="/explore">
-        <button> Return to All Categories</button>
+      <Link to="/explore" style={{ textDecoration: "none" }}>
+        <button className="button-return-categories">
+          Return to All Categories
+        </button>
       </Link>
+      single category page
+      <div className="container">
+        <div className="row align-items-center">
+          {playlists.map((playlist) => {
+            return (
+              <div
+                className="col-sm-3"
+                key={playlist.id}
+                onClick={() => setSinglePlaylist(playlist.id)}
+              >
+                <Link
+                  to={`/playlists/${playlist.id}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <img
+                    src={playlist.images[0].url}
+                    alt="cover"
+                    className="img-fluid mb-3"
+                    style={{ borderRadius: "4rem" }}
+                  />
+                  <h2>{playlist.name}</h2>
+                </Link>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }

@@ -55,6 +55,7 @@ const Explore = (props) => {
                     src={category.icons[0].url}
                     alt="icon"
                     className="img-fluid mb-3"
+                    style={{ borderRadius: "12rem" }}
                   />
                   <h3>{category.name}</h3>
                 </Link>
