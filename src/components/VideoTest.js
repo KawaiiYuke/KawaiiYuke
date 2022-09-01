@@ -1,23 +1,23 @@
-import React, { useRef, useState } from "react";
-import "./css/VideoTest.css";
+import React, { useRef, useState } from 'react';
+import './css/VideoTest.css';
 
-import firebase from "firebase/compat/app";
-import "firebase/compat/firestore";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
 
-import { ReactComponent as HangupIcon } from "../icons/hangup.svg";
-import { ReactComponent as MoreIcon } from "../icons/more-vertical.svg";
-import { ReactComponent as CopyIcon } from "../icons/copy.svg";
-import icon from "../images/icon-no-bg.png";
-import vback from "../images/vback.gif";
+import { ReactComponent as HangupIcon } from '../icons/hangup.svg';
+import { ReactComponent as MoreIcon } from '../icons/more-vertical.svg';
+import { ReactComponent as CopyIcon } from '../icons/copy.svg';
+import icon from '../images/icon-no-bg.png';
+import vback from '../images/vback.gif';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAy4mqr3tWrbRPgSiewCz02iKl7sADfPGc",
-  authDomain: "kawaiiyuke-10e81.firebaseapp.com",
-  databaseURL: "https://kawaiiyuke-10e81-default-rtdb.firebaseio.com",
-  projectId: "kawaiiyuke-10e81",
-  storageBucket: "kawaiiyuke-10e81.appspot.com",
-  messagingSenderId: "891237213652",
-  appId: "1:891237213652:web:0ada7ae2461bd808322241",
+  apiKey: 'AIzaSyAy4mqr3tWrbRPgSiewCz02iKl7sADfPGc',
+  authDomain: 'kawaiiyuke-10e81.firebaseapp.com',
+  databaseURL: 'https://kawaiiyuke-10e81-default-rtdb.firebaseio.com',
+  projectId: 'kawaiiyuke-10e81',
+  storageBucket: 'kawaiiyuke-10e81.appspot.com',
+  messagingSenderId: '891237213652',
+  appId: '1:891237213652:web:0ada7ae2461bd808322241',
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -28,7 +28,7 @@ const firestore = firebase.firestore();
 const servers = {
   iceServers: [
     {
-      urls: ["stun:stun1.l.google.com:19302", "stun:stun2.l.google.com:19302"],
+      urls: ['stun:stun1.l.google.com:19302', 'stun:stun2.l.google.com:19302'],
     },
   ],
   iceCandidatePoolSize: 10,
@@ -37,12 +37,12 @@ const servers = {
 const pc = new RTCPeerConnection(servers);
 
 export default function VideoTest() {
-  const [currentPage, setCurrentPage] = useState("home");
-  const [joinCode, setJoinCode] = useState("");
+  const [currentPage, setCurrentPage] = useState('home');
+  const [joinCode, setJoinCode] = useState('');
 
   return (
-    <div>
-      {currentPage === "home" ? (
+    <div className="webcamRTC">
+      {currentPage === 'home' ? (
         <Menu
           joinCode={joinCode}
           setJoinCode={setJoinCode}
@@ -69,8 +69,8 @@ function Menu({ joinCode, setJoinCode, setPage }) {
           onChange={(e) => setJoinCode(e.target.value)}
           placeholder="Join with code"
         />
-        <button onClick={() => setPage("join")}>Answer</button>
-        <button onClick={() => setPage("create")}>Create Call</button>
+        <button onClick={() => setPage('join')}>Answer</button>
+        <button onClick={() => setPage('create')}>Create Call</button>
       </div>
     </div>
   );
@@ -105,10 +105,10 @@ function Videos({ mode, callId, setPage }) {
 
     setWebcamActive(true);
 
-    if (mode === "create") {
-      const callDoc = firestore.collection("calls").doc();
-      const offerCandidates = callDoc.collection("offerCandidates");
-      const answerCandidates = callDoc.collection("answerCandidates");
+    if (mode === 'create') {
+      const callDoc = firestore.collection('calls').doc();
+      const offerCandidates = callDoc.collection('offerCandidates');
+      const answerCandidates = callDoc.collection('answerCandidates');
 
       setRoomId(callDoc.id);
 
@@ -136,16 +136,16 @@ function Videos({ mode, callId, setPage }) {
 
       answerCandidates.onSnapshot((snapshot) => {
         snapshot.docChanges().forEach((change) => {
-          if (change.type === "added") {
+          if (change.type === 'added') {
             const candidate = new RTCIceCandidate(change.doc.data());
             pc.addIceCandidate(candidate);
           }
         });
       });
-    } else if (mode === "join") {
-      const callDoc = firestore.collection("calls").doc(callId);
-      const answerCandidates = callDoc.collection("answerCandidates");
-      const offerCandidates = callDoc.collection("offerCandidates");
+    } else if (mode === 'join') {
+      const callDoc = firestore.collection('calls').doc(callId);
+      const answerCandidates = callDoc.collection('answerCandidates');
+      const offerCandidates = callDoc.collection('offerCandidates');
 
       pc.onicecandidate = (event) => {
         event.candidate && answerCandidates.add(event.candidate.toJSON());
@@ -170,7 +170,7 @@ function Videos({ mode, callId, setPage }) {
 
       offerCandidates.onSnapshot((snapshot) => {
         snapshot.docChanges().forEach((change) => {
-          if (change.type === "added") {
+          if (change.type === 'added') {
             let data = change.doc.data();
             pc.addIceCandidate(new RTCIceCandidate(data));
           }
@@ -179,7 +179,7 @@ function Videos({ mode, callId, setPage }) {
     }
 
     pc.onconnectionstatechange = (event) => {
-      if (pc.connectionState === "disconnected") {
+      if (pc.connectionState === 'disconnected') {
         hangUp();
       }
     };
@@ -189,9 +189,9 @@ function Videos({ mode, callId, setPage }) {
     pc.close();
 
     if (roomId) {
-      let roomRef = firestore.collection("calls").doc(roomId);
+      let roomRef = firestore.collection('calls').doc(roomId);
       await roomRef
-        .collection("answerCandidates")
+        .collection('answerCandidates')
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
@@ -199,7 +199,7 @@ function Videos({ mode, callId, setPage }) {
           });
         });
       await roomRef
-        .collection("offerCandidates")
+        .collection('offerCandidates')
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
@@ -223,7 +223,7 @@ function Videos({ mode, callId, setPage }) {
           <video ref={remoteRef} autoPlay playsInline poster={vback} />
         </div>
       </div>
-      <div className={roomId ? "userPwd" : ""}>{roomId}</div>
+      <div className={roomId ? 'userPwd' : ''}>{roomId}</div>
       {/* <div className="buttonsContainer">
         <button
           onClick={hangUp}
@@ -251,7 +251,7 @@ function Videos({ mode, callId, setPage }) {
           <div>
             <h3>Turn on your camera and microphone and start the call</h3>
             <div className="container">
-              <button onClick={() => setPage("home")} className="secondary">
+              <button onClick={() => setPage('home')} className="secondary">
                 Cancel
               </button>
               <button onClick={setupSources}>Start</button>
