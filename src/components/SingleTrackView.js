@@ -45,7 +45,7 @@ function SingleTrackView() {
             <img src={trackInfo.album.images[2].url} alt="album" />
 
             <div className="text-center" style={{ whiteSpace: "pre" }}>
-              {/* Lyrics: {lyrics} */}
+              Lyrics: {lyrics}
             </div>
           </div>
         ) : (

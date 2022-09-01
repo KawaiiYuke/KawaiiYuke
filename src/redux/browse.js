@@ -15,7 +15,7 @@ const initialState = {
   singlePlaylistId: {},
   singlePlaylistTracks: [],
   singleTrackInfo: {},
-  lyrics: {},
+  lyrics: "",
 };
 
 export const _setCategoryList = (categories) => {
@@ -62,7 +62,7 @@ export const _setTrack = (track) => {
 
 export const _setLyrics = (trackInfo) => {
   return {
-    type: SET_CATEGORIES,
+    type: SET_LYRICS,
     trackInfo,
   };
 };
@@ -140,15 +140,16 @@ export const setTrack = (accessToken, trackId) => {
 };
 
 export const setLyrics = (trackName, artist) => {
-  console.log("trackName", trackName);
-  console.log("artist", artist);
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`/lyrics`, {
-        track: trackName,
-        artist: artist,
+        params: {
+          track: trackName,
+          artist: artist,
+        },
       });
-      dispatch(_setLyrics(data));
+
+      dispatch(_setLyrics(data.lyrics));
     } catch (error) {
       console.log("thunk error", error);
     }
@@ -170,7 +171,7 @@ const BrowseReducer = (state = initialState, action) => {
     case SET_SINGLE_TRACK:
       return { ...state, singleTrackInfo: action.track };
     case SET_LYRICS:
-      return { ...state, lyrics: action.track };
+      return { ...state, lyrics: action.trackInfo };
 
     default:
       return state;
