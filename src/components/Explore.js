@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import useAuth from './useAuth';
-import { Container, Form } from 'react-bootstrap';
-import SpotifyWebApi from 'spotify-web-api-node';
-import axios from 'axios';
+import React, { useEffect } from "react";
+import { Container, Form } from "react-bootstrap";
 
-import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { setCategoryList } from '../redux/browse';
-import { setSingleCategory } from '../redux/browse';
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { setCategoryList } from "../redux/browse";
+import { setSingleCategory } from "../redux/browse";
+import { loggingIn } from "../redux/logIn";
 
 const Explore = () => {
   const logInState = useSelector((state) => state.logIn);
@@ -20,16 +18,15 @@ const Explore = () => {
   }, []);
 
   if (!accessToken) {
-    const accessTokenFromLocalStorage =
-      window.localStorage.getItem("AccessToken");
-    if (accessTokenFromLocalStorage) {
-      accessToken = accessTokenFromLocalStorage;
+    let codeFromLocalStorage = window.localStorage.getItem("code");
+    if (codeFromLocalStorage) {
+      dispatch(loggingIn(codeFromLocalStorage));
     }
   }
 
   return (
-    <div style={{ paddingRight: '17rem' }}>
-      <h1 style={{ color: 'white' }}>Welcome to KAWAIIYUKE! </h1>
+    <div style={{ paddingRight: "17rem" }}>
+      <h1 style={{ color: "white" }}>Welcome to KAWAIIYUKE! </h1>
       <div className="container">
         <div className="row align-items-center">
           {categoryState?.map((category) => {
@@ -43,15 +40,15 @@ const Explore = () => {
               >
                 <Link
                   to={`/category/${category.id}`}
-                  style={{ textDecoration: 'none' }}
+                  style={{ textDecoration: "none" }}
                 >
                   <img
                     src={category.icons[0].url}
                     alt="icon"
                     className="img-fluid mb-3"
-                    style={{ borderRadius: '12rem' }}
+                    style={{ borderRadius: "12rem" }}
                   />
-                  <h3 style={{ color: 'white' }}>{category.name}</h3>
+                  <h3 style={{ color: "white" }}>{category.name}</h3>
                 </Link>
               </div>
             );
