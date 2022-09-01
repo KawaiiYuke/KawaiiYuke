@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { setLyrics } from "../redux/browse";
+import { loggingIn } from "../redux/logIn";
 
 function SingleTrackView() {
   const logInState = useSelector((state) => state.logIn);
@@ -10,7 +11,6 @@ function SingleTrackView() {
   const lyrics = useSelector((state) => state.browse.lyrics);
   const playlistInfo = useSelector((state) => state.browse.singlePlaylistId);
   const dispatch = useDispatch();
-  console.log("lyrics", lyrics);
   useEffect(() => {
     if (trackInfo.name) {
       dispatch(setLyrics(trackInfo.name, trackInfo.artists[0].name));
@@ -18,13 +18,11 @@ function SingleTrackView() {
   }, [trackInfo]);
 
   if (!accessToken) {
-    const accessTokenFromLocalStorage =
-      window.localStorage.getItem("AccessToken");
-    if (accessTokenFromLocalStorage) {
-      accessToken = accessTokenFromLocalStorage;
+    let codeFromLocalStorage = window.localStorage.getItem("code");
+    if (codeFromLocalStorage) {
+      dispatch(loggingIn(codeFromLocalStorage));
     }
   }
-
   return (
     <div>
       <Link

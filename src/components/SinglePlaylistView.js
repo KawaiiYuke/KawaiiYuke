@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./css/SinglePlaylistView.css";
 import { useSelector, useDispatch } from "react-redux";
 import { setSinglePlaylist, setTrack } from "../redux/browse";
+import { loggingIn } from "../redux/logIn";
 
 function SinglePlaylistView() {
   const logInState = useSelector((state) => state.logIn);
@@ -19,10 +20,9 @@ function SinglePlaylistView() {
   }, []);
 
   if (!accessToken) {
-    const accessTokenFromLocalStorage =
-      window.localStorage.getItem("AccessToken");
-    if (accessTokenFromLocalStorage) {
-      accessToken = accessTokenFromLocalStorage;
+    let codeFromLocalStorage = window.localStorage.getItem("code");
+    if (codeFromLocalStorage) {
+      dispatch(loggingIn(codeFromLocalStorage));
     }
   }
 
