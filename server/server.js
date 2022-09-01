@@ -88,5 +88,29 @@ app.get("/category/:categoryId", async (req, res) => {
   }
 });
 
+app.get("/playlists/:playlistId", async (req, res) => {
+  try {
+    const singlePlaylistResponse = await axios.get(
+      `https://api.spotify.com/v1/playlists/${req.params.playlistId}`,
+      { headers: { Authorization: req.headers.authorization } }
+    );
+    res.json(singlePlaylistResponse.data.tracks.items);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.get("/track/:trackId", async (req, res) => {
+  try {
+    const singleTrackResponse = await axios.get(
+      `https://api.spotify.com/v1/tracks/${req.params.trackId}`,
+      { headers: { Authorization: req.headers.authorization } }
+    );
+    res.json(singleTrackResponse.data);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 app.listen(3001);
 console.log("server is on");

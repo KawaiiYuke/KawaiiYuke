@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import "./css/SingleCategoryViewButton.css";
-
 import { useSelector, useDispatch } from "react-redux";
-import { setSingleCategoryList } from "../redux/browse";
+import { setSingleCategoryList, setSinglePlaylistInfo } from "../redux/browse";
 
 function SingleCategoryView() {
   const logInState = useSelector((state) => state.logIn);
@@ -31,7 +29,13 @@ function SingleCategoryView() {
         <div className="row align-items-center">
           {singleCategoryState.map((playlist) => {
             return (
-              <div key={playlist.id} className="col-sm-3">
+              <div
+                key={playlist.id}
+                className="col-sm-3"
+                onClick={() =>
+                  dispatch(setSinglePlaylistInfo(playlist.id, playlist.name))
+                }
+              >
                 <Link
                   to={`/playlists/${playlist.id}`}
                   style={{ textDecoration: "none" }}

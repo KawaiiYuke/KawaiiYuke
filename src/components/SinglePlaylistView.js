@@ -1,55 +1,37 @@
-import React, { useState, useEffect } from "react";
-import useAuth from "./useAuth";
-
-import SpotifyWebApi from "spotify-web-api-node";
-import axios from "axios";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import "./css/SinglePlaylistView.css";
-
-import { useSelector } from "react-redux";
-
-const spotifyApi = new SpotifyWebApi({
-  clientId: process.env.CLIENT_ID,
-});
+import { useSelector, useDispatch } from "react-redux";
+import { setSinglePlaylist, setTrack } from "../redux/browse";
 
 function SinglePlaylistView() {
   const logInState = useSelector((state) => state.logIn);
   const accessToken = logInState?.accessToken;
-  const playlistId = window.location.pathname.split("/").slice(-1)[0];
-  const [playlist, setPlaylist] = useState([]);
-  const [tracks, setTracks] = useState([]);
-  useEffect(() => {
-    axios(`https://api.spotify.com/v1/playlists/${playlistId}`, {
-      method: "GET",
-      headers: { Authorization: "Bearer " + accessToken },
-    }).then((playlistResponse) => {
-      setPlaylist(playlistResponse.data);
-    });
-  }, [playlistId, accessToken]);
+  const dispatch = useDispatch();
+  const playlistInfo = useSelector((state) => state.browse.singlePlaylistId);
+  const categoryId = useSelector((state) => state.browse.singleCategoryId);
+  const singlePlaylist = useSelector(
+    (state) => state.browse.singlePlaylistTracks
+  );
 
   useEffect(() => {
-    axios(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
-      method: "GET",
-      headers: { Authorization: "Bearer " + accessToken },
-    }).then((tracksResponse) => {
-      setTracks(tracksResponse.data.items);
-    });
-  });
+    dispatch(setSinglePlaylist(accessToken, playlistInfo.playlistId));
+  }, []);
 
   return (
     <div>
-      <Link to="/explore" style={{ textDecoration: "none" }}>
+      <Link
+        to={`/category/${categoryId.categoryId}`}
+        style={{ textDecoration: "none" }}
+      >
         <button className="button-return-categories">
-          Return to All Categories
+          Return to {categoryId.categoryName}
         </button>
       </Link>
       <div className="container">
         <div className="table">
           <div>
-            <h1> {playlist.name}</h1>
-            {/* <img src={playlist.images[0].url} alt="album" /> */}
-
+            <h1> {playlistInfo.playlistName}</h1>
             <div>
               <table>
                 <thead>
@@ -70,9 +52,14 @@ function SinglePlaylistView() {
                   </tr>
                 </thead>
                 <tbody>
-                  {tracks.map((track, index) => {
+                  {singlePlaylist.map((track, index) => {
                     return (
-                      <tr key={index}>
+                      <tr
+                        key={index}
+                        onClick={() =>
+                          dispatch(setTrack(accessToken, track.track.id))
+                        }
+                      >
                         <td className="album-cover">
                           <Link to={`/track/${track.track.id}`}>
                             <img
