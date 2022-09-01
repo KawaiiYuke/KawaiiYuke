@@ -34,6 +34,8 @@
     "sass": "^1.54.4",
     "spotify-web-api-node": "^5.0.2",
     "swiper": "^8.3.2",
+    "usewebrtc": "github:alecfriedman3/useWebRTC",
+    "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
