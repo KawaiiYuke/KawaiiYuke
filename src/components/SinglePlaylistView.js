@@ -19,13 +19,6 @@ function SinglePlaylistView() {
     dispatch(setSinglePlaylist(accessToken, playlistInfo.playlistId));
   }, []);
 
-  if (!accessToken) {
-    let codeFromLocalStorage = window.localStorage.getItem("code");
-    if (codeFromLocalStorage) {
-      dispatch(loggingIn(codeFromLocalStorage));
-    }
-  }
-
   return (
     <div>
       <Link

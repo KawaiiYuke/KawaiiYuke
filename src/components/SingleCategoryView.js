@@ -18,13 +18,6 @@ function SingleCategoryView() {
     dispatch(setSingleCategoryList(accessToken, categoryId.categoryId));
   }, []);
 
-  if (!accessToken) {
-    let codeFromLocalStorage = window.localStorage.getItem("code");
-    if (codeFromLocalStorage) {
-      dispatch(loggingIn(codeFromLocalStorage));
-    }
-  }
-
   return (
     <div style={{ color: "white", paddingRight: "17rem" }}>
       <h1>{categoryId.categoryName}</h1>
