@@ -6,7 +6,7 @@ import { setSinglePlaylist, setTrack } from "../redux/browse";
 
 function SinglePlaylistView() {
   const logInState = useSelector((state) => state.logIn);
-  const accessToken = logInState?.accessToken;
+  let accessToken = logInState?.accessToken;
   const dispatch = useDispatch();
   const playlistInfo = useSelector((state) => state.browse.singlePlaylistId);
   const categoryId = useSelector((state) => state.browse.singleCategoryId);
@@ -17,6 +17,14 @@ function SinglePlaylistView() {
   useEffect(() => {
     dispatch(setSinglePlaylist(accessToken, playlistInfo.playlistId));
   }, []);
+
+  if (!accessToken) {
+    const accessTokenFromLocalStorage =
+      window.localStorage.getItem("AccessToken");
+    if (accessTokenFromLocalStorage) {
+      accessToken = accessTokenFromLocalStorage;
+    }
+  }
 
   return (
     <div>

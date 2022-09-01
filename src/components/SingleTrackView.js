@@ -5,7 +5,7 @@ import { setLyrics } from "../redux/browse";
 
 function SingleTrackView() {
   const logInState = useSelector((state) => state.logIn);
-  const accessToken = logInState?.accessToken;
+  let accessToken = logInState?.accessToken;
   const trackInfo = useSelector((state) => state.browse.singleTrackInfo);
   const lyrics = useSelector((state) => state.browse.lyrics);
   const playlistInfo = useSelector((state) => state.browse.singlePlaylistId);
@@ -14,6 +14,14 @@ function SingleTrackView() {
   useEffect(() => {
     dispatch(setLyrics(trackInfo.name, trackInfo.artists[0].name));
   }, [trackInfo]);
+
+  if (!accessToken) {
+    const accessTokenFromLocalStorage =
+      window.localStorage.getItem("AccessToken");
+    if (accessTokenFromLocalStorage) {
+      accessToken = accessTokenFromLocalStorage;
+    }
+  }
 
   return (
     <div>

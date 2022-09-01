@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const LOGGING_IN = "LOGGING_IN";
+const LOGGING_OUT = "LOGGING_OUT";
 
 const initialState = {
   accessToken: "",
@@ -16,6 +17,11 @@ export const _LOGGING_IN = (data) => {
   };
 };
 
+export const _LOGGING_OUT = () => {
+  return {
+    type: LOGGING_OUT,
+  };
+};
 export const loggingIn = (code) => {
   return async (dispatch) => {
     try {
@@ -28,15 +34,35 @@ export const loggingIn = (code) => {
   };
 };
 
+export const loggingOut = () => {
+  return async (dispatch) => {
+    try {
+      dispatch(_LOGGING_OUT());
+    } catch (error) {
+      console.log("thunk error", error);
+    }
+  };
+};
+
 const logInReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGGING_IN:
+      window.localStorage.setItem("AccessToken", action.data.accessToken);
       return {
         ...state,
         accessToken: action.data.accessToken,
         refreshToken: action.data.refreshToken,
         expiresIn: action.data.expiresIn,
         loggedIn: true,
+      };
+    case LOGGING_OUT:
+      window.localStorage.removeItem("AccessToken");
+      return {
+        ...state,
+        accessToken: "",
+        refreshToken: "",
+        expiresIn: "",
+        loggedIn: false,
       };
     default:
       return state;

@@ -8,7 +8,7 @@ function SingleCategoryView() {
   const logInState = useSelector((state) => state.logIn);
   const categoryId = useSelector((state) => state.browse.singleCategoryId);
   const dispatch = useDispatch();
-  const accessToken = logInState?.accessToken;
+  let accessToken = logInState?.accessToken;
   const singleCategoryState = useSelector(
     (state) => state.browse.singleCategoryLists
   );
@@ -16,6 +16,14 @@ function SingleCategoryView() {
   useEffect(() => {
     dispatch(setSingleCategoryList(accessToken, categoryId.categoryId));
   }, []);
+
+  if (!accessToken) {
+    const accessTokenFromLocalStorage =
+      window.localStorage.getItem("AccessToken");
+    if (accessTokenFromLocalStorage) {
+      accessToken = accessTokenFromLocalStorage;
+    }
+  }
 
   return (
     <div>
