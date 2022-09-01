@@ -1,31 +1,35 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Explore from './Explore';
-import SignIn from './SignIn';
-import SignOut from './SignOut';
-import Home from './Home';
-import Navigation from './Navbar';
-import Room from './Room';
-import SingleCategoryView from './SingleCategoryView';
-import SinglePlaylistView from './SinglePlaylistView';
-import VideoTest from './VideoTest';
-import './css/Paths.css';
-import SingleTrackView from './SingleTrackView';
+import React from "react";
+import "bootstrap/dist/css/bootstrap.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Explore from "./Explore";
+import SignIn from "./SignIn";
+import SignOut from "./SignOut";
+import Home from "./Home";
+import Navigation from "./Navbar";
+import Room from "./Room";
+import SingleCategoryView from "./SingleCategoryView";
+import SinglePlaylistView from "./SinglePlaylistView";
+import VideoTest from "./VideoTest";
+import "./css/Paths.css";
+import SingleTrackView from "./SingleTrackView";
+import { useSelector } from "react-redux";
 
 const Paths = () => {
+  const logInState = useSelector((state) => state.logIn);
+  console.log("logInState", logInState);
+  //if (!logInState.loggedIn)
+
   return (
     <Router>
       <div className="allPaths">
         <div>
           <Navigation />
         </div>
-        <div className="main_content" style={{ marginLeft: '225px' }}>
+        <div className="main_content" style={{ marginLeft: "225px" }}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/explore" element={<Explore />} />
-
             <Route path="/signout" element={<SignOut />} />
             <Route path="/room" element={<Room />} />
             <Route
