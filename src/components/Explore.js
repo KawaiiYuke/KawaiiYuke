@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setCategoryList } from "../redux/browse";
 import { setSingleCategory } from "../redux/browse";
-import { loggingIn } from "../redux/logIn";
 
 const Explore = () => {
   const logInState = useSelector((state) => state.logIn);

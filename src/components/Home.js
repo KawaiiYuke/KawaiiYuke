@@ -18,7 +18,6 @@ const Home = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const code = searchParams.get("code");
-  window.localStorage.setItem("Code", code);
   const accessToken = logInState?.accessToken;
 
   const [search, setSearch] = useState("");
