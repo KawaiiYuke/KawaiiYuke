@@ -13,11 +13,19 @@ const Explore = () => {
   const logInState = useSelector((state) => state.logIn);
   const categoryState = useSelector((state) => state.browse.categoryList);
   const dispatch = useDispatch();
-  const accessToken = logInState?.accessToken;
+  let accessToken = logInState?.accessToken;
 
   useEffect(() => {
     dispatch(setCategoryList(accessToken));
   }, []);
+
+  if (!accessToken) {
+    const accessTokenFromLocalStorage =
+      window.localStorage.getItem("AccessToken");
+    if (accessTokenFromLocalStorage) {
+      accessToken = accessTokenFromLocalStorage;
+    }
+  }
 
   return (
     <div style={{ paddingRight: '17rem' }}>

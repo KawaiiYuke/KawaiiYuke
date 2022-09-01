@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const SignOut = () => {
-  return (
-    <div>
-      <h3>sign out bye</h3>
-    </div>
-  );
+  return <div>You have signed out succeffully. See you soon!</div>;
 };
 
 export default SignOut;

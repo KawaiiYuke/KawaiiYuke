@@ -58,6 +58,8 @@ app.post("/login", (req, res) => {
 });
 
 app.get("/lyrics", async (req, res) => {
+  console.log("REQ: ", req);
+  console.log("REQ.QUERY: ", req.query);
   const lyrics =
     (await lyricsFinder(req.query.artist, req.query.track)) ||
     "No Lyrics found";
@@ -83,6 +85,30 @@ app.get("/category/:categoryId", async (req, res) => {
       { headers: { Authorization: req.headers.authorization } }
     );
     res.json(singleCategoryResponse.data.playlists.items);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.get("/playlists/:playlistId", async (req, res) => {
+  try {
+    const singlePlaylistResponse = await axios.get(
+      `https://api.spotify.com/v1/playlists/${req.params.playlistId}`,
+      { headers: { Authorization: req.headers.authorization } }
+    );
+    res.json(singlePlaylistResponse.data.tracks.items);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.get("/track/:trackId", async (req, res) => {
+  try {
+    const singleTrackResponse = await axios.get(
+      `https://api.spotify.com/v1/tracks/${req.params.trackId}`,
+      { headers: { Authorization: req.headers.authorization } }
+    );
+    res.json(singleTrackResponse.data);
   } catch (err) {
     console.log(err);
   }

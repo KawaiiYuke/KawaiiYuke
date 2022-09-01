@@ -1,16 +1,14 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-
-import './css/SingleCategoryViewButton.css';
-
-import { useSelector, useDispatch } from 'react-redux';
-import { setSingleCategoryList } from '../redux/browse';
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./css/SingleCategoryViewButton.css";
+import { useSelector, useDispatch } from "react-redux";
+import { setSingleCategoryList, setSinglePlaylistInfo } from "../redux/browse";
 
 function SingleCategoryView() {
   const logInState = useSelector((state) => state.logIn);
   const categoryId = useSelector((state) => state.browse.singleCategoryId);
   const dispatch = useDispatch();
-  const accessToken = logInState?.accessToken;
+  let accessToken = logInState?.accessToken;
   const singleCategoryState = useSelector(
     (state) => state.browse.singleCategoryLists
   );
@@ -19,17 +17,25 @@ function SingleCategoryView() {
     dispatch(setSingleCategoryList(accessToken, categoryId.categoryId));
   }, []);
 
+  if (!accessToken) {
+    const accessTokenFromLocalStorage =
+      window.localStorage.getItem("AccessToken");
+    if (accessTokenFromLocalStorage) {
+      accessToken = accessTokenFromLocalStorage;
+    }
+  }
+
   return (
-    <div style={{ color: 'white', paddingRight: '17rem' }}>
+    <div style={{ color: "white", paddingRight: "17rem" }}>
       <h1>{categoryId.categoryName}</h1>
       <div className="d-flex justify-content-center">
         <Link
           to="/explore"
-          style={{ textDecoration: 'none', paddingBottom: '.7rem' }}
+          style={{ textDecoration: "none", paddingBottom: ".7rem" }}
         >
           <button
             className="button-return-categories"
-            style={{ fontSize: '.9rem' }}
+            style={{ fontSize: ".9rem" }}
           >
             Return to All Categories
           </button>
@@ -39,18 +45,24 @@ function SingleCategoryView() {
         <div className="row align-items-center">
           {singleCategoryState.map((playlist) => {
             return (
-              <div key={playlist.id} className="col-sm-3">
+              <div
+                key={playlist.id}
+                className="col-sm-3"
+                onClick={() =>
+                  dispatch(setSinglePlaylistInfo(playlist.id, playlist.name))
+                }
+              >
                 <Link
                   to={`/playlists/${playlist.id}`}
-                  style={{ textDecoration: 'none' }}
+                  style={{ textDecoration: "none" }}
                 >
                   <img
                     src={playlist.images[0].url}
                     alt="cover"
                     className="img-fluid mb-3"
-                    style={{ borderRadius: '4rem' }}
+                    style={{ borderRadius: "4rem" }}
                   />
-                  <h2 style={{ color: 'white' }}>{playlist.name}</h2>
+                  <h2 style={{ color: "white" }}>{playlist.name}</h2>
                 </Link>
               </div>
             );

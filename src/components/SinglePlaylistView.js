@@ -1,75 +1,71 @@
-import React, { useState, useEffect } from 'react';
-import useAuth from './useAuth';
-import SpotifyWebApi from 'spotify-web-api-node';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import './css/SinglePlaylistView.css';
-import { useSelector } from 'react-redux';
-
-const spotifyApi = new SpotifyWebApi({
-  clientId: process.env.CLIENT_ID,
-});
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./css/SinglePlaylistView.css";
+import { useSelector, useDispatch } from "react-redux";
+import { setSinglePlaylist, setTrack } from "../redux/browse";
 
 function SinglePlaylistView() {
   const logInState = useSelector((state) => state.logIn);
-  const accessToken = logInState?.accessToken;
-  const playlistId = window.location.pathname.split('/').slice(-1)[0];
-  const [playlist, setPlaylist] = useState([]);
-  const [tracks, setTracks] = useState([]);
-  useEffect(() => {
-    axios(`https://api.spotify.com/v1/playlists/${playlistId}`, {
-      method: 'GET',
-      headers: { Authorization: 'Bearer ' + accessToken },
-    }).then((playlistResponse) => {
-      setPlaylist(playlistResponse.data);
-    });
-  }, [playlistId, accessToken]);
+  let accessToken = logInState?.accessToken;
+  const dispatch = useDispatch();
+  const playlistInfo = useSelector((state) => state.browse.singlePlaylistId);
+  const categoryId = useSelector((state) => state.browse.singleCategoryId);
+  const singlePlaylist = useSelector(
+    (state) => state.browse.singlePlaylistTracks
+  );
 
   useEffect(() => {
-    axios(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
-      method: 'GET',
-      headers: { Authorization: 'Bearer ' + accessToken },
-    }).then((tracksResponse) => {
-      setTracks(tracksResponse.data.items);
-    });
-  });
+    dispatch(setSinglePlaylist(accessToken, playlistInfo.playlistId));
+  }, []);
+
+  if (!accessToken) {
+    const accessTokenFromLocalStorage =
+      window.localStorage.getItem("AccessToken");
+    if (accessTokenFromLocalStorage) {
+      accessToken = accessTokenFromLocalStorage;
+    }
+  }
 
   return (
-    <div style={{ paddingRight: '17rem' }}>
-      <h1 style={{ color: 'white' }}>{playlist.name}</h1>
-      <div className="d-flex justify-content-center">
-        <Link to="/explore" style={{ textDecoration: 'none' }}>
-          <button
-            className="button-return-categories"
-            style={{ fontSize: '.9rem' }}
-          >
-            Return to All Categories
-          </button>
-        </Link>
-      </div>
+    <div>
+      <Link
+        to={`/category/${categoryId.categoryId}`}
+        style={{ textDecoration: "none" }}
+      >
+        <button className="button-return-categories">
+          Return to {categoryId.categoryName}
+        </button>
+      </Link>
+
       <div className="container">
-        <div className="table" style={{ color: 'white' }}>
+        <div className="table" style={{ color: "white" }}>
           <div>
+            <h1> {playlistInfo.playlistName}</h1>
             <div>
-              <table style={{ background: 'hsla(0, 100%, 90%, 0.3)' }}>
+              <table style={{ background: "hsla(0, 100%, 90%, 0.3)" }}>
                 <thead>
                   <tr>
                     <th>Album Cover</th>
-                    <th style={{ textAlign: 'start', paddingLeft: '1em' }}>
+                    <th style={{ textAlign: "start", paddingLeft: "1em" }}>
                       Track
                     </th>
-                    <th style={{ textAlign: 'start', paddingLeft: '1em' }}>
+                    <th style={{ textAlign: "start", paddingLeft: "1em" }}>
                       Artist
                     </th>
-                    <th style={{ textAlign: 'start', paddingLeft: '1em' }}>
+                    <th style={{ textAlign: "start", paddingLeft: "1em" }}>
                       Album
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {tracks.map((track, index) => {
+                  {singlePlaylist.map((track, index) => {
                     return (
-                      <tr key={index}>
+                      <tr
+                        key={index}
+                        onClick={() =>
+                          dispatch(setTrack(accessToken, track.track.id))
+                        }
+                      >
                         <td className="album-cover">
                           <Link to={`/track/${track.track.id}`}>
                             <img
@@ -79,23 +75,23 @@ function SinglePlaylistView() {
                           </Link>
                         </td>
 
-                        <td style={{ textAlign: 'left' }}>
+                        <td style={{ textAlign: "left" }}>
                           <Link
                             to={`/track/${track.track.id}`}
                             style={{
-                              textDecoration: 'none',
-                              padding: '1em',
-                              color: 'white',
+                              textDecoration: "none",
+                              padding: "1em",
+                              color: "white",
                             }}
                           >
                             {track.track.name}
                           </Link>
                         </td>
 
-                        <td style={{ textAlign: 'left', padding: '1em' }}>
+                        <td style={{ textAlign: "left", padding: "1em" }}>
                           {track.track.artists[0].name}
                         </td>
-                        <td style={{ textAlign: 'left' }}>
+                        <td style={{ textAlign: "left" }}>
                           {track.track.album.name}
                         </td>
 

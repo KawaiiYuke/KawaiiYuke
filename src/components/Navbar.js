@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import './css/Navbar.css';
-import menu from '../images/menu.png';
-import logo from '../images/kawaii_logo.png';
-import explore from '../images/explore.png';
-import signin from '../images/signin.png';
-import search from '../images/search.png';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./css/Navbar.css";
+import menu from "../images/menu.png";
+import logo from "../images/kawaii_logo.png";
+import explore from "../images/explore.png";
+import signin from "../images/signin.png";
+import search from "../images/search.png";
+import { useDispatch } from "react-redux";
+import { loggingOut } from "../redux/logIn";
 
-import { AUTH_URL } from './SignIn';
+import { AUTH_URL } from "./SignIn";
 
 const Navigation = () => {
+  const dispatch = useDispatch();
   const [navBar, setBar] = useState(false);
   useEffect(() => {
     window.onresize = function () {
@@ -23,7 +26,7 @@ const Navigation = () => {
 
   return (
     <div className="wrapper">
-      <div className="sidebar" style={{ width: navBar ? '50px' : '225px' }}>
+      <div className="sidebar" style={{ width: navBar ? "50px" : "225px" }}>
         <Link to="/">
           <img src={logo} alt="" width="100%" />
         </Link>
@@ -47,6 +50,13 @@ const Navigation = () => {
               <img className="navIcon" src={search} alt="" />
               Search
             </a>
+          </li>
+
+          <li onClick={() => dispatch(loggingOut())}>
+            <Link to="/signout">
+              {/* <img className="navIcon" src={signout} alt="" /> */}
+              Sign Out
+            </Link>
           </li>
         </ul>
         <div
