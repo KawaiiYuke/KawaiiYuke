@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
 import { Container } from "react-bootstrap";
-import { loggingIn } from "../redux/logIn";
 import "./css/SignIn.css";
 
 const redirect = window.location.href.split("/");

@@ -36,12 +36,13 @@ function SinglePlaylistView() {
           Return to {categoryId.categoryName}
         </button>
       </Link>
+
       <div className="container">
-        <div className="table">
+        <div className="table" style={{ color: "white" }}>
           <div>
             <h1> {playlistInfo.playlistName}</h1>
             <div>
-              <table>
+              <table style={{ background: "hsla(0, 100%, 90%, 0.3)" }}>
                 <thead>
                   <tr>
                     <th>Album Cover</th>
@@ -53,9 +54,6 @@ function SinglePlaylistView() {
                     </th>
                     <th style={{ textAlign: "start", paddingLeft: "1em" }}>
                       Album
-                    </th>
-                    <th style={{ textAlign: "start", paddingLeft: "1em" }}>
-                      Option
                     </th>
                   </tr>
                 </thead>
@@ -80,7 +78,11 @@ function SinglePlaylistView() {
                         <td style={{ textAlign: "left" }}>
                           <Link
                             to={`/track/${track.track.id}`}
-                            style={{ textDecoration: "none", padding: "1em" }}
+                            style={{
+                              textDecoration: "none",
+                              padding: "1em",
+                              color: "white",
+                            }}
                           >
                             {track.track.name}
                           </Link>
@@ -94,7 +96,7 @@ function SinglePlaylistView() {
                         </td>
 
                         <td>
-                          <button className="button-8">+ play</button>
+                          <button className="playButton">PLAY</button>
                         </td>
                       </tr>
                     );

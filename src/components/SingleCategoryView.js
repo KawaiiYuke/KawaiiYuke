@@ -26,13 +26,21 @@ function SingleCategoryView() {
   }
 
   return (
-    <div>
-      <Link to="/explore" style={{ textDecoration: "none" }}>
-        <button className="button-return-categories">
-          Return to All Categories
-        </button>
-      </Link>
+    <div style={{ color: "white", paddingRight: "17rem" }}>
       <h1>{categoryId.categoryName}</h1>
+      <div className="d-flex justify-content-center">
+        <Link
+          to="/explore"
+          style={{ textDecoration: "none", paddingBottom: ".7rem" }}
+        >
+          <button
+            className="button-return-categories"
+            style={{ fontSize: ".9rem" }}
+          >
+            Return to All Categories
+          </button>
+        </Link>
+      </div>
       <div className="container">
         <div className="row align-items-center">
           {singleCategoryState.map((playlist) => {
@@ -54,7 +62,7 @@ function SingleCategoryView() {
                     className="img-fluid mb-3"
                     style={{ borderRadius: "4rem" }}
                   />
-                  <h2>{playlist.name}</h2>
+                  <h2 style={{ color: "white" }}>{playlist.name}</h2>
                 </Link>
               </div>
             );
