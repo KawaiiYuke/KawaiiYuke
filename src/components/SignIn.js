@@ -1,5 +1,5 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Container } from "react-bootstrap";
 import { loggingIn } from "../redux/logIn";
 import "./css/SignIn.css";
@@ -34,14 +34,4 @@ const SignIn = () => {
 
 // btn btn-success btn-lg
 
-const mapState = (state) => {
-  return state;
-};
-
-const mapDispatch = (dispatch) => {
-  return {
-    loggingIn: (code) => dispatch(loggingIn(code)),
-  };
-};
-
-export default connect(mapState, mapDispatch)(SignIn);
+export default SignIn;
