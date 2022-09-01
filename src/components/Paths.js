@@ -20,7 +20,7 @@ const Paths = () => {
         <div>
           <Navigation />
         </div>
-        <div className="main_content" style={{ marginLeft: '250px' }}>
+        <div className="main_content" style={{ marginLeft: '225px' }}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/signin" element={<SignIn />} />
