@@ -140,6 +140,8 @@ export const setTrack = (accessToken, trackId) => {
 };
 
 export const setLyrics = (trackName, artist) => {
+  console.log("trackName", trackName);
+  console.log("artist", artist);
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`/lyrics`, {

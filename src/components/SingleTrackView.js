@@ -10,9 +10,11 @@ function SingleTrackView() {
   const lyrics = useSelector((state) => state.browse.lyrics);
   const playlistInfo = useSelector((state) => state.browse.singlePlaylistId);
   const dispatch = useDispatch();
-
+  console.log("lyrics", lyrics);
   useEffect(() => {
-    dispatch(setLyrics(trackInfo.name, trackInfo.artists[0].name));
+    if (trackInfo.name) {
+      dispatch(setLyrics(trackInfo.name, trackInfo.artists[0].name));
+    }
   }, [trackInfo]);
 
   if (!accessToken) {
@@ -38,12 +40,12 @@ function SingleTrackView() {
         {trackInfo.name ? (
           <div>
             <h1>{trackInfo.name}</h1>
-            {/* <h2>By: {trackInfo.artists[0].name}</h2>
+            <h2>By: {trackInfo.artists[0].name}</h2>
 
-            <img src={trackInfo.album.images[2].url} alt="album" /> */}
+            <img src={trackInfo.album.images[2].url} alt="album" />
 
             <div className="text-center" style={{ whiteSpace: "pre" }}>
-              Lyrics: {lyrics}
+              {/* Lyrics: {lyrics} */}
             </div>
           </div>
         ) : (
