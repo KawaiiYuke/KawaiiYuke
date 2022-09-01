@@ -28,19 +28,18 @@ function SinglePlaylistView() {
 
   return (
     <div>
-      <Link
-        to={`/category/${categoryId.categoryId}`}
-        style={{ textDecoration: "none" }}
-      >
-        <button className="button-return-categories">
-          Return to {categoryId.categoryName}
-        </button>
-      </Link>
-
       <div className="container">
         <div className="table" style={{ color: "white" }}>
           <div>
             <h1> {playlistInfo.playlistName}</h1>
+            <Link
+              to={`/category/${categoryId.categoryId}`}
+              style={{ textDecoration: "none" }}
+            >
+              <button className="button-return-categories">
+                Return to {categoryId.categoryName}
+              </button>
+            </Link>
             <div>
               <table style={{ background: "hsla(0, 100%, 90%, 0.3)" }}>
                 <thead>
