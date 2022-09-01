@@ -1,31 +1,30 @@
-import React, { useRef, useState, useEffect } from 'react';
-import './css/VideoTest.css';
-import { useWebRTCFirebase } from 'usewebrtc';
-import { getFirestore } from 'firebase/firestore';
+import React, { useRef, useState, useEffect } from "react";
+import "./css/VideoTest.css";
+import { useWebRTCFirebase } from "usewebrtc";
+import { getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
-import { v4 as uuid } from 'uuid';
+import { v4 as uuid } from "uuid";
 
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/firestore';
+import firebase from "firebase/compat/app";
+import "firebase/compat/firestore";
 
-import { ReactComponent as HangupIcon } from '../icons/hangup.svg';
-import { ReactComponent as MoreIcon } from '../icons/more-vertical.svg';
-import { ReactComponent as CopyIcon } from '../icons/copy.svg';
-import icon from '../images/icon-no-bg.png';
-import vback from '../images/vback.gif';
+import { ReactComponent as HangupIcon } from "../icons/hangup.svg";
+import { ReactComponent as MoreIcon } from "../icons/more-vertical.svg";
+import { ReactComponent as CopyIcon } from "../icons/copy.svg";
+import icon from "../images/icon-no-bg.png";
+import vback from "../images/vback.gif";
 
 const participantId = uuid();
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAy4mqr3tWrbRPgSiewCz02iKl7sADfPGc',
-  authDomain: 'kawaiiyuke-10e81.firebaseapp.com',
-  databaseURL: 'https://kawaiiyuke-10e81-default-rtdb.firebaseio.com',
-  projectId: 'kawaiiyuke-10e81',
-  storageBucket: 'kawaiiyuke-10e81.appspot.com',
-  messagingSenderId: '891237213652',
-  appId: '1:891237213652:web:0ada7ae2461bd808322241',
+  apiKey: process.env.APIKEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  databaseURL: process.env.DATABASE_URL,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_SENDER_ID,
+  appId: process.env.APP_ID,
 };
-
 firebase.initializeApp(firebaseConfig);
 
 const firestore = firebase.firestore();
@@ -35,7 +34,7 @@ const db = getFirestore(initializeApp(firebaseConfig));
 const servers = {
   iceServers: [
     {
-      urls: ['stun:stun1.l.google.com:19302', 'stun:stun2.l.google.com:19302'],
+      urls: ["stun:stun1.l.google.com:19302", "stun:stun2.l.google.com:19302"],
     },
   ],
   iceCandidatePoolSize: 10,
@@ -47,15 +46,15 @@ function VideoTest() {
   const [joinedRoom, setJoinedRoom] = useState(false);
   /* eslint-disable no-unused-vars */
   const {
-      localStream,
-      participants,
-      shareScreen,
-      endScreenShare,
-      createRoom,
-      joinRoom,
-      leaveRoom,
-      roomId,
-      setRoomId,
+    localStream,
+    participants,
+    shareScreen,
+    endScreenShare,
+    createRoom,
+    joinRoom,
+    leaveRoom,
+    roomId,
+    setRoomId,
   } = useWebRTCFirebase({ db, participantId });
   /* eslint-enable no-unused-vars */
 
@@ -80,64 +79,87 @@ function VideoTest() {
           muted
         />
         {participants.map(({ id, stream }) => {
-          return <div key={id}>
-            <h1>{id}:</h1>
-            <video ref={(element) => {
-              if (element) {
-                element.srcObject = stream;
-              }
-            }} key={id} autoPlay playsInline className="remote" />
-          </div>
+          return (
+            <div key={id}>
+              <h1>{id}:</h1>
+              <video
+                ref={(element) => {
+                  if (element) {
+                    element.srcObject = stream;
+                  }
+                }}
+                key={id}
+                autoPlay
+                playsInline
+                className="remote"
+              />
+            </div>
+          );
         })}
       </div>
-      {!roomId &&
+      {!roomId && (
         <>
           <button
-              onClick={async () => {
-                try {
-                  await createRoom();
-                  setJoinedRoom(true);
-                } catch(e) {
-                  console.error(e);
-                  alert('Failed to create room,', e.message);
-                }
-              }}
-          >CREATE ROOM</button>
-      </>}
+            onClick={async () => {
+              try {
+                await createRoom();
+                setJoinedRoom(true);
+              } catch (e) {
+                console.error(e);
+                alert("Failed to create room,", e.message);
+              }
+            }}
+          >
+            CREATE ROOM
+          </button>
+        </>
+      )}
       <div className="answer box">
-        {!joinedRoom &&
+        {!joinedRoom && (
           <input
             value={roomId}
             onChange={(e) => setRoomId(e.target.value)}
             placeholder="Join with code"
           />
-        }
-        <button onClick={async () => {
-          try {
-            await joinRoom();
-            setJoinedRoom(true);
-          } catch (e) {
-            console.error(e);
-            alert(e.message);
-          }
-        }}>JOIN ROOM</button>
+        )}
+        <button
+          onClick={async () => {
+            try {
+              await joinRoom();
+              setJoinedRoom(true);
+            } catch (e) {
+              console.error(e);
+              alert(e.message);
+            }
+          }}
+        >
+          JOIN ROOM
+        </button>
       </div>
-      {roomId && <>
-        <div>
-          <button
-            onClick={() => {
-              navigator.clipboard.writeText(roomId);
-            }}
-          >
-            Copy joining code
-          </button>
-          <p>Room: {roomId} <br/> Participant ID: {participantId}</p>
-          <button onClick={async () => {
-            // shareScreen({ options: { suppressVideo: true } });
-            shareScreen();
-          }}>SHARE SCREEN</button>
-        </div>
-      </>}
+      {roomId && (
+        <>
+          <div>
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(roomId);
+              }}
+            >
+              Copy joining code
+            </button>
+            <p>
+              Room: {roomId} <br /> Participant ID: {participantId}
+            </p>
+            <button
+              onClick={async () => {
+                // shareScreen({ options: { suppressVideo: true } });
+                shareScreen();
+              }}
+            >
+              SHARE SCREEN
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 }

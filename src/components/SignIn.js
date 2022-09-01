@@ -4,7 +4,7 @@ import "./css/SignIn.css";
 
 const redirect = window.location.href.split("/");
 
-export const AUTH_URL = `https://accounts.spotify.com/authorize?client_id=00cf6df1a3dc405788be2dc5ea6add2d&response_type=code&redirect_uri=${redirect[0]}//${redirect[2]}&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state`;
+export const AUTH_URL = `https://accounts.spotify.com/authorize?client_id=462ea59988b243c8962ff48e65527091&response_type=code&redirect_uri=${redirect[0]}//${redirect[2]}&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state`;
 
 const SignIn = () => {
   return (
