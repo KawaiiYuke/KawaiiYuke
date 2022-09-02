@@ -17,7 +17,7 @@ const Explore = () => {
   }, []);
 
   return (
-    <div style={{ paddingRight: "17rem" }}>
+    <div style={{ marginLeft: "7em" }}>
       <h1
         style={{
           color: "white",
@@ -27,8 +27,6 @@ const Explore = () => {
       >
         Categories
       </h1>
-
-      <h1 style={{ color: "white" }}>Welcome to KAWAIIYUKE! </h1>
 
       <div className="container">
         <div className="row align-items-center">
