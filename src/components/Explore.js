@@ -67,8 +67,6 @@ const Explore = () => {
                   >
                     {category.name}
                   </h3>
-
-                  <h3 style={{ color: "white" }}>{category.name}</h3>
                 </Link>
               </div>
             );
