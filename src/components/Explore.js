@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from "react";
-import useAuth from "./useAuth";
+import React, { useEffect } from "react";
 import { Container, Form } from "react-bootstrap";
-import SpotifyWebApi from "spotify-web-api-node";
-import axios from "axios";
 
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -19,14 +16,6 @@ const Explore = () => {
     dispatch(setCategoryList(accessToken));
   }, []);
 
-  if (!accessToken) {
-    const accessTokenFromLocalStorage =
-      window.localStorage.getItem("AccessToken");
-    if (accessTokenFromLocalStorage) {
-      accessToken = accessTokenFromLocalStorage;
-    }
-  }
-
   return (
     <div style={{ paddingRight: "17rem" }}>
       <h1
@@ -38,6 +27,9 @@ const Explore = () => {
       >
         Categories
       </h1>
+
+      <h1 style={{ color: "white" }}>Welcome to KAWAIIYUKE! </h1>
+
       <div className="container">
         <div className="row align-items-center">
           {categoryState?.map((category) => {
@@ -75,6 +67,8 @@ const Explore = () => {
                   >
                     {category.name}
                   </h3>
+
+                  <h3 style={{ color: "white" }}>{category.name}</h3>
                 </Link>
               </div>
             );

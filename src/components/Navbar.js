@@ -46,6 +46,13 @@ const Navigation = () => {
           </li>
 
           <li>
+            <Link to="/room">
+              {/* <img className="navIcon" src={explore} alt="" /> */}
+              Room
+            </Link>
+          </li>
+
+          <li>
             <a href={AUTH_URL}>
               <img className="navIcon" src={search} alt="" />
               Search

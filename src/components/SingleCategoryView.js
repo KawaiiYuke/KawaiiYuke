@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./css/SingleCategoryViewButton.css";
 import { useSelector, useDispatch } from "react-redux";
 import { setSingleCategoryList, setSinglePlaylistInfo } from "../redux/browse";
+import { loggingIn } from "../redux/logIn";
 
 function SingleCategoryView() {
   const logInState = useSelector((state) => state.logIn);
@@ -16,14 +17,6 @@ function SingleCategoryView() {
   useEffect(() => {
     dispatch(setSingleCategoryList(accessToken, categoryId.categoryId));
   }, []);
-
-  if (!accessToken) {
-    const accessTokenFromLocalStorage =
-      window.localStorage.getItem("AccessToken");
-    if (accessTokenFromLocalStorage) {
-      accessToken = accessTokenFromLocalStorage;
-    }
-  }
 
   return (
     <div style={{ color: "white", paddingRight: "17rem" }}>
