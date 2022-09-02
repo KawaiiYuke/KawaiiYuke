@@ -4,12 +4,14 @@ import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import logInReducer from "./logIn";
 import BrowseReducer from "./browse";
+import roomReducer from "./roomPlaylist";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 const reducer = combineReducers({
   logIn: logInReducer,
   browse: BrowseReducer,
+  room: roomReducer,
 });
 
 const persistConfig = {
