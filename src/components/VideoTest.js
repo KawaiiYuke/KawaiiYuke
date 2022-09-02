@@ -66,54 +66,43 @@ function VideoTest() {
 
   return (
     <div className="VideoTest">
-      <div>
-        <video
-          ref={(element) => {
-            if (element) {
-              element.srcObject = localStream;
-            }
-          }}
-          autoPlay
-          playsInline
-          className="local"
-          muted
-        />
-        {participants.map(({ id, stream }) => {
-          return (
-            <div key={id}>
-              <h1>{id}:</h1>
-              <video
-                ref={(element) => {
-                  if (element) {
-                    element.srcObject = stream;
-                  }
-                }}
-                key={id}
-                autoPlay
-                playsInline
-                className="remote"
-              />
-            </div>
-          );
-        })}
-      </div>
-      {!roomId && (
-        <>
-          <button
-            onClick={async () => {
-              try {
-                await createRoom();
-                setJoinedRoom(true);
-              } catch (e) {
-                console.error(e);
-                alert("Failed to create room,", e.message);
+      <div className="videoBox">
+        <div className="bigVideo">
+          <video
+            ref={(element) => {
+              if (element) {
+                element.srcObject = localStream;
               }
             }}
-          >
-            CREATE ROOM
-          </button>
-        </>
-      )}
+            autoPlay
+            playsInline
+            className="local"
+            muted
+            poster={vback}
+          />
+        </div>
+        <div className="sm_video">
+          {participants.map(({ id, stream }) => {
+            return (
+              <div key={id}>
+                <h1>{id}:</h1>
+                <video
+                  ref={(element) => {
+                    if (element) {
+                      element.srcObject = stream;
+                    }
+                  }}
+                  key={id}
+                  autoPlay
+                  playsInline
+                  className="remote"
+                  poster={vback}
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
       <div className="answer box">
         {!joinedRoom && (
           <input
@@ -122,19 +111,38 @@ function VideoTest() {
             placeholder="Join with code"
           />
         )}
-        <button
-          onClick={async () => {
-            try {
-              await joinRoom();
-              setJoinedRoom(true);
-            } catch (e) {
-              console.error(e);
-              alert(e.message);
-            }
-          }}
-        >
-          JOIN ROOM
-        </button>
+        <div>
+          <button
+              onClick={async () => {
+                try {
+                  await joinRoom();
+                  setJoinedRoom(true);
+                } catch (e) {
+                  console.error(e);
+                  alert(e.message);
+                }
+              }}
+          >
+            JOIN ROOM
+          </button>
+          {!roomId && (
+              <>
+                <button
+                    onClick={async () => {
+                      try {
+                        await createRoom();
+                        setJoinedRoom(true);
+                      } catch (e) {
+                        alert("Failed to create room,", e.message);
+                      }
+                    }}
+                >
+                  CREATE ROOM
+                </button>
+              </>
+          )}
+        </div>
+
       </div>
       {roomId && (
         <>
