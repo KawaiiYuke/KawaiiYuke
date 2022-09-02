@@ -56,7 +56,7 @@ const logInReducer = (state = initialState, action) => {
         loggedIn: true,
       };
     case LOGGING_OUT:
-      window.localStorage.removeItem("AccessToken");
+      window.localStorage.clear();
       return {
         ...state,
         accessToken: "",
