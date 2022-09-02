@@ -9,7 +9,7 @@ import { loggingIn } from "../redux/logIn";
 import { useSelector, useDispatch } from "react-redux";
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: process.env.CLIENT_ID,
+  clientId: process.env.REACT_APP_CLIENT_ID,
 });
 
 const Home = () => {
@@ -21,7 +21,6 @@ const Home = () => {
   const accessToken = logInState?.accessToken;
 
   const [search, setSearch] = useState("");
-
   const [searchResults, setSearchResults] = useState([]);
   const [playingTrack, setPlayingTrack] = useState();
   const [lyrics, setLyrics] = useState("");
