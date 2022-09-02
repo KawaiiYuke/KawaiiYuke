@@ -6,8 +6,11 @@ import logo from "../images/kawaii_logo.png";
 import explore from "../images/explore.png";
 import signin from "../images/signin.png";
 import search from "../images/search.png";
+import signout from "../images/signout.png";
+import room from "../images/room.png";
 import { useDispatch } from "react-redux";
 import { loggingOut } from "../redux/logIn";
+
 
 import { AUTH_URL } from "./SignIn";
 
@@ -47,7 +50,7 @@ const Navigation = () => {
 
           <li>
             <Link to="/room">
-              {/* <img className="navIcon" src={explore} alt="" /> */}
+              <img className="navIcon" src={room} alt="" />
               Room
             </Link>
           </li>
@@ -61,7 +64,7 @@ const Navigation = () => {
 
           <li onClick={() => dispatch(loggingOut())}>
             <Link to="/signout">
-              {/* <img className="navIcon" src={signout} alt="" /> */}
+              <img className="navIcon" src={signout} alt="" />
               Sign Out
             </Link>
           </li>
