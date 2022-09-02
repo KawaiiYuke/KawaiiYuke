@@ -21,22 +21,34 @@ function SinglePlaylistView() {
 
   return (
     <div>
-      <div className="container">
+      <div className="container" style={{ marginRight: "23em" }}>
         <div className="table" style={{ color: "white" }}>
           <div>
-            <h1> {playlistInfo.playlistName}</h1>
-            <Link
-              to={`/category/${categoryId.categoryId}`}
-              style={{ textDecoration: "none" }}
-            >
-              <button className="button-return-categories">
-                Return to {categoryId.categoryName}
-              </button>
-            </Link>
-            <div>
-              <table style={{ background: "hsla(0, 100%, 90%, 0.3)" }}>
+            <h1 style={{ paddingTop: "1em", textShadow: "2px 4px black" }}>
+              {" "}
+              {playlistInfo.playlistName}
+            </h1>
+            <div className="d-flex justify-content-center">
+              <Link
+                to={`/category/${categoryId.categoryId}`}
+                style={{ textDecoration: "none" }}
+              >
+                <button
+                  className="button-return-categories"
+                  style={{ fontSize: ".9rem" }}
+                >
+                  Return to {categoryId.categoryName}
+                </button>
+              </Link>
+            </div>
+            <div style={{ paddingTop: "1em" }}>
+              <table
+                style={{
+                  background: "hsla(0, 100%, 90%, 0.3)",
+                }}
+              >
                 <thead>
-                  <tr>
+                  <tr style={{ fontSize: "15px" }}>
                     <th>Album Cover</th>
                     <th style={{ textAlign: "start", paddingLeft: "1em" }}>
                       Track
@@ -44,7 +56,7 @@ function SinglePlaylistView() {
                     <th style={{ textAlign: "start", paddingLeft: "1em" }}>
                       Artist
                     </th>
-                    <th style={{ textAlign: "start", paddingLeft: "1em" }}>
+                    <th style={{ textAlign: "start", paddingLeft: "3em" }}>
                       Album
                     </th>
                   </tr>
@@ -74,16 +86,29 @@ function SinglePlaylistView() {
                               textDecoration: "none",
                               padding: "1em",
                               color: "white",
+                              textShadow: "2px 4px black",
                             }}
                           >
                             {track.track.name}
                           </Link>
                         </td>
 
-                        <td style={{ textAlign: "left", padding: "1em" }}>
+                        <td
+                          style={{
+                            textAlign: "left",
+                            padding: "1em",
+                            textShadow: "2px 4px black",
+                          }}
+                        >
                           {track.track.artists[0].name}
                         </td>
-                        <td style={{ textAlign: "left" }}>
+                        <td
+                          style={{
+                            textAlign: "left",
+                            paddingLeft: "3em",
+                            textShadow: "2px 4px black",
+                          }}
+                        >
                           {track.track.album.name}
                         </td>
 

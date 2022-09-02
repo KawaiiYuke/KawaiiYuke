@@ -1,6 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import "./css/SignIn.css";
+import micneon from "../images/micneon.png";
 
 const redirect = window.location.href.split("/");
 
@@ -10,16 +11,22 @@ const SignIn = () => {
   return (
     <div>
       <Container
-        className="d-flex justify-content-center align-items-center"
+        // className="d-flex justify-content-center align-items-center flex-direction-column"
+        className="welcome-page"
         style={{ minHeight: "100vh" }}
       >
-        <div className="mic-image">{/* <img src={hangMic} alt="" /> */}</div>
-        <div className="welcome-box">
-          <h1 className="welcome-sentence">WELCOME TO KAWAIIYUKE</h1>
+        <div className="inner-welcome-page">
+          <div className="mic-image">
+            <img src={micneon} alt="" />{" "}
+          </div>
+
           <button className="spotifyButton">
             <a
               href={AUTH_URL}
-              style={{ textDecoration: "none", color: "white" }}
+              style={{
+                textDecoration: "none",
+                color: "white",
+              }}
             >
               Log in With Spotify
             </a>
