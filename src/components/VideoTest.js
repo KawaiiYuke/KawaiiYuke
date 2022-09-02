@@ -8,6 +8,11 @@ import { v4 as uuid } from "uuid";
 import { setReduxRoomId } from "../redux/roomPlaylist";
 
 import "firebase/compat/firestore";
+import { ReactComponent as HangupIcon } from "../icons/hangup.svg";
+import { ReactComponent as MoreIcon } from "../icons/more-vertical.svg";
+import { ReactComponent as CopyIcon } from "../icons/copy.svg";
+import icon from "../images/icon-no-bg.png";
+import vback from "../images/vback.gif";
 
 const participantId = uuid();
 
@@ -150,36 +155,35 @@ function VideoTest() {
         )}
         <div>
           <button
-              onClick={async () => {
-                try {
-                  await joinRoom();
-                  setJoinedRoom(true);
-                } catch (e) {
-                  console.error(e);
-                  alert(e.message);
-                }
-              }}
+            onClick={async () => {
+              try {
+                await joinRoom();
+                setJoinedRoom(true);
+              } catch (e) {
+                console.error(e);
+                alert(e.message);
+              }
+            }}
           >
             JOIN ROOM
           </button>
           {!roomId && (
-              <>
-                <button
-                    onClick={async () => {
-                      try {
-                        await createRoom();
-                        setJoinedRoom(true);
-                      } catch (e) {
-                        alert("Failed to create room,", e.message);
-                      }
-                    }}
-                >
-                  CREATE ROOM
-                </button>
-              </>
+            <>
+              <button
+                onClick={async () => {
+                  try {
+                    await createRoom();
+                    setJoinedRoom(true);
+                  } catch (e) {
+                    alert("Failed to create room,", e.message);
+                  }
+                }}
+              >
+                CREATE ROOM
+              </button>
+            </>
           )}
         </div>
-
       </div>
       {roomId && (
         <>
