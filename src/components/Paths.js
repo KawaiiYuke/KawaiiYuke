@@ -16,8 +16,6 @@ import { useSelector } from "react-redux";
 
 const Paths = () => {
   const logInState = useSelector((state) => state.logIn);
-  console.log("logInState", logInState);
-  //if (!logInState.loggedIn)
 
   return (
     <Router>
