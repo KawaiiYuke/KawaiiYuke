@@ -21,7 +21,7 @@ function SinglePlaylistView() {
 
   return (
     <div>
-      <div className="container" style={{ marginRight: "23em" }}>
+      <div className="container" style={{ marginLeft: "24em" }}>
         <div className="table" style={{ color: "white" }}>
           <div>
             <h1 style={{ paddingTop: "1em", textShadow: "2px 4px black" }}>
