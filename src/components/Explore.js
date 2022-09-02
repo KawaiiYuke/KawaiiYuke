@@ -17,7 +17,7 @@ const Explore = () => {
   }, []);
 
   return (
-    <div style={{ paddingRight: "17rem" }}>
+    <div style={{ marginLeft: "7em" }}>
       <h1
         style={{
           color: "white",
