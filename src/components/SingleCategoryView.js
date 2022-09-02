@@ -20,7 +20,9 @@ function SingleCategoryView() {
 
   return (
     <div style={{ color: "white", paddingRight: "17rem" }}>
-      <h1>{categoryId.categoryName}</h1>
+      <h1 style={{ paddingTop: "1em", textShadow: "2px 4px black" }}>
+        {categoryId.categoryName}
+      </h1>
       <div className="d-flex justify-content-center">
         <Link
           to="/explore"
@@ -44,6 +46,7 @@ function SingleCategoryView() {
                 onClick={() =>
                   dispatch(setSinglePlaylistInfo(playlist.id, playlist.name))
                 }
+                style={{ padding: "2em" }}
               >
                 <Link
                   to={`/playlists/${playlist.id}`}
@@ -53,9 +56,20 @@ function SingleCategoryView() {
                     src={playlist.images[0].url}
                     alt="cover"
                     className="img-fluid mb-3"
-                    style={{ borderRadius: "4rem" }}
+                    style={{
+                      borderRadius: "4rem",
+                      boxShadow: "25px 24px 30px black",
+                    }}
                   />
-                  <h2 style={{ color: "white" }}>{playlist.name}</h2>
+                  <h2
+                    style={{
+                      color: "white",
+                      textShadow: "2px 4px black",
+                      fontSize: "25px",
+                    }}
+                  >
+                    {playlist.name}
+                  </h2>
                 </Link>
               </div>
             );
