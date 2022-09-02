@@ -26,9 +26,9 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_APP_ID,
 };
 
-firebase.initializeApp(firebaseConfig);
+// firebase.initializeApp(firebaseConfig);
 
-const firestore = firebase.firestore();
+// const firestore = firebase.firestore();
 const db = getFirestore(initializeApp(firebaseConfig));
 
 // Initialize WebRTC
@@ -64,6 +64,27 @@ function VideoTest() {
       setJoinedRoom(false);
     }
   }, [roomId]);
+
+  // async function handleJoin() {
+  //   try {
+  //             await joinRoom();
+  //             setJoinedRoom(true);
+  //           } catch (e) {
+  //             console.error(e);
+  //             alert(e.message);
+  //           }
+  // }
+
+  async function handleCreate() {
+    try {
+      await createRoom();
+      setJoinedRoom(true);
+      db.collection("RoomPlaylist");
+    } catch (e) {
+      console.error(e);
+      alert("Failed to create room,", e.message);
+    }
+  }
 
   return (
     <div className="VideoTest">
