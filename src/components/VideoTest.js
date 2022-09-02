@@ -1,18 +1,13 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./css/VideoTest.css";
 import { useWebRTCFirebase } from "usewebrtc";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
+import { useSelector, useDispatch } from "react-redux";
 import { v4 as uuid } from "uuid";
+import { setReduxRoomId } from "../redux/roomPlaylist";
 
-import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
-
-import { ReactComponent as HangupIcon } from "../icons/hangup.svg";
-import { ReactComponent as MoreIcon } from "../icons/more-vertical.svg";
-import { ReactComponent as CopyIcon } from "../icons/copy.svg";
-import icon from "../images/icon-no-bg.png";
-import vback from "../images/vback.gif";
 
 const participantId = uuid();
 
@@ -29,7 +24,7 @@ const firebaseConfig = {
 // firebase.initializeApp(firebaseConfig);
 
 // const firestore = firebase.firestore();
-const db = getFirestore(initializeApp(firebaseConfig));
+export const db = getFirestore(initializeApp(firebaseConfig));
 
 // Initialize WebRTC
 const servers = {
@@ -45,6 +40,8 @@ const pc = new RTCPeerConnection(servers);
 
 function VideoTest() {
   const [joinedRoom, setJoinedRoom] = useState(false);
+  const reduxRoomId = useSelector((state) => state.room.roomId);
+  const dispatch = useDispatch();
   /* eslint-disable no-unused-vars */
   const {
     localStream,
@@ -63,6 +60,17 @@ function VideoTest() {
     if (!roomId) {
       setJoinedRoom(false);
     }
+    // console.log("roomId: ", roomId);
+    // const playlistRef = await addDoc(collection(db, "RoomPlaylist"), {
+    //   roomId,
+    // });
+    // console.log("playlistRef", playlistRef);
+  }, [roomId]);
+
+  useEffect(() => {
+    if (roomId) {
+      dispatch(setReduxRoomId(roomId));
+    }
   }, [roomId]);
 
   // async function handleJoin() {
@@ -75,11 +83,18 @@ function VideoTest() {
   //           }
   // }
 
-  async function handleCreate() {
+  async function checkPlaylist(roomId) {
     try {
-      await createRoom();
-      setJoinedRoom(true);
-      db.collection("RoomPlaylist");
+      //db.collection("RoomPlaylist")
+
+      console.log("roomId: ", roomId);
+
+      // if (roomId) {
+      //   const playlistRef = await addDoc(collection(db, "RoomPlaylist"), {
+      //     roomId,
+      //   });
+      //   console.log("roomId: ", roomId);
+      // }
     } catch (e) {
       console.error(e);
       alert("Failed to create room,", e.message);
