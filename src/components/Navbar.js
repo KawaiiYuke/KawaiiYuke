@@ -41,6 +41,12 @@ const Navigation = () => {
         </Link>
         <ul>
           <li>
+            <Link to="/aboutus">
+              <img className="navIcon" src={room} alt="" />
+              About Us
+            </Link>
+          </li>
+          <li>
             <Link to="/explore">
               <img className="navIcon" src={explore} alt="" />
               Explore

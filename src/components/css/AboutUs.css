@@ -1,0 +1,21 @@
+
+.about-us {
+    display: flex;
+    justify-content: center;
+    height:100vh;
+    text-shadow:2px 2px black ;
+}
+.about-us .row {
+    width: 50vw;
+    
+}
+.about-us .each-dev {
+    background: hsla(0, 100%, 100%, 0.3);
+
+}
+
+.about-us .about-section{
+    margin-top: 2.5em;
+    margin-bottom: 1.5em;
+}
+

@@ -87,49 +87,51 @@ const Home = () => {
   }, [search, accessToken]);
 
   return (
-    <Container
-      className="d-flex flex-column py-2"
-      style={{ height: "90vh", width: "40rem", paddingLeft: "0" }}
-      //style={{ height: '80vh', width: '30rem' }}
-    >
-      <Form.Control
-        type="search"
-        placeholder="Search Songs/Artists"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+    <div style={{ height: "100vh" }}>
+      <Container
+        className="d-flex flex-column py-2"
+        style={{ height: "90vh", width: "40rem", marginTop: "2.5em" }}
+        //style={{ height: '80vh', width: '30rem' }}
+      >
+        <Form.Control
+          type="search"
+          placeholder="Search Songs/Artists"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
 
-      <div className="flex-grow-1 my-2" style={{ overflowY: "auto" }}>
-        {searchResults.map((track, index) => (
-          <div key={index}>
-            <TrackSearchResult
-              track={track}
-              key={track.uri}
-              chooseTrack={chooseTrack}
-            />
-          </div>
-        ))}
+        <div className="flex-grow-1 my-2" style={{ overflowY: "auto" }}>
+          {searchResults.map((track, index) => (
+            <div key={index}>
+              <TrackSearchResult
+                track={track}
+                key={track.uri}
+                chooseTrack={chooseTrack}
+              />
+            </div>
+          ))}
 
-        {searchResults.length === 0 && (
-          <div
-            className="text-center d-flex"
-            style={{
-              whiteSpace: "pre",
-              fontWeight: "bold",
-              color: "#ffffff",
-              backgroundColor: "hsla(0, 100%, 90%, 0.3)",
-              fontFamily: "Monaco",
-            }}
-          >
-            {lyrics}
-          </div>
-        )}
-      </div>
+          {searchResults.length === 0 && (
+            <div
+              className="text-center d-flex"
+              style={{
+                whiteSpace: "pre",
+                fontWeight: "bold",
+                color: "#ffffff",
+                backgroundColor: "hsla(0, 100%, 90%, 0.3)",
+                fontFamily: "Monaco",
+              }}
+            >
+              {lyrics}
+            </div>
+          )}
+        </div>
 
-      <div>
-        <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
-      </div>
-    </Container>
+        <div>
+          <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
+        </div>
+      </Container>
+    </div>
   );
 };
 
