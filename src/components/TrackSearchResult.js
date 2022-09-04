@@ -9,7 +9,6 @@ import {
   setDoc,
   updateDoc,
   arrayUnion,
-  getFirestore,
 } from "firebase/firestore";
 
 export default function TrackSearchResult({ track, chooseTrack }) {

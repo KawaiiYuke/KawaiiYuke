@@ -7,7 +7,8 @@ import "swiper/css/effect-fade";
 import "./css/Carousel.scss";
 import Home from "./Home";
 import { Form } from "react-bootstrap";
-import SignIn from "./SignIn";
+import RoomPlaylist from "./RoomPlaylist";
+import Explore from "./Explore";
 
 const Carousel = () => {
   return (
@@ -22,10 +23,15 @@ const Carousel = () => {
       >
         <SwiperSlide className="swiperslide">
           {/* <img src="https://i.imgur.com/DtTzXpu.jpg" alt="" /> */}
+          <Explore />
+        </SwiperSlide>
+        <SwiperSlide className="swiperslide">
+          {/* <img src="https://i.imgur.com/DtTzXpu.jpg" alt="" /> */}
           <Home />
         </SwiperSlide>
         <SwiperSlide className="swiperslide">
-          <img src="https://i.imgur.com/N0kXRqz.jpg" alt="" />
+          {/* <img src="https://i.imgur.com/N0kXRqz.jpg" alt="" /> */}
+          <RoomPlaylist />
         </SwiperSlide>
         <SwiperSlide className="swiperslide">
           <img src="https://i.imgur.com/eqxiyho.jpg" alt="" />

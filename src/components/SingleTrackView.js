@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { setLyrics } from "../redux/browse";
-import { loggingIn } from "../redux/logIn";
 
 function SingleTrackView() {
   const logInState = useSelector((state) => state.logIn);

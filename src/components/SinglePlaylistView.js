@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./css/SinglePlaylistView.css";
 import { useSelector, useDispatch } from "react-redux";
 import { setSinglePlaylist, setTrack } from "../redux/browse";
-import { loggingIn } from "../redux/logIn";
 
 import app, { db } from "./VideoTest";
 import {

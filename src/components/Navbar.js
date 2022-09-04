@@ -11,7 +11,6 @@ import room from "../images/room.png";
 import { useDispatch } from "react-redux";
 import { loggingOut } from "../redux/logIn";
 
-
 import { AUTH_URL } from "./SignIn";
 
 const Navigation = () => {
@@ -56,10 +55,10 @@ const Navigation = () => {
           </li>
 
           <li>
-            <a href={AUTH_URL}>
+            <Link to="/search">
               <img className="navIcon" src={search} alt="" />
               Search
-            </a>
+            </Link>
           </li>
 
           <li onClick={() => dispatch(loggingOut())}>
