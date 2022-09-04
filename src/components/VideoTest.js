@@ -127,7 +127,7 @@ function VideoTest() {
           {participants.map(({ id, stream }) => {
             return (
               <div key={id}>
-                <h1>{id}:</h1>
+                <p className="idTitle">{id}:</p>
                 <video
                   ref={(element) => {
                     if (element) {
@@ -187,7 +187,10 @@ function VideoTest() {
       </div>
       {roomId && (
         <>
-          <div>
+          <div className="buttomBtn">
+          <p className="room_id">
+              Room: {roomId} <br /> Participant ID: {participantId}
+            </p>
             <button
               onClick={() => {
                 navigator.clipboard.writeText(roomId);
@@ -195,9 +198,7 @@ function VideoTest() {
             >
               Copy joining code
             </button>
-            <p>
-              Room: {roomId} <br /> Participant ID: {participantId}
-            </p>
+            
             <button
               onClick={async () => {
                 // shareScreen({ options: { suppressVideo: true } });
