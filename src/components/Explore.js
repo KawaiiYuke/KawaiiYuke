@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Container, Form } from "react-bootstrap";
-
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setCategoryList } from "../redux/browse";
@@ -9,21 +8,23 @@ import { loggingIn } from "../redux/logIn";
 import { useSearchParams } from "react-router-dom";
 
 const Explore = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const code = searchParams.get("code");
+
   const logInState = useSelector((state) => state.logIn);
   const categoryState = useSelector((state) => state.browse.categoryList);
   const dispatch = useDispatch();
   let accessToken = logInState?.accessToken;
-  const [searchParams, setSearchParams] = useSearchParams();
-  const code = searchParams.get("code");
 
-  useEffect(() => {
-    dispatch(setCategoryList(accessToken));
-  }, []);
   useEffect(() => {
     if (!logInState.loggedIn) {
       dispatch(loggingIn(code));
     }
   }, [code]);
+
+  useEffect(() => {
+    dispatch(setCategoryList(accessToken));
+  }, [accessToken]);
 
   return (
     <div style={{ marginLeft: "7em" }}>
