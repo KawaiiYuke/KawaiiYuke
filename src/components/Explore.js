@@ -23,8 +23,8 @@ const Explore = () => {
   }, [code]);
 
   useEffect(() => {
-    dispatch(setCategoryList(accessToken));
-  }, [accessToken]);
+    if (logInState.loggedin) dispatch(setCategoryList(accessToken));
+  }, [logInState]);
 
   return (
     <div style={{ marginLeft: "7em" }}>

@@ -14,29 +14,32 @@ function SingleCategoryView() {
   );
   console.log(singleCategoryState);
   useEffect(() => {
-    dispatch(setSingleCategoryList(accessToken, categoryId.categoryId));
-  }, []);
+    if (accessToken) {
+      dispatch(setSingleCategoryList(accessToken, categoryId.categoryId));
+    }
+  }, [accessToken]);
 
-  if (singleCategoryState[0].id) {
-    return (
-      <div style={{ paddingLeft: "9em" }}>
-        <div style={{ color: "white" }}>
-          <h1 style={{ paddingTop: "1em", textShadow: "2px 4px black" }}>
-            {categoryId.categoryName}
-          </h1>
-          <div className="d-flex justify-content-center">
-            <Link
-              to="/explore"
-              style={{ textDecoration: "none", paddingBottom: ".7rem" }}
+  return (
+    <div style={{ paddingLeft: "9em" }}>
+      <div style={{ color: "white" }}>
+        <h1 style={{ paddingTop: "1em", textShadow: "2px 4px black" }}>
+          {categoryId.categoryName}
+        </h1>
+        <div className="d-flex justify-content-center">
+          <Link
+            to="/explore"
+            style={{ textDecoration: "none", paddingBottom: ".7rem" }}
+          >
+            <button
+              className="button-return-categories"
+              style={{ fontSize: ".9rem" }}
             >
-              <button
-                className="button-return-categories"
-                style={{ fontSize: ".9rem" }}
-              >
-                Return to All Categories
-              </button>
-            </Link>
-          </div>
+              Return to All Categories
+            </button>
+          </Link>
+        </div>
+        {/* {singleCategoryState[0].id ? <h1>worked</h1> : <h1>not worked</h1>} */}
+        {singleCategoryState[0].id ? (
           <div className="container">
             <div className="row align-items-center">
               {singleCategoryState.map((playlist) => {
@@ -79,10 +82,12 @@ function SingleCategoryView() {
               })}
             </div>
           </div>
-        </div>
+        ) : (
+          <h1>sorry, this category does not have any album yet. </h1>
+        )}
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default SingleCategoryView;
