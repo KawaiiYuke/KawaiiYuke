@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react";
 import "./css/VideoTest.css";
 import { useWebRTCFirebase } from "usewebrtc";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  doc,
+  data,
+  setDoc,
+} from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { useSelector, useDispatch } from "react-redux";
 import { v4 as uuid } from "uuid";
-import { setReduxRoomId } from "../redux/roomPlaylist";
+import { setReduxRoomId, clearReduxRoomId } from "../redux/roomPlaylist";
 
 import "firebase/compat/firestore";
 import { ReactComponent as HangupIcon } from "../icons/hangup.svg";
@@ -29,7 +36,19 @@ const firebaseConfig = {
 // firebase.initializeApp(firebaseConfig);
 
 // const firestore = firebase.firestore();
-export const db = getFirestore(initializeApp(firebaseConfig));
+export const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
+// export const db = getFirestore(
+//   initializeApp({
+//     apiKey: process.env.REACT_APP_APIKEY,
+//     authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+//     databaseURL: process.env.REACT_APP_DATABASE_URL,
+//     projectId: process.env.REACT_APP_PROJECT_ID,
+//     storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+//     messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+//     appId: process.env.REACT_APP_APP_ID,
+//   })
+// );
 
 // Initialize WebRTC
 const servers = {
@@ -65,46 +84,16 @@ function VideoTest() {
     if (!roomId) {
       setJoinedRoom(false);
     }
-    // console.log("roomId: ", roomId);
-    // const playlistRef = await addDoc(collection(db, "RoomPlaylist"), {
-    //   roomId,
-    // });
-    // console.log("playlistRef", playlistRef);
   }, [roomId]);
 
   useEffect(() => {
     if (roomId) {
       dispatch(setReduxRoomId(roomId));
+      const roomPlaylistRef = setDoc(doc(db, "RoomPlaylist", roomId), {
+        playlist: [],
+      });
     }
   }, [roomId]);
-
-  // async function handleJoin() {
-  //   try {
-  //             await joinRoom();
-  //             setJoinedRoom(true);
-  //           } catch (e) {
-  //             console.error(e);
-  //             alert(e.message);
-  //           }
-  // }
-
-  async function checkPlaylist(roomId) {
-    try {
-      //db.collection("RoomPlaylist")
-
-      console.log("roomId: ", roomId);
-
-      // if (roomId) {
-      //   const playlistRef = await addDoc(collection(db, "RoomPlaylist"), {
-      //     roomId,
-      //   });
-      //   console.log("roomId: ", roomId);
-      // }
-    } catch (e) {
-      console.error(e);
-      alert("Failed to create room,", e.message);
-    }
-  }
 
   return (
     <div className="VideoTest">
@@ -207,6 +196,16 @@ function VideoTest() {
             >
               SHARE SCREEN
             </button>
+            <div>
+              <button
+                onClick={() => {
+                  leaveRoom();
+                  dispatch(clearReduxRoomId(roomId));
+                }}
+              >
+                Leave Room{" "}
+              </button>
+            </div>
           </div>
         </>
       )}

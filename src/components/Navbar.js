@@ -70,10 +70,10 @@ const Navigation = () => {
           </li>
 
           <li>
-            <a href={AUTH_URL}>
+            <Link to="/search">
               <img className="navIcon" src={search} alt="" />
               Search
-            </a>
+            </Link>
           </li>
 
           <li onClick={() => dispatch(loggingOut())}>

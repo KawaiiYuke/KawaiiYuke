@@ -32,6 +32,7 @@ const Paths = () => {
             <Route path="/explore" element={<Explore />} />
             <Route path="/signout" element={<SignOut />} />
             <Route path="/room" element={<Room />} />
+            <Route path="/search" element={<Home />} />
             <Route
               path="/category/:categoryId"
               element={<SingleCategoryView />}

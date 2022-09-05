@@ -47,7 +47,6 @@ export const loggingOut = () => {
 const logInReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGGING_IN:
-      window.localStorage.setItem("AccessToken", action.data.accessToken);
       return {
         ...state,
         accessToken: action.data.accessToken,

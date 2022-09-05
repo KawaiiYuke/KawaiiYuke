@@ -1,20 +1,30 @@
 import React, { useEffect } from "react";
 import { Container, Form } from "react-bootstrap";
-
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setCategoryList } from "../redux/browse";
 import { setSingleCategory } from "../redux/browse";
+import { loggingIn } from "../redux/logIn";
+import { useSearchParams } from "react-router-dom";
 
 const Explore = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const code = searchParams.get("code");
+
   const logInState = useSelector((state) => state.logIn);
   const categoryState = useSelector((state) => state.browse.categoryList);
   const dispatch = useDispatch();
   let accessToken = logInState?.accessToken;
 
   useEffect(() => {
-    dispatch(setCategoryList(accessToken));
-  }, []);
+    if (!logInState.loggedIn) {
+      dispatch(loggingIn(code));
+    }
+  }, [code]);
+
+  useEffect(() => {
+    if (logInState.loggedin) dispatch(setCategoryList(accessToken));
+  }, [logInState]);
 
   return (
     <div style={{ marginLeft: "7em" }}>

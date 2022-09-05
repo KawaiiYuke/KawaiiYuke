@@ -4,8 +4,6 @@ import SpotifyWebApi from "spotify-web-api-node";
 import TrackSearchResult from "./TrackSearchResult";
 import Player from "./Player";
 import axios from "axios";
-import { useSearchParams } from "react-router-dom";
-import { loggingIn } from "../redux/logIn";
 import { useSelector, useDispatch } from "react-redux";
 
 const spotifyApi = new SpotifyWebApi({
@@ -14,22 +12,13 @@ const spotifyApi = new SpotifyWebApi({
 
 const Home = () => {
   const logInState = useSelector((state) => state.logIn);
-  const dispatch = useDispatch();
 
-  const [searchParams, setSearchParams] = useSearchParams();
-  const code = searchParams.get("code");
   const accessToken = logInState?.accessToken;
 
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [playingTrack, setPlayingTrack] = useState();
   const [lyrics, setLyrics] = useState("");
-
-  useEffect(() => {
-    if (!logInState.loggedIn) {
-      dispatch(loggingIn(code));
-    }
-  }, [code]);
 
   function chooseTrack(track) {
     setPlayingTrack(track);
