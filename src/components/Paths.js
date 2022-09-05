@@ -2,6 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Explore from "./Explore";
+import AboutUs from "./AboutUs";
 import SignIn from "./SignIn";
 import SignOut from "./SignOut";
 import Home from "./Home";
@@ -26,6 +27,7 @@ const Paths = () => {
         <div className="main_content">
           <Routes>
             <Route path="/" element={<Explore />} />
+            <Route path="/aboutus" element={<AboutUs />} />c
             <Route path="/signin" element={<SignIn />} />
             <Route path="/explore" element={<Explore />} />
             <Route path="/signout" element={<SignOut />} />

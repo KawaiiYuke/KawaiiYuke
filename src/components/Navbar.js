@@ -8,13 +8,16 @@ import signin from "../images/signin.png";
 import search from "../images/search.png";
 import signout from "../images/signout.png";
 import room from "../images/room.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loggingOut } from "../redux/logIn";
 
 import { AUTH_URL } from "./SignIn";
 
 const Navigation = () => {
   const dispatch = useDispatch();
+  const logInState = useSelector((state) => state.logIn);
+
+  const [signIn, setSignIn] = useState(false);
   const [navBar, setBar] = useState(false);
   useEffect(() => {
     window.onresize = function () {
@@ -26,6 +29,10 @@ const Navigation = () => {
     };
   });
 
+  useEffect(() => {
+    setSignIn(logInState.loggedIn);
+  }, [logInState.loggedIn]);
+
   return (
     <div className="wrapper">
       <div className="sidebar" style={{ width: navBar ? "50px" : "225px" }}>
@@ -34,18 +41,26 @@ const Navigation = () => {
         </Link>
         <ul>
           <li>
+            <Link to="/aboutus">
+              <img className="navIcon" src={room} alt="" />
+              About Us
+            </Link>
+          </li>
+          <li>
             <Link to="/explore">
               <img className="navIcon" src={explore} alt="" />
               Explore
             </Link>
           </li>
 
-          <li>
-            <Link to="/signin">
-              <img className="navIcon" src={signin} alt="" />
-              Sign In
-            </Link>
-          </li>
+          {!signIn && (
+            <li>
+              <Link to="/signin">
+                <img className="navIcon" src={signin} alt="" />
+                Sign In
+              </Link>
+            </li>
+          )}
 
           <li>
             <Link to="/room">

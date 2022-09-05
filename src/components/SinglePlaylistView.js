@@ -41,6 +41,7 @@ function SinglePlaylistView() {
       );
     }
   }
+  console.log("single playlist", singlePlaylist);
   return (
     <div>
       <div className="container" style={{ marginLeft: "24em" }}>
@@ -63,98 +64,102 @@ function SinglePlaylistView() {
                 </button>
               </Link>
             </div>
-            <div style={{ paddingTop: "1em" }}>
-              <table
-                style={{
-                  background: "hsla(0, 100%, 90%, 0.3)",
-                }}
-              >
-                <thead>
-                  <tr style={{ fontSize: "15px" }}>
-                    <th>Album Cover</th>
-                    <th style={{ textAlign: "start", paddingLeft: "1em" }}>
-                      Track
-                    </th>
-                    <th style={{ textAlign: "start", paddingLeft: "1em" }}>
-                      Artist
-                    </th>
-                    <th style={{ textAlign: "start", paddingLeft: "3em" }}>
-                      Album
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {singlePlaylist.map((track, index) => {
-                    return (
-                      <tr
-                        key={index}
-                        onClick={() =>
-                          dispatch(setTrack(accessToken, track.track.id))
-                        }
-                      >
-                        <td className="album-cover">
-                          <Link to={`/track/${track.track.id}`}>
-                            <img
-                              src={track.track.album.images[2].url}
-                              alt="album"
-                            />
-                          </Link>
-                        </td>
+            {singlePlaylist[0].track.id ? (
+              <div style={{ paddingTop: "1em" }}>
+                <table
+                  style={{
+                    background: "hsla(0, 100%, 90%, 0.3)",
+                  }}
+                >
+                  <thead>
+                    <tr style={{ fontSize: "15px" }}>
+                      <th>Album Cover</th>
+                      <th style={{ textAlign: "start", paddingLeft: "1em" }}>
+                        Track
+                      </th>
+                      <th style={{ textAlign: "start", paddingLeft: "1em" }}>
+                        Artist
+                      </th>
+                      <th style={{ textAlign: "start", paddingLeft: "3em" }}>
+                        Album
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {singlePlaylist.map((track, index) => {
+                      return (
+                        <tr
+                          key={index}
+                          onClick={() =>
+                            dispatch(setTrack(accessToken, track.track.id))
+                          }
+                        >
+                          <td className="album-cover">
+                            <Link to={`/track/${track.track.id}`}>
+                              <img
+                                src={track.track.album.images[2].url}
+                                alt="album"
+                              />
+                            </Link>
+                          </td>
 
-                        <td style={{ textAlign: "left" }}>
-                          <Link
-                            to={`/track/${track.track.id}`}
+                          <td style={{ textAlign: "left" }}>
+                            <Link
+                              to={`/track/${track.track.id}`}
+                              style={{
+                                textDecoration: "none",
+                                padding: "1em",
+                                color: "white",
+                                textShadow: "2px 4px black",
+                              }}
+                            >
+                              {track.track.name}
+                            </Link>
+                          </td>
+
+                          <td
                             style={{
-                              textDecoration: "none",
+                              textAlign: "left",
                               padding: "1em",
-                              color: "white",
                               textShadow: "2px 4px black",
                             }}
                           >
-                            {track.track.name}
-                          </Link>
-                        </td>
+                            {track.track.artists[0].name}
+                          </td>
+                          <td
+                            style={{
+                              textAlign: "left",
+                              paddingLeft: "3em",
+                              textShadow: "2px 4px black",
+                            }}
+                          >
+                            {track.track.album.name}
+                          </td>
 
-                        <td
-                          style={{
-                            textAlign: "left",
-                            padding: "1em",
-                            textShadow: "2px 4px black",
-                          }}
-                        >
-                          {track.track.artists[0].name}
-                        </td>
-                        <td
-                          style={{
-                            textAlign: "left",
-                            paddingLeft: "3em",
-                            textShadow: "2px 4px black",
-                          }}
-                        >
-                          {track.track.album.name}
-                        </td>
-
-                        {/* <td>
+                          {/* <td>
                           <button className="playButton">
                             Add to playlist
                           </button> */}
-                        {reduxRoomId ? (
-                          <td>
-                            <button
-                              className="playButton"
-                              onClick={() => handlePlaylist(track.track.id)}
-                            >
-                              Add to Playlist
-                            </button>
-                          </td>
-                        ) : null}
-                        {/* </td> */}
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
+                          {reduxRoomId ? (
+                            <td>
+                              <button
+                                className="playButton"
+                                onClick={() => handlePlaylist(track.track.id)}
+                              >
+                                Add to Playlist
+                              </button>
+                            </td>
+                          ) : null}
+                          {/* </td> */}
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <div>Sorry, there is no song in this album.</div>
+            )}
           </div>
         </div>
       </div>
