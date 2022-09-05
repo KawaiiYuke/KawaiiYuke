@@ -5,11 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url("../public/background.png") no-repeat fixed ;
-  background-position: center; 
- 
-  
-
+  background: url("../public/background.png") no-repeat fixed;
+  background-size: fill;
 }
 
 code {
