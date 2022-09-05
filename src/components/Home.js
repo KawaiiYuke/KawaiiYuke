@@ -12,7 +12,7 @@ const spotifyApi = new SpotifyWebApi({
 
 const Home = () => {
   const logInState = useSelector((state) => state.logIn);
-
+  const reduxRoomId = useSelector((state) => state.room.roomId);
   const accessToken = logInState?.accessToken;
 
   const [search, setSearch] = useState("");
@@ -116,9 +116,13 @@ const Home = () => {
           )}
         </div>
 
-        <div>
-          <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
-        </div>
+        {reduxRoomId ? (
+          ""
+        ) : (
+          <div>
+            <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
+          </div>
+        )}
       </Container>
     </div>
   );

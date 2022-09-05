@@ -92,6 +92,7 @@ function VideoTest() {
 
       const roomPlaylistRef = setDoc(doc(db, "RoomPlaylist", roomId), {
         playlist: [],
+        currentPlaying: {},
       });
 
       // const roomPlaylistRef = setDoc(

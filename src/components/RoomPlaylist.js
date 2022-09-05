@@ -13,6 +13,7 @@ import {
   query,
   getDocs,
   where,
+  deleteField,
 } from "firebase/firestore";
 
 export default function RoomPlaylist() {
@@ -40,15 +41,65 @@ export default function RoomPlaylist() {
     callPlaylist(reduxRoomId);
   }, []);
 
+  // async function handleDelete(index, trackId) {
+  //   const playlistRef = doc(db, "RoomPlaylist", reduxRoomId);
+
+  //   // Remove the 'capital' field from the document
+  //   await updateDoc(playlistRef, { ...playlistRef, index: deleteField() });
+  // }
+
   return (
     <div>
-      <h1>This is Playlist for room: {reduxRoomId}</h1>
-      <ol>
-        {playlist.map((track, index) => {
-          return <li key={index}>{track.title}</li>;
-        })}
-      </ol>
+      <div>
+        {reduxRoomId ? (
+          <div>
+            <h1>This is Playlist for room: {reduxRoomId}</h1>
+            <div style={{ paddingTop: "1em" }}>
+              <table
+                style={{
+                  background: "hsla(0, 100%, 90%, 0.3)",
+                }}
+              >
+                <thead>
+                  <tr style={{ fontSize: "15px" }}>
+                    <th>#</th>
+                    <th style={{ textAlign: "start", paddingLeft: "1em" }}>
+                      Track
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {playlist.map((track, index) => {
+                    return (
+                      <tr
+                        key={index}
+                        // onClick={() =>
+                        //   dispatch(setTrack(accessToken, track.track.id))
+                        // }
+                      >
+                        <td>{index + 1}</td>
+
+                        <td style={{ textAlign: "left" }}>{track.title}</td>
+
+                        <td>
+                          <button
+                            className="playButton"
+                            // onClick={() => handleDelete(index, track.id)}
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ) : (
+          <h1>Please join a room.</h1>
+        )}
+      </div>
     </div>
   );
-  //<div>this is Playlist for room: {reduxRoomId ? reduxRoomId : 0}</div>;
 }
