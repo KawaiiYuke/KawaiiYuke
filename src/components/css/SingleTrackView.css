@@ -1,0 +1,36 @@
+.single-track-view{
+    height: 100%;
+ }
+ .single-track-view .track-view {
+     display:flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+ }
+ 
+ .single-track-view .track-info{
+     padding-top: 1em;
+   
+ }
+ 
+ .single-track-view .button-return-categories{
+font-size: small;
+ }
+ .single-track-view .return-to-button{
+    
+    display:flex;
+
+   justify-content: center;
+   align-items: center;
+   margin: 1em
+ }
+ .single-track-view .text-center{
+    padding-top: 1em;
+     height: 50em;
+     overflow: scroll;
+     background: hsla(0, 100%, 100%, 0.3);
+     width: 47em;
+ }
+ .single-track-view .player{
+    padding-bottom: 2em;
+ }

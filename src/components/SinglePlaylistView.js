@@ -41,7 +41,7 @@ function SinglePlaylistView() {
       );
     }
   }
-  console.log("single playlist", singlePlaylist);
+
   return (
     <div>
       <div className="container" style={{ marginLeft: "24em" }}>
