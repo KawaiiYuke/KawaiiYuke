@@ -5,11 +5,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url("../public/background.png") no-repeat fixed;
-  background-size: fill;
+  background: url("../public/background.png") repeat fixed;
+  background-size: 100vw 100vh;
+  
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+    
 }
