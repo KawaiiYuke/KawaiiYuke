@@ -17,11 +17,9 @@ import {
 
 export default function RoomPlaylist() {
   //const reduxRoomId = useSelector((state) => state.room.roomId);
-  const reduxRoomId = "nUKL4DB1CTaewbPlA6cB";
-  console.log("reduxRoomId", reduxRoomId);
+  const reduxRoomId = "hBRl5buieKyMZ9U9Ur3m";
 
   const [playlist, setPlaylist] = useState([]);
-  console.log("playlist", playlist);
   useEffect(() => {
     async function callPlaylist(reduxRoomId) {
       const docRef = doc(db, "RoomPlaylist", reduxRoomId);
@@ -44,10 +42,10 @@ export default function RoomPlaylist() {
 
   return (
     <div>
-      <h1>this is Playlist for room: nUKL4DB1CTaewbPlA6cB</h1>
+      <h1>This is Playlist for room: {reduxRoomId}</h1>
       <ol>
         {playlist.map((track, index) => {
-          return <li key={index}>{track}</li>;
+          return <li key={index}>{track.title}</li>;
         })}
       </ol>
     </div>

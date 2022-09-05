@@ -18,12 +18,12 @@ export default function TrackSearchResult({ track, chooseTrack }) {
 
   const reduxRoomId = useSelector((state) => state.room.roomId);
 
-  async function handlePlaylist(trackId) {
+  async function handlePlaylist(track) {
     if (reduxRoomId) {
       const playlistRef = await updateDoc(
         doc(db, "RoomPlaylist", reduxRoomId),
         {
-          playlist: arrayUnion(trackId),
+          playlist: arrayUnion({ title: track.title, id: track.id }),
         }
       );
     }
@@ -51,7 +51,7 @@ export default function TrackSearchResult({ track, chooseTrack }) {
         {reduxRoomId ? (
           <button
             className="AddToPlaylist"
-            onClick={() => handlePlaylist(track.id)}
+            onClick={() => handlePlaylist(track)}
           >
             Add to Playlist
           </button>
