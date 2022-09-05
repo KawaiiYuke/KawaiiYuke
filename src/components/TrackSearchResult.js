@@ -34,28 +34,44 @@ export default function TrackSearchResult({ track, chooseTrack }) {
       style={{
         cursor: "pointer",
         display: "flex",
-        justifyContent: "center",
-        flexDirection: "column",
+        justifyContent: "flex-end",
+        backgroundColor: "hsla(0, 100%, 100%, 0.3)",
         border: "solid",
         borderColor: "rgb(255, 255, 255, 0.5)",
       }}
       onClick={handlePlay}
     >
-      <div style={{ fontWeight: "bold", color: "rgb(255, 255, 255, 0.8)" }}>
-        {track.title} By {track.artist}
+      <div>
         <img
           src={track.albumUrl}
-          style={{ height: "64px", width: "64px", marginTop: ".7em" }}
+          style={{
+            height: "64px",
+            width: "64px",
+            marginTop: ".7em",
+          }}
           alt="album"
         />
-        {reduxRoomId ? (
-          <button
-            className="AddToPlaylist"
-            onClick={() => handlePlaylist(track.id)}
-          >
-            Add to Playlist
-          </button>
-        ) : null}
+        <div
+          style={{
+            fontWeight: "bold",
+            color: "rgb(255, 255, 255, 0.8)",
+            display: "flex",
+
+            alignItems: "center",
+            flexDirection: "column",
+            marginBottom: "0.5em",
+          }}
+        >
+          {track.title} By {track.artist}
+          {reduxRoomId ? (
+            <button
+              className="AddToPlaylist"
+              onClick={() => handlePlaylist(track.id)}
+            >
+              Add to Playlist
+            </button>
+          ) : null}
+        </div>
       </div>
     </div>
   );
