@@ -89,9 +89,15 @@ function VideoTest() {
   useEffect(() => {
     if (roomId) {
       dispatch(setReduxRoomId(roomId));
+
       const roomPlaylistRef = setDoc(doc(db, "RoomPlaylist", roomId), {
         playlist: [],
       });
+
+      // const roomPlaylistRef = setDoc(
+      //   doc(db, "RoomPlaylist", roomId, "playlist"),
+      //   []
+      // );
     }
   }, [roomId]);
 
@@ -116,7 +122,7 @@ function VideoTest() {
           {participants.map(({ id, stream }) => {
             return (
               <div key={id}>
-                <p className="idTitle">{id}:</p>
+                <h1>{id}:</h1>
                 <video
                   ref={(element) => {
                     if (element) {
@@ -176,10 +182,7 @@ function VideoTest() {
       </div>
       {roomId && (
         <>
-          <div className="buttomBtn">
-          <p className="room_id">
-              Room: {roomId} <br /> Participant ID: {participantId}
-            </p>
+          <div>
             <button
               onClick={() => {
                 navigator.clipboard.writeText(roomId);
@@ -187,7 +190,9 @@ function VideoTest() {
             >
               Copy joining code
             </button>
-            
+            <p>
+              Room: {roomId} <br /> Participant ID: {participantId}
+            </p>
             <button
               onClick={async () => {
                 // shareScreen({ options: { suppressVideo: true } });

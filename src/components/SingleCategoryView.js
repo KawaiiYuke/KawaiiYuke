@@ -12,7 +12,6 @@ function SingleCategoryView() {
   const singleCategoryState = useSelector(
     (state) => state.browse.singleCategoryLists
   );
-  console.log(singleCategoryState);
   useEffect(() => {
     if (accessToken) {
       dispatch(setSingleCategoryList(accessToken, categoryId.categoryId));

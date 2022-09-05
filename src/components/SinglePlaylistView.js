@@ -26,7 +26,6 @@ function SinglePlaylistView() {
   );
   const reduxRoomId = useSelector((state) => state.room.roomId);
 
-  console.log("reduxRoomId", reduxRoomId);
   useEffect(() => {
     dispatch(setSinglePlaylist(accessToken, playlistInfo.playlistId));
   }, []);
@@ -41,7 +40,6 @@ function SinglePlaylistView() {
       );
     }
   }
-  console.log("single playlist", singlePlaylist);
   return (
     <div>
       <div className="container" style={{ marginLeft: "24em" }}>
