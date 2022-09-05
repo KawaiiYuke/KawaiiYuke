@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+<p align="center"> <img src="https://i.imgur.com/yzuvWno.png" /> </p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About 🎤🎶
+KawaiiYuke is an entertaining web application designed to allow friends to come together to sing their hearts out. The web application connects to your Spotify Premium account to provide a variety of songs and lyrics to sing along to. With WebRTC, you're able to view your friends singing along with you through video chat for an optimal virtual karaoke experience! We understand how difficult it is nowadays to plan and coordinate in-person hang outs with friends so with this application, we aim to ease the process virtually!  
 
-## Available Scripts
+_What does "KawaiiYuke" mean anyways?_
+We wanted to use the common parts of all our team members names along with the word 'Karaoke' and merge it together. We used the 'yu' in some of our names for 'yuke' and used the japanese word for 'cute', Kawaii, to use the 'w' and 'i' in our other team members name. Together, we came up with KawaiiYuke! 
 
-In the project directory, you can run:
+## Our Team
+![Hang(1)](https://complianz.io/wp-content/uploads/2019/03/placeholder-300x202.jpg) Hang Yu | ![Wei(1)](https://complianz.io/wp-content/uploads/2019/03/placeholder-300x202.jpg) Wei Liu | ![Yuki(1)](https://complianz.io/wp-content/uploads/2019/03/placeholder-300x202.jpg) Yuki Mei | ![Yuri(1)](https://complianz.io/wp-content/uploads/2019/03/placeholder-300x202.jpg) Yuri Yoo |
+|     :---:     |     :---:     |     :---:     |     :---:     |
+| [![](https://i.imgur.com/uZVu7Et.png)][1]  | [![](https://i.imgur.com/uZVu7Et.png)][2]  | [![](https://i.imgur.com/uZVu7Et.png)][3]  | [![](https://i.imgur.com/uZVu7Et.png)][4] |
 
-### `npm start`
+## Preview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Sign in with Spotify to search and preview songs
+---
+ <img src="https://media.giphy.com/media/IG48UqSiDwL0uZcC6T/giphy.gif"/>&nbsp;&nbsp;&nbsp;
+### Explore and browse through playlists and tracks
+---
+### Create a room
+---
+### Or join a room
+---
+### Meet with friends and sing your heart out
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[1]:https://github.com/hyu25
+[2]:https://github.com/weiliu1228sh
+[3]:https://github.com/ymei0072
+[4]:https://github.com/yuriyoo17
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
