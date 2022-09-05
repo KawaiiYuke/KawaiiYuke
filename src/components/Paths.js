@@ -25,11 +25,12 @@ const Paths = () => {
         </div>
         <div className="main_content">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Explore />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/explore" element={<Explore />} />
             <Route path="/signout" element={<SignOut />} />
             <Route path="/room" element={<Room />} />
+            <Route path="/search" element={<Home />} />
             <Route
               path="/category/:categoryId"
               element={<SingleCategoryView />}

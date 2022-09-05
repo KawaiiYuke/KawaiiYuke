@@ -1,8 +1,15 @@
 import React from "react";
 import "./css/TrackSearch.css";
 import { useSelector, useDispatch } from "react-redux";
-import db from "./VideoTest";
-import { collection, addDoc } from "firebase/firestore";
+import app, { db } from "./VideoTest";
+import {
+  collection,
+  addDoc,
+  doc,
+  setDoc,
+  updateDoc,
+  arrayUnion,
+} from "firebase/firestore";
 
 export default function TrackSearchResult({ track, chooseTrack }) {
   function handlePlay() {
@@ -10,11 +17,15 @@ export default function TrackSearchResult({ track, chooseTrack }) {
   }
 
   const reduxRoomId = useSelector((state) => state.room.roomId);
-  async function handlePlaylist(track) {
+
+  async function handlePlaylist(trackId) {
     if (reduxRoomId) {
-      const playlistRef = await addDoc(collection(db, "RoomPlaylist"), {
-        roomId: reduxRoomId,
-      });
+      const playlistRef = await updateDoc(
+        doc(db, "RoomPlaylist", reduxRoomId),
+        {
+          playlist: arrayUnion(trackId),
+        }
+      );
     }
   }
   return (
@@ -37,9 +48,14 @@ export default function TrackSearchResult({ track, chooseTrack }) {
           style={{ height: "64px", width: "64px", marginTop: ".7em" }}
           alt="album"
         />
-        <button className="AddToPlaylist" onClick={() => handlePlaylist(track)}>
-          Add to Playlist
-        </button>
+        {reduxRoomId ? (
+          <button
+            className="AddToPlaylist"
+            onClick={() => handlePlaylist(track.id)}
+          >
+            Add to Playlist
+          </button>
+        ) : null}
       </div>
     </div>
   );

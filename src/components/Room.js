@@ -7,8 +7,8 @@ import Home from "./Home";
 const Room = () => {
   return (
     <div className="room">
-      {/* <Carousel /> */}
-      <Home />
+      <Carousel />
+      {/* <Home /> */}
       <VideoTest />
     </div>
   );

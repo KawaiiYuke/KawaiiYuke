@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./css/SingleCategoryViewButton.css";
 import { useSelector, useDispatch } from "react-redux";
 import { setSingleCategoryList, setSinglePlaylistInfo } from "../redux/browse";
-import { loggingIn } from "../redux/logIn";
 
 function SingleCategoryView() {
   const logInState = useSelector((state) => state.logIn);
@@ -13,10 +12,12 @@ function SingleCategoryView() {
   const singleCategoryState = useSelector(
     (state) => state.browse.singleCategoryLists
   );
-
+  console.log(singleCategoryState);
   useEffect(() => {
-    dispatch(setSingleCategoryList(accessToken, categoryId.categoryId));
-  }, []);
+    if (accessToken) {
+      dispatch(setSingleCategoryList(accessToken, categoryId.categoryId));
+    }
+  }, [accessToken]);
 
   return (
     <div style={{ paddingLeft: "9em" }}>
@@ -37,46 +38,53 @@ function SingleCategoryView() {
             </button>
           </Link>
         </div>
-        <div className="container">
-          <div className="row align-items-center">
-            {singleCategoryState.map((playlist) => {
-              return (
-                <div
-                  key={playlist.id}
-                  className="col-sm-3"
-                  onClick={() =>
-                    dispatch(setSinglePlaylistInfo(playlist.id, playlist.name))
-                  }
-                  style={{ padding: "2em" }}
-                >
-                  <Link
-                    to={`/playlists/${playlist.id}`}
-                    style={{ textDecoration: "none" }}
+        {/* {singleCategoryState[0].id ? <h1>worked</h1> : <h1>not worked</h1>} */}
+        {singleCategoryState[0].id ? (
+          <div className="container">
+            <div className="row align-items-center">
+              {singleCategoryState.map((playlist) => {
+                return (
+                  <div
+                    key={playlist.id}
+                    className="col-sm-3"
+                    onClick={() =>
+                      dispatch(
+                        setSinglePlaylistInfo(playlist.id, playlist.name)
+                      )
+                    }
+                    style={{ padding: "2em" }}
                   >
-                    <img
-                      src={playlist.images[0].url}
-                      alt="cover"
-                      className="img-fluid mb-3"
-                      style={{
-                        borderRadius: "4rem",
-                        boxShadow: "25px 24px 30px black",
-                      }}
-                    />
-                    <h2
-                      style={{
-                        color: "white",
-                        textShadow: "2px 4px black",
-                        fontSize: "25px",
-                      }}
+                    <Link
+                      to={`/playlists/${playlist.id}`}
+                      style={{ textDecoration: "none" }}
                     >
-                      {playlist.name}
-                    </h2>
-                  </Link>
-                </div>
-              );
-            })}
+                      <img
+                        src={playlist.images[0].url}
+                        alt="cover"
+                        className="img-fluid mb-3"
+                        style={{
+                          borderRadius: "4rem",
+                          boxShadow: "25px 24px 30px black",
+                        }}
+                      />
+                      <h2
+                        style={{
+                          color: "white",
+                          textShadow: "2px 4px black",
+                          fontSize: "25px",
+                        }}
+                      >
+                        {playlist.name}
+                      </h2>
+                    </Link>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        ) : (
+          <h1>sorry, this category does not have any album yet. </h1>
+        )}
       </div>
     </div>
   );

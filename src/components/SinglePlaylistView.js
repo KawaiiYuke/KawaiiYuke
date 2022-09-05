@@ -3,7 +3,17 @@ import { Link } from "react-router-dom";
 import "./css/SinglePlaylistView.css";
 import { useSelector, useDispatch } from "react-redux";
 import { setSinglePlaylist, setTrack } from "../redux/browse";
-import { loggingIn } from "../redux/logIn";
+
+import app, { db } from "./VideoTest";
+import {
+  collection,
+  addDoc,
+  doc,
+  setDoc,
+  updateDoc,
+  arrayUnion,
+  getFirestore,
+} from "firebase/firestore";
 
 function SinglePlaylistView() {
   const logInState = useSelector((state) => state.logIn);
@@ -14,11 +24,23 @@ function SinglePlaylistView() {
   const singlePlaylist = useSelector(
     (state) => state.browse.singlePlaylistTracks
   );
+  const reduxRoomId = useSelector((state) => state.room.roomId);
 
+  console.log("reduxRoomId", reduxRoomId);
   useEffect(() => {
     dispatch(setSinglePlaylist(accessToken, playlistInfo.playlistId));
   }, []);
 
+  async function handlePlaylist(trackId) {
+    if (reduxRoomId) {
+      const playlistRef = await updateDoc(
+        doc(db, "RoomPlaylist", reduxRoomId),
+        {
+          playlist: arrayUnion(trackId),
+        }
+      );
+    }
+  }
   return (
     <div>
       <div className="container" style={{ marginLeft: "24em" }}>
@@ -112,9 +134,21 @@ function SinglePlaylistView() {
                           {track.track.album.name}
                         </td>
 
-                        <td>
-                          <button className="playButton">PLAY</button>
-                        </td>
+                        {/* <td>
+                          <button className="playButton">
+                            Add to playlist
+                          </button> */}
+                        {reduxRoomId ? (
+                          <td>
+                            <button
+                              className="playButton"
+                              onClick={() => handlePlaylist(track.track.id)}
+                            >
+                              Add to Playlist
+                            </button>
+                          </td>
+                        ) : null}
+                        {/* </td> */}
                       </tr>
                     );
                   })}
