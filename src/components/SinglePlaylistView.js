@@ -30,12 +30,12 @@ function SinglePlaylistView() {
     dispatch(setSinglePlaylist(accessToken, playlistInfo.playlistId));
   }, []);
 
-  async function handlePlaylist(trackId) {
+  async function handlePlaylist(track) {
     if (reduxRoomId) {
       const playlistRef = await updateDoc(
         doc(db, "RoomPlaylist", reduxRoomId),
         {
-          playlist: arrayUnion(trackId),
+          playlist: arrayUnion({ title: track.track.name, id: track.track.id }),
         }
       );
     }
@@ -142,7 +142,7 @@ function SinglePlaylistView() {
                             <td>
                               <button
                                 className="playButton"
-                                onClick={() => handlePlaylist(track.track.id)}
+                                onClick={() => handlePlaylist(track)}
                               >
                                 Add to Playlist
                               </button>
