@@ -14,9 +14,10 @@ import {
 
 export default async function RoomPlaylist() {
   const reduxRoomId = useSelector((state) => state.room.roomId);
+  console.log("reduxRoomId", reduxRoomId);
 
-  const snap = await getDoc(doc(db, "RoomPlaylist", reduxRoomId));
-  console.log("snap", snap);
+  // const snap = await getDoc(doc(db, "RoomPlaylist", reduxRoomId));
+  // console.log("snap", snap);
   // querySnapshot.forEach((doc) => {
   //   // doc.data() is never undefined for query doc snapshots
   //   console.log(doc.id, " => ", doc.data());
@@ -29,5 +30,6 @@ export default async function RoomPlaylist() {
   //   console.log("Current cities in CA: ", cities.join(", "));
   // });
 
-  return <div>this is Playlist for room: {reduxRoomId ? reduxRoomId : 0}</div>;
+  return <div>this is Playlist for room:</div>;
+  //<div>this is Playlist for room: {reduxRoomId ? reduxRoomId : 0}</div>;
 }
