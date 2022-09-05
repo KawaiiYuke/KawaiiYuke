@@ -30,8 +30,8 @@ const Carousel = () => {
           <Home />
         </SwiperSlide>
         <SwiperSlide className="swiperslide">
-          <img src="https://i.imgur.com/N0kXRqz.jpg" alt="" />
-          {/* <RoomPlaylist /> */}
+          {/* <img src="https://i.imgur.com/N0kXRqz.jpg" alt="" /> */}
+          <RoomPlaylist />
         </SwiperSlide>
         <SwiperSlide className="swiperslide">
           <img src="https://i.imgur.com/eqxiyho.jpg" alt="" />
