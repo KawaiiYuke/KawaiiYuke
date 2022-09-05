@@ -2,7 +2,7 @@
 .about-us {
     display: flex;
     justify-content: center;
-    height:100vh;
+  
     text-shadow:2px 2px black ;
 }
 .about-us .row {

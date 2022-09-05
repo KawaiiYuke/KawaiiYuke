@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { setLyrics } from "../redux/browse";
 import { loggingIn } from "../redux/logIn";
+import Player from "./Player";
 
 function SingleTrackView() {
   const logInState = useSelector((state) => state.logIn);
@@ -31,13 +32,17 @@ function SingleTrackView() {
       <div>
         {trackInfo.name ? (
           <div>
-            <h1>{trackInfo.name}</h1>
-            <h2>By: {trackInfo.artists[0].name}</h2>
+            <div>
+              <h1>{trackInfo.name}</h1>
+              <h2>By: {trackInfo.artists[0].name}</h2>
 
-            <img src={trackInfo.album.images[2].url} alt="album" />
+              <img src={trackInfo.album.images[2].url} alt="album" />
 
-            <div className="text-center" style={{ whiteSpace: "pre" }}>
-              Lyrics: {lyrics}
+              <div className="text-center" style={{ whiteSpace: "pre" }}>
+                Lyrics: {lyrics}
+              </div>
+
+              <Player accessToken={accessToken} trackUri={trackInfo?.uri} />
             </div>
           </div>
         ) : (
