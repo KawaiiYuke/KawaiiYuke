@@ -31,7 +31,8 @@ export default function RoomPlaylist() {
       const docRef = doc(db, "RoomPlaylist", reduxRoomId);
       const getdocSnap = await getDoc(docRef);
       if (getdocSnap.exists()) {
-        setPlaylist(getdocSnap.data().playlist);
+        const res = getdocSnap.data();
+        if (res) setPlaylist(res.playlist);
       }
       //below is to get all room playlists
       // const q = query(collection(db, "RoomPlaylist"));
@@ -44,13 +45,6 @@ export default function RoomPlaylist() {
     }
     callPlaylist(reduxRoomId);
   }, [reduxPlaylist]);
-
-  // useEffect(() => {
-  //   const unsub = onSnapshot(doc(db, "RoomPlaylist", reduxRoomId), (doc) => {
-  //     setPlaylist(doc.data().playlist);
-  //   });
-  //   return unsub;
-  // }, [reduxRoomId]);
 
   // async function handleDelete(index, trackId) {
   //   const playlistRef = doc(db, "RoomPlaylist", reduxRoomId);
@@ -82,12 +76,7 @@ export default function RoomPlaylist() {
                 <tbody>
                   {playlist.map((track, index) => {
                     return (
-                      <tr
-                        key={index}
-                        // onClick={() =>
-                        //   dispatch(setTrack(accessToken, track.track.id))
-                        // }
-                      >
+                      <tr key={index}>
                         <td>{index + 1}</td>
 
                         <td style={{ textAlign: "left" }}>{track.title}</td>

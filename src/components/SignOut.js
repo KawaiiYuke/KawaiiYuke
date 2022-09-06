@@ -9,7 +9,7 @@ const SignOut = () => {
         You have signed out successfully. See you soon!
       </div>
       <Link to="/signin">
-        <buttom className="ReLogin">Sign In Again</buttom>
+        <button className="ReLogin">Sign In Again</button>
       </Link>
     </div>
   );
