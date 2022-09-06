@@ -60,6 +60,7 @@ export const addTrack = (track) => {
     }
   };
 };
+
 const roomReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_ROOM_ID:
@@ -73,10 +74,32 @@ const roomReducer = (state = initialState, action) => {
         roomId: "",
       };
     case ADD_TRACK:
-      return {
-        ...state,
-        playlist: [...state.playlist, action.track],
-      };
+      if (!state.playlist) {
+        return {
+          ...state,
+          playlist: [action.track],
+        };
+      } else {
+        //const newPlaylist = state.playlist.push(action.track)
+        return {
+          ...state,
+          playlist: [...state.playlist, action.track],
+        };
+      }
+
+    // console.log("state: ", state);
+    // console.log("state.playlist: ", state.playlist);
+    // if (!state.playlist) {
+    //   return {
+    //     ...state,
+    //     playlist: [action.track],
+    //   };
+    // } else {
+    //   return {
+    //     ...state,
+    //     playlist: [...state.playlist, action.track],
+    //   };
+    // }
 
     default:
       return state;

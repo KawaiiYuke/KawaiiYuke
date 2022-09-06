@@ -24,9 +24,10 @@ const Carousel = () => {
   useEffect(() => {
     async function callPlaylist(reduxRoomId) {
       const docRef = doc(db, "RoomPlaylist", reduxRoomId);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        setPlaylist(docSnap.data().playlist);
+      const getdocSnap = await getDoc(docRef);
+      if (getdocSnap.exists()) {
+        const res = getdocSnap.data();
+        if (res) setPlaylist(res.playlist);
       }
       //below is to get all room playlists
       // const q = query(collection(db, "RoomPlaylist"));

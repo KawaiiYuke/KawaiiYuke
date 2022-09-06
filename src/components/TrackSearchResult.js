@@ -10,7 +10,7 @@ import {
   updateDoc,
   arrayUnion,
 } from "firebase/firestore";
-import addTrack from "../redux/roomPlaylist";
+import { addTrack } from "../redux/roomPlaylist";
 
 export default function TrackSearchResult({ track, chooseTrack }) {
   function handlePlay() {

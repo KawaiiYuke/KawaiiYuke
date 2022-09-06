@@ -18,6 +18,7 @@ export default function RoomPlaylist() {
   //const reduxRoomId = "ZkbPky8S0YWyGlWHgn0d";
   const reduxPlaylist = useSelector((state) => state.room.playlist);
   const [playlist, setPlaylist] = useState([]);
+  console.log("reduxPlaylist", reduxPlaylist);
   //console.log("playlist", playlist);
   // const docRef = doc(db, "RoomPlaylist", reduxRoomId);
   // //const docSnap = onSnapshot(docRef);
@@ -31,7 +32,9 @@ export default function RoomPlaylist() {
       const docRef = doc(db, "RoomPlaylist", reduxRoomId);
       const getdocSnap = await getDoc(docRef);
       if (getdocSnap.exists()) {
-        setPlaylist(getdocSnap.data().playlist);
+        console.log("exists");
+        const res = getdocSnap.data();
+        if (res) setPlaylist(res.playlist);
       }
       //below is to get all room playlists
       // const q = query(collection(db, "RoomPlaylist"));
