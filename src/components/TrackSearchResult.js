@@ -28,7 +28,7 @@ export default function TrackSearchResult({ track, chooseTrack }) {
           playlist: arrayUnion(track),
         }
       );
-      dispatch(addTrack(reduxRoomId, track));
+      dispatch(addTrack(track));
     }
   }
   return (
@@ -67,17 +67,14 @@ export default function TrackSearchResult({ track, chooseTrack }) {
         >
           {track.title} By {track.artist}
           {reduxRoomId ? (
-          <button
-            className="AddToPlaylist"
-            onClick={() => handlePlaylist(track)}
-          >
-            Add to Playlist
-          </button>
-        ) : null}
+            <button
+              className="AddToPlaylist"
+              onClick={() => handlePlaylist(track)}
+            >
+              Add to Playlist
+            </button>
+          ) : null}
         </div>
-
-        
-
       </div>
     </div>
   );

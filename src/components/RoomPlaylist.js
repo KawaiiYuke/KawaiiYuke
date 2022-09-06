@@ -53,7 +53,7 @@ export default function RoomPlaylist() {
   // }
 
   return (
-    <div>
+    <div style={{ height: "100%", width: "50%" }}>
       <div>
         {reduxRoomId ? (
           <div>

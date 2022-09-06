@@ -50,11 +50,11 @@ export const clearReduxRoomId = (roomId) => {
   };
 };
 
-export const addTrack = (roomId, track) => {
+export const addTrack = (track) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`/room/${roomId}`, track);
-      dispatch(addedTrack(data));
+      //const { data } = await axios.post(`/room/${roomId}`, track);
+      dispatch(addedTrack(track));
     } catch (error) {
       console.log("thunk error", error);
     }
