@@ -49,7 +49,7 @@ function SingleTrackView() {
               {reduxRoomId ? (
                 ""
               ) : (
-                <div className="player">
+                <div>
                   <Player accessToken={accessToken} trackUri={trackInfo?.uri} />
                 </div>
               )}
