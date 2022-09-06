@@ -12,13 +12,13 @@ import Explore from "./Explore";
 import Player from "./Player";
 import app, { db } from "./VideoTest";
 import { useSelector } from "react-redux";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
 
 const Carousel = () => {
   const logInState = useSelector((state) => state.logIn);
   let accessToken = logInState?.accessToken;
-  //const reduxRoomId = useSelector((state) => state.room.roomId);
-  const reduxRoomId = "ZkbPky8S0YWyGlWHgn0d";
+  const reduxRoomId = useSelector((state) => state.room.roomId);
+  //const reduxRoomId = "ZkbPky8S0YWyGlWHgn0d";
   const [playlist, setPlaylist] = useState([]);
 
   useEffect(() => {
@@ -40,9 +40,16 @@ const Carousel = () => {
     callPlaylist(reduxRoomId);
   }, []);
 
+  // useEffect(() => {
+  //   const unsub = onSnapshot(doc(db, "RoomPlaylist", reduxRoomId), (doc) => {
+  //     setPlaylist(doc.data().playlist);
+  //   });
+  //   return unsub;
+  // }, [reduxRoomId]);
+
   return (
     <React.Fragment>
-      <div className="swiperContainer">
+      <div className="swiperContainer" style={{ width: "50%" }}>
         <Swiper
           modules={[Navigation]}
           navigation
@@ -52,19 +59,10 @@ const Carousel = () => {
           className="myswiper"
         >
           <SwiperSlide className="swiperslide">
-            <img src="https://i.imgur.com/DtTzXpu.jpg" alt="" />
-            {/* <Explore /> */}
-          </SwiperSlide>
-          <SwiperSlide className="swiperslide">
-            {/* <img src="https://i.imgur.com/DtTzXpu.jpg" alt="" /> */}
             <Home />
           </SwiperSlide>
           <SwiperSlide className="swiperslide">
-            {/* <img src="https://i.imgur.com/N0kXRqz.jpg" alt="" /> */}
             <RoomPlaylist />
-          </SwiperSlide>
-          <SwiperSlide className="swiperslide">
-            <img src="https://i.imgur.com/eqxiyho.jpg" alt="" />
           </SwiperSlide>
         </Swiper>
       </div>

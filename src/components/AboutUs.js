@@ -60,7 +60,7 @@ export default function AboutUs() {
 
           <div class="column">
             <div className="each-dev">
-              <div class="container">
+              <div className="container">
                 <h2
                   style={{ paddingTop: "0.3em", textShadow: "2px 2px black" }}
                 >

@@ -22,13 +22,13 @@ export default function TrackSearchResult({ track, chooseTrack }) {
 
   async function handlePlaylist(track) {
     if (reduxRoomId) {
+      dispatch(addTrack(track));
       const playlistRef = await updateDoc(
         doc(db, "RoomPlaylist", reduxRoomId),
         {
           playlist: arrayUnion(track),
         }
       );
-      dispatch(addTrack(reduxRoomId, track));
     }
   }
   return (
