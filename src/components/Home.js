@@ -106,9 +106,9 @@ const Home = () => {
                 style={{
                   whiteSpace: "pre",
                   fontWeight: "bold",
-                  color: "#ffffff",
+                  color: "#F0F8FF",
                   backgroundColor: "hsla(0, 100%, 90%, 0.3)",
-                  fontFamily: "Monaco",
+                  justifyContent: "center",
                 }}
               >
                 {lyrics}
@@ -116,17 +116,15 @@ const Home = () => {
             )}
           </div>
 
-
-        {reduxRoomId ? (
-          ""
-        ) : (
-          <div>
-            <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
-          </div>
-        )}
-      </Container>
-
-    </div>
+          {reduxRoomId ? (
+            ""
+          ) : (
+            <div>
+              <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
+            </div>
+          )}
+        </Container>
+      </div>
     </div>
   );
 };
