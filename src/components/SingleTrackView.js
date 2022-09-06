@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { setLyrics } from "../redux/browse";
 import "./css/SingleTrackView.css";
-import { loggingIn } from "../redux/logIn";
 import Player from "./Player";
 
 function SingleTrackView() {

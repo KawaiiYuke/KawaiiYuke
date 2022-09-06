@@ -8,18 +8,18 @@ export default function Player({ accessToken, trackUri }) {
   const [play, setPlay] = useState(false);
 
   const reduxRoomId = useSelector((state) => state.room.roomId);
-  //console.log("reduxRoomId", reduxRoomId);
   const reduxPlaylist = useSelector((state) => state.room.playlist);
-  //const reduxRoomId = "ZkbPky8S0YWyGlWHgn0d";
   useEffect(() => setPlay(true), [trackUri]);
   const [playlist, setPlaylist] = useState([]);
-  console.log("playlist in player", playlist);
+  // console.log("playlist in player", playlist);
   useEffect(() => {
     async function callPlaylist(reduxRoomId) {
       const docRef = doc(db, "RoomPlaylist", reduxRoomId);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        setPlaylist(docSnap.data().playlist.map((track) => track.uri));
+      const getdocSnap = await getDoc(docRef);
+
+      if (getdocSnap.exists()) {
+        const res = getdocSnap.data();
+        if (res) setPlaylist(res.playlist.map((track) => track.uri));
       }
       //below is to get all room playlists
       // const q = query(collection(db, "RoomPlaylist"));

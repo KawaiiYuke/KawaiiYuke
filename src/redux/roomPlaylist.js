@@ -53,13 +53,13 @@ export const clearReduxRoomId = (roomId) => {
 export const addTrack = (track) => {
   return async (dispatch) => {
     try {
-      //const { data } = await axios.post(`/room/${roomId}`, track);
       dispatch(addedTrack(track));
     } catch (error) {
       console.log("thunk error", error);
     }
   };
 };
+
 const roomReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_ROOM_ID:
@@ -71,12 +71,20 @@ const roomReducer = (state = initialState, action) => {
       return {
         ...state,
         roomId: "",
+        playlist: [],
       };
     case ADD_TRACK:
-      return {
-        ...state,
-        playlist: [...state.playlist, action.track],
-      };
+      if (!state.playlist) {
+        return {
+          ...state,
+          playlist: [action.track],
+        };
+      } else {
+        return {
+          ...state,
+          playlist: [...state.playlist, action.track],
+        };
+      }
 
     default:
       return state;
