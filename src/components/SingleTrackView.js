@@ -45,17 +45,15 @@ function SingleTrackView() {
                 <div className="text-center" style={{ whiteSpace: "pre" }}>
                   {lyrics}
                 </div>
-                <div className="player">
-                  <Player accessToken={accessToken} trackUri={trackInfo?.uri} />
-                </div>
               </div>
 
               {reduxRoomId ? (
                 ""
               ) : (
-                <Player accessToken={accessToken} trackUri={trackInfo?.uri} />
+                <div className="player">
+                  <Player accessToken={accessToken} trackUri={trackInfo?.uri} />
+                </div>
               )}
-
             </div>
           ) : (
             <h2>Sorry, no track was found. Please try again.</h2>
