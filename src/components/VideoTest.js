@@ -115,13 +115,16 @@ function VideoTest() {
         <div className="sm_video">
           {participants.map(({ id, stream }) => {
             return (
-              <div key={id} onClick={(e) => {
-                if(e.currentTarget.className.indexOf('activeVideo') != -1){
-                  e.currentTarget.classList.remove('activeVideo')
-                }else{
-                  e.currentTarget.classList.add('activeVideo')
-                }
-              }}>
+              <div
+                key={id}
+                onClick={(e) => {
+                  if (e.currentTarget.className.indexOf("activeVideo") != -1) {
+                    e.currentTarget.classList.remove("activeVideo");
+                  } else {
+                    e.currentTarget.classList.add("activeVideo");
+                  }
+                }}
+              >
                 <p className="idTitle">{id}:</p>
                 <video
                   ref={(element) => {
@@ -183,7 +186,7 @@ function VideoTest() {
       {roomId && (
         <>
           <div className="buttomBtn">
-          <p className="room_id">
+            <p className="room_id">
               Room: {roomId} <br /> Participant ID: {participantId}
             </p>
             <button
@@ -193,7 +196,7 @@ function VideoTest() {
             >
               Copy joining code
             </button>
-            
+
             <button
               onClick={async () => {
                 // shareScreen({ options: { suppressVideo: true } });
