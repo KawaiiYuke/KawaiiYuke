@@ -108,7 +108,7 @@ function SinglePlaylistView() {
                                 textDecoration: "none",
                                 padding: "1em",
                                 color: "white",
-                                textShadow: "2px 4px black",
+                                textShadow: "2px 1px black",
                               }}
                             >
                               {track.track.name}
@@ -119,7 +119,8 @@ function SinglePlaylistView() {
                             style={{
                               textAlign: "left",
                               padding: "1em",
-                              textShadow: "2px 4px black",
+                              textShadow: "2px 1px black",
+                              color: "white",
                             }}
                           >
                             {track.track.artists[0].name}
@@ -128,7 +129,8 @@ function SinglePlaylistView() {
                             style={{
                               textAlign: "left",
                               paddingLeft: "3em",
-                              textShadow: "2px 4px black",
+                              textShadow: "2px 1px black",
+                              color: "white",
                             }}
                           >
                             {track.track.album.name}
