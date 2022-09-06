@@ -25,7 +25,7 @@ const Carousel = () => {
       const getdocSnap = await getDoc(docRef);
       if (getdocSnap.exists()) {
         const res = getdocSnap.data();
-        if (res) setPlaylist(res.playlist.map((track) => track.uri));
+        if (res) setPlaylist(res.playlist);
       }
     }
     callPlaylist(reduxRoomId);
@@ -50,9 +50,10 @@ const Carousel = () => {
           </SwiperSlide>
         </Swiper>
       </div>
-      <div>
-        <Player accessToken={accessToken} trackUri={playlist?.uri} />
-      </div>
+      {/* <div> */}
+      {/* <Player accessToken={accessToken} /> */}
+      {/* <Player accessToken={accessToken} trackUri={playlist[0]?.uri} /> */}
+      {/* </div> */}
     </React.Fragment>
   );
 };
