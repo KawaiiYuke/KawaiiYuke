@@ -19,6 +19,7 @@ We wanted to use the common parts of all our team members names along with the w
  <img src="https://media.giphy.com/media/IG48UqSiDwL0uZcC6T/giphy.gif"/>&nbsp;&nbsp;&nbsp;
 ### Explore and browse through playlists and tracks
 ---
+ <img src="https://media.giphy.com/media/AXKBcCbS5nD1YxcExH/giphy.gif"/>&nbsp;&nbsp;&nbsp;
 ### Create a room
 ---
 ### Or join a room
