@@ -47,7 +47,7 @@ export default function TrackSearchResult({ track, chooseTrack }) {
           style={{
             height: "64px",
             width: "64px",
-            marginTop: ".7em",
+            marginTop: "1em",
           }}
           alt="album"
         />
@@ -56,10 +56,9 @@ export default function TrackSearchResult({ track, chooseTrack }) {
             fontWeight: "bold",
             color: "rgb(255, 255, 255, 0.8)",
             display: "flex",
-
             alignItems: "center",
             flexDirection: "column",
-            marginBottom: "0.5em",
+            marginBottom: "0.8em",
           }}
         >
           {track.title} By {track.artist}
