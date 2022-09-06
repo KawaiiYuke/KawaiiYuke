@@ -1,7 +1,6 @@
 .webcamRTC body {
   background: #ffffff;
-  /* background: -webkit-linear-gradient(to right, #442c64, #322043, #1b0f27);
-  background: linear-gradient(to right, #442c64, #322043, #1b0f27); */
+
 }
 
 .webcamRTC #join-btn {

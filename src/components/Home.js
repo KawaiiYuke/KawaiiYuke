@@ -81,7 +81,6 @@ const Home = () => {
         <Container
           className="d-flex flex-column py-2"
           style={{ height: "90vh", width: "40rem", marginTop: "4em" }}
-          //style={{ height: '80vh', width: '30rem' }}
         >
           <Form.Control
             type="search"

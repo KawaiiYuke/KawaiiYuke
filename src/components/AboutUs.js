@@ -13,7 +13,6 @@ export default function AboutUs() {
           <h1>About Us</h1>
         </div>
 
-        {/* <h2 style="text-align:center">Our Team</h2> */}
         <div class="row">
           <div class="column">
             <div className="each-dev">
@@ -53,7 +52,6 @@ export default function AboutUs() {
 
           <div class="column">
             <div className="each-dev">
-              {/* <img src="/w3images/team3.jpg" alt="John" style="width:100%"> */}
               <div class="container">
                 <h2 style={{ paddingTop: "0.3em" }}>Yuki Mei</h2>
                 <img src={yuki} alt="" width="40%" />

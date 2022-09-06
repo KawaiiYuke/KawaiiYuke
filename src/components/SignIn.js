@@ -10,11 +10,7 @@ export const AUTH_URL = `https://accounts.spotify.com/authorize?client_id=462ea5
 const SignIn = () => {
   return (
     <div>
-      <Container
-        // className="d-flex justify-content-center align-items-center flex-direction-column"
-        className="welcome-page"
-        style={{ minHeight: "100vh" }}
-      >
+      <Container className="welcome-page" style={{ minHeight: "100vh" }}>
         <div className="inner-welcome-page">
           <div className="mic-image">
             <img src={micneon} alt="" />{" "}
@@ -36,7 +32,5 @@ const SignIn = () => {
     </div>
   );
 };
-
-// btn btn-success btn-lg
 
 export default SignIn;

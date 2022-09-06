@@ -1,7 +1,7 @@
 .wrapper * {
   text-decoration: none;
   font-family: 'Gill Sans';
-  /* font-weight: bold; */
+
   font-size: 13pt;
   z-index: 10
 }
