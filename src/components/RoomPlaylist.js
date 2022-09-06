@@ -14,8 +14,8 @@ import {
 } from "firebase/firestore";
 
 export default function RoomPlaylist() {
-  const reduxRoomId = useSelector((state) => state.room.roomId);
-  //const reduxRoomId = "ZkbPky8S0YWyGlWHgn0d";
+  //const reduxRoomId = useSelector((state) => state.room.roomId);
+  const reduxRoomId = "ZkbPky8S0YWyGlWHgn0d";
   const [playlist, setPlaylist] = useState([]);
   //console.log("playlist", playlist);
   const docRef = doc(db, "RoomPlaylist", reduxRoomId);

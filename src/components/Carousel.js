@@ -17,8 +17,8 @@ import { doc, getDoc } from "firebase/firestore";
 const Carousel = () => {
   const logInState = useSelector((state) => state.logIn);
   let accessToken = logInState?.accessToken;
-  const reduxRoomId = useSelector((state) => state.room.roomId);
-  //const reduxRoomId = "wd2C7ECCvhhYaxYVgWXl";
+  //const reduxRoomId = useSelector((state) => state.room.roomId);
+  const reduxRoomId = "ZkbPky8S0YWyGlWHgn0d";
   const [playlist, setPlaylist] = useState([]);
 
   useEffect(() => {
@@ -52,8 +52,8 @@ const Carousel = () => {
           className="myswiper"
         >
           <SwiperSlide className="swiperslide">
-            {/* <img src="https://i.imgur.com/DtTzXpu.jpg" alt="" /> */}
-            <Explore />
+            <img src="https://i.imgur.com/DtTzXpu.jpg" alt="" />
+            {/* <Explore /> */}
           </SwiperSlide>
           <SwiperSlide className="swiperslide">
             {/* <img src="https://i.imgur.com/DtTzXpu.jpg" alt="" /> */}

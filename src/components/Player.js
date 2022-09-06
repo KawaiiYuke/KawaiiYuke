@@ -6,8 +6,8 @@ import { doc, getDoc } from "firebase/firestore";
 
 export default function Player({ accessToken, trackUri }) {
   const [play, setPlay] = useState(false);
-  const reduxRoomId = useSelector((state) => state.room.roomId);
-  //const reduxRoomId = "ZkbPky8S0YWyGlWHgn0d";
+  //const reduxRoomId = useSelector((state) => state.room.roomId);
+  const reduxRoomId = "ZkbPky8S0YWyGlWHgn0d";
   useEffect(() => setPlay(true), [trackUri]);
   const [playlist, setPlaylist] = useState([]);
   //console.log("playlist", playlist);
