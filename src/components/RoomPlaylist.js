@@ -14,35 +14,35 @@ import {
 } from "firebase/firestore";
 
 export default function RoomPlaylist() {
-  //const reduxRoomId = useSelector((state) => state.room.roomId);
-  const reduxRoomId = "Tx17PGWEutvw5c0sYkrW";
+  const reduxRoomId = useSelector((state) => state.room.roomId);
+  //const reduxRoomId = "ZkbPky8S0YWyGlWHgn0d";
   const [playlist, setPlaylist] = useState([]);
+  //console.log("playlist", playlist);
+  const docRef = doc(db, "RoomPlaylist", reduxRoomId);
+  //const docSnap = onSnapshot(docRef);
+  const unsub = onSnapshot(doc(db, "RoomPlaylist", reduxRoomId), (doc) => {
+    //console.log("Current data: ", doc.data());
+    setPlaylist(doc.data().playlist);
+  });
 
-  //const docRef = doc(db, "RoomPlaylist", reduxRoomId);
-  // const docSnap = onSnapshot(docRef);
-  // const unsub = onSnapshot(doc(db, "RoomPlaylist", reduxRoomId), (doc) => {
-  //   console.log("Current data: ", doc.data());
-  //   setPlaylist(doc.data().playlist);
-  // });
-
-  useEffect(() => {
-    async function callPlaylist(reduxRoomId) {
-      const docRef = doc(db, "RoomPlaylist", reduxRoomId);
-      const getdocSnap = await getDoc(docRef);
-      if (getdocSnap.exists()) {
-        setPlaylist(getdocSnap.data().playlist);
-      }
-      //below is to get all room playlists
-      // const q = query(collection(db, "RoomPlaylist"));
-      // const querySnapshot = await getDocs(q);
-      // const queryAllRoomPlaylistData = querySnapshot.docs.map((detail) => ({
-      //   ...detail.data(),
-      //   id: detail.id,
-      // }));
-      // console.log("queryData", queryAllRoomPlaylistData);
-    }
-    callPlaylist(reduxRoomId);
-  }, []);
+  // useEffect(() => {
+  //   async function callPlaylist(reduxRoomId) {
+  //     const docRef = doc(db, "RoomPlaylist", reduxRoomId);
+  //     const getdocSnap = await getDoc(docRef);
+  //     if (getdocSnap.exists()) {
+  //       setPlaylist(getdocSnap.data().playlist);
+  //     }
+  //     //below is to get all room playlists
+  //     // const q = query(collection(db, "RoomPlaylist"));
+  //     // const querySnapshot = await getDocs(q);
+  //     // const queryAllRoomPlaylistData = querySnapshot.docs.map((detail) => ({
+  //     //   ...detail.data(),
+  //     //   id: detail.id,
+  //     // }));
+  //     // console.log("queryData", queryAllRoomPlaylistData);
+  //   }
+  //   callPlaylist(reduxRoomId);
+  // }, []);
 
   // async function handleDelete(index, trackId) {
   //   const playlistRef = doc(db, "RoomPlaylist", reduxRoomId);
