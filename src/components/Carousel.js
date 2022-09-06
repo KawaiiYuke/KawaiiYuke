@@ -12,7 +12,7 @@ import Explore from "./Explore";
 import Player from "./Player";
 import app, { db } from "./VideoTest";
 import { useSelector } from "react-redux";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
 
 const Carousel = () => {
   const logInState = useSelector((state) => state.logIn);
@@ -39,6 +39,13 @@ const Carousel = () => {
     }
     callPlaylist(reduxRoomId);
   }, []);
+
+  // useEffect(() => {
+  //   const unsub = onSnapshot(doc(db, "RoomPlaylist", reduxRoomId), (doc) => {
+  //     setPlaylist(doc.data().playlist);
+  //   });
+  //   return unsub;
+  // }, [reduxRoomId]);
 
   return (
     <React.Fragment>

@@ -45,6 +45,13 @@ export default function RoomPlaylist() {
     callPlaylist(reduxRoomId);
   }, [reduxPlaylist]);
 
+  // useEffect(() => {
+  //   const unsub = onSnapshot(doc(db, "RoomPlaylist", reduxRoomId), (doc) => {
+  //     setPlaylist(doc.data().playlist);
+  //   });
+  //   return unsub;
+  // }, [reduxRoomId]);
+
   // async function handleDelete(index, trackId) {
   //   const playlistRef = doc(db, "RoomPlaylist", reduxRoomId);
 
