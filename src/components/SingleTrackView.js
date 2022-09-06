@@ -20,6 +20,7 @@ function SingleTrackView() {
     }
   }, [trackInfo]);
 
+  console.log("in track view: ", trackInfo.name, trackInfo.uri);
   return (
     <div>
       <Link

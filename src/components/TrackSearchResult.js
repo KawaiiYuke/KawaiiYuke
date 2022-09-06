@@ -10,6 +10,7 @@ import {
   updateDoc,
   arrayUnion,
 } from "firebase/firestore";
+import addTrack from "../redux/roomPlaylist";
 
 export default function TrackSearchResult({ track, chooseTrack }) {
   function handlePlay() {
@@ -17,6 +18,7 @@ export default function TrackSearchResult({ track, chooseTrack }) {
   }
 
   const reduxRoomId = useSelector((state) => state.room.roomId);
+  const dispatch = useDispatch();
 
   async function handlePlaylist(track) {
     if (reduxRoomId) {
@@ -26,6 +28,7 @@ export default function TrackSearchResult({ track, chooseTrack }) {
           playlist: arrayUnion(track),
         }
       );
+      dispatch(addTrack(reduxRoomId, track));
     }
   }
   return (

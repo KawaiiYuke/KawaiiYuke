@@ -14,35 +14,36 @@ import {
 } from "firebase/firestore";
 
 export default function RoomPlaylist() {
-  //const reduxRoomId = useSelector((state) => state.room.roomId);
-  const reduxRoomId = "ZkbPky8S0YWyGlWHgn0d";
+  const reduxRoomId = useSelector((state) => state.room.roomId);
+  //const reduxRoomId = "ZkbPky8S0YWyGlWHgn0d";
+  const reduxPlaylist = useSelector((state) => state.room.playlist);
   const [playlist, setPlaylist] = useState([]);
   //console.log("playlist", playlist);
-  const docRef = doc(db, "RoomPlaylist", reduxRoomId);
-  //const docSnap = onSnapshot(docRef);
-  const unsub = onSnapshot(doc(db, "RoomPlaylist", reduxRoomId), (doc) => {
-    //console.log("Current data: ", doc.data());
-    setPlaylist(doc.data().playlist);
-  });
+  // const docRef = doc(db, "RoomPlaylist", reduxRoomId);
+  // //const docSnap = onSnapshot(docRef);
+  // const unsub = onSnapshot(doc(db, "RoomPlaylist", reduxRoomId), (doc) => {
+  //   //console.log("Current data: ", doc.data());
+  //   setPlaylist(doc.data().playlist);
+  // });
 
-  // useEffect(() => {
-  //   async function callPlaylist(reduxRoomId) {
-  //     const docRef = doc(db, "RoomPlaylist", reduxRoomId);
-  //     const getdocSnap = await getDoc(docRef);
-  //     if (getdocSnap.exists()) {
-  //       setPlaylist(getdocSnap.data().playlist);
-  //     }
-  //     //below is to get all room playlists
-  //     // const q = query(collection(db, "RoomPlaylist"));
-  //     // const querySnapshot = await getDocs(q);
-  //     // const queryAllRoomPlaylistData = querySnapshot.docs.map((detail) => ({
-  //     //   ...detail.data(),
-  //     //   id: detail.id,
-  //     // }));
-  //     // console.log("queryData", queryAllRoomPlaylistData);
-  //   }
-  //   callPlaylist(reduxRoomId);
-  // }, []);
+  useEffect(() => {
+    async function callPlaylist(reduxRoomId) {
+      const docRef = doc(db, "RoomPlaylist", reduxRoomId);
+      const getdocSnap = await getDoc(docRef);
+      if (getdocSnap.exists()) {
+        setPlaylist(getdocSnap.data().playlist);
+      }
+      //below is to get all room playlists
+      // const q = query(collection(db, "RoomPlaylist"));
+      // const querySnapshot = await getDocs(q);
+      // const queryAllRoomPlaylistData = querySnapshot.docs.map((detail) => ({
+      //   ...detail.data(),
+      //   id: detail.id,
+      // }));
+      // console.log("queryData", queryAllRoomPlaylistData);
+    }
+    callPlaylist(reduxRoomId);
+  }, [reduxPlaylist]);
 
   // async function handleDelete(index, trackId) {
   //   const playlistRef = doc(db, "RoomPlaylist", reduxRoomId);
@@ -84,14 +85,14 @@ export default function RoomPlaylist() {
 
                         <td style={{ textAlign: "left" }}>{track.title}</td>
 
-                        <td>
+                        {/* <td>
                           <button
                             className="playButton"
                             // onClick={() => handleDelete(index, track.id)}
                           >
                             Delete
                           </button>
-                        </td>
+                        </td> */}
                       </tr>
                     );
                   })}
