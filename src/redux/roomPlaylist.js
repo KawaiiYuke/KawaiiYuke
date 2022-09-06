@@ -2,9 +2,12 @@ import axios from "axios";
 
 const SET_ROOM_ID = "SET_ROOM_ID";
 const CLEAR_ROOM_ID = "CLEAR_ROOM_ID";
+const ADD_TRACK = "ADD_TRACK";
 
 const initialState = {
   roomId: "",
+  playlist: [],
+  currentPlaying: {},
 };
 
 export const _SET_ROOM_ID = (roomId) => {
@@ -18,6 +21,12 @@ export const _CLEAR_ROOM_ID = (roomId) => {
   return {
     type: CLEAR_ROOM_ID,
     roomId,
+  };
+};
+export const addedTrack = (track) => {
+  return {
+    type: ADD_TRACK,
+    track,
   };
 };
 
@@ -41,6 +50,16 @@ export const clearReduxRoomId = (roomId) => {
   };
 };
 
+export const addTrack = (roomId, track) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post(`/room/${roomId}`, track);
+      dispatch(addedTrack(data));
+    } catch (error) {
+      console.log("thunk error", error);
+    }
+  };
+};
 const roomReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_ROOM_ID:
@@ -52,6 +71,11 @@ const roomReducer = (state = initialState, action) => {
       return {
         ...state,
         roomId: "",
+      };
+    case ADD_TRACK:
+      return {
+        ...state,
+        playlist: [...state.playlist, action.track],
       };
 
     default:

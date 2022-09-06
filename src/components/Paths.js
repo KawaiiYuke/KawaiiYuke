@@ -14,6 +14,7 @@ import VideoTest from "./VideoTest";
 import "./css/Paths.css";
 import SingleTrackView from "./SingleTrackView";
 import { useSelector } from "react-redux";
+import RoomPlaylist from "./RoomPlaylist";
 
 const Paths = () => {
   const logInState = useSelector((state) => state.logIn);
@@ -42,7 +43,8 @@ const Paths = () => {
               element={<SinglePlaylistView />}
             />
             <Route path="/track/:trackid" element={<SingleTrackView />} />
-            <Route path="/test" element={<VideoTest />} />
+            <Route path="/video" element={<VideoTest />} />
+            <Route path="/roomplaylist" element={<RoomPlaylist />} />
           </Routes>
         </div>
       </div>

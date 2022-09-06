@@ -4,16 +4,8 @@ import "./css/SinglePlaylistView.css";
 import { useSelector, useDispatch } from "react-redux";
 import { setSinglePlaylist, setTrack } from "../redux/browse";
 
-import app, { db } from "./VideoTest";
-import {
-  collection,
-  addDoc,
-  doc,
-  setDoc,
-  updateDoc,
-  arrayUnion,
-  getFirestore,
-} from "firebase/firestore";
+import { db } from "./VideoTest";
+import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 
 function SinglePlaylistView() {
   const logInState = useSelector((state) => state.logIn);
@@ -26,17 +18,22 @@ function SinglePlaylistView() {
   );
   const reduxRoomId = useSelector((state) => state.room.roomId);
 
-  console.log("reduxRoomId", reduxRoomId);
   useEffect(() => {
     dispatch(setSinglePlaylist(accessToken, playlistInfo.playlistId));
   }, []);
 
-  async function handlePlaylist(trackId) {
+  async function handlePlaylist(track) {
     if (reduxRoomId) {
       const playlistRef = await updateDoc(
         doc(db, "RoomPlaylist", reduxRoomId),
         {
-          playlist: arrayUnion(trackId),
+          playlist: arrayUnion({
+            artist: track.track.artists[0].name,
+            title: track.track.name,
+            uri: track.track.uri,
+            albumUrl: track.track.album.images[2].url,
+            id: track.track.id,
+          }),
         }
       );
     }
@@ -137,21 +134,16 @@ function SinglePlaylistView() {
                             {track.track.album.name}
                           </td>
 
-                          {/* <td>
-                          <button className="playButton">
-                            Add to playlist
-                          </button> */}
                           {reduxRoomId ? (
                             <td>
                               <button
                                 className="playButton"
-                                onClick={() => handlePlaylist(track.track.id)}
+                                onClick={() => handlePlaylist(track)}
                               >
                                 Add to Playlist
                               </button>
                             </td>
                           ) : null}
-                          {/* </td> */}
                         </tr>
                       );
                     })}
