@@ -8,6 +8,7 @@ import Player from "./Player";
 
 function SingleTrackView() {
   const logInState = useSelector((state) => state.logIn);
+  const reduxRoomId = useSelector((state) => state.room.roomId);
   let accessToken = logInState?.accessToken;
   const trackInfo = useSelector((state) => state.browse.singleTrackInfo);
   const lyrics = useSelector((state) => state.browse.lyrics);
@@ -19,6 +20,7 @@ function SingleTrackView() {
     }
   }, [trackInfo]);
 
+  console.log("in track view: ", trackInfo.name, trackInfo.uri);
   return (
     <div>
       <Link
@@ -42,8 +44,11 @@ function SingleTrackView() {
               <div className="text-center" style={{ whiteSpace: "pre" }}>
                 Lyrics: {lyrics}
               </div>
-
-              <Player accessToken={accessToken} trackUri={trackInfo?.uri} />
+              {reduxRoomId ? (
+                ""
+              ) : (
+                <Player accessToken={accessToken} trackUri={trackInfo?.uri} />
+              )}
             </div>
           </div>
         ) : (
