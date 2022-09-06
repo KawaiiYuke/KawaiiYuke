@@ -10,17 +10,20 @@ export default function AboutUs() {
     <div className="about-us">
       <div>
         <div class="about-section">
-          <h1>About Us</h1>
+          <h1 style={{ textShadow: "2px 2px black" }}>About Us</h1>
         </div>
 
-        {/* <h2 style="text-align:center">Our Team</h2> */}
         <div class="row">
           <div class="column">
             <div className="each-dev">
               <div class="container">
-                <h2 style={{ paddingTop: "0.3em" }}>Hang Yu</h2>
-                <img src={hang} alt="" width="40%" />
-                <p class="title">Developer</p>
+                <h2
+                  style={{ paddingTop: "0.3em", textShadow: "2px 2px black" }}
+                >
+                  Hang Yu
+                </h2>
+                <img className="headshot" src={hang} alt="" width="40%" />
+                <p className="developer">Developer</p>
                 <p>
                   Hang started out as a graphic designer and am looking for
                   other collaboration and innovation areas. She found software
@@ -35,9 +38,13 @@ export default function AboutUs() {
           <div class="column">
             <div className="each-dev">
               <div class="container">
-                <h2 style={{ paddingTop: "0.3em" }}>Wei Liu</h2>
-                <img src={wei} alt="" width="40%" />
-                <p class="title">Developer</p>
+                <h2
+                  style={{ paddingTop: "0.3em", textShadow: "2px 2px black" }}
+                >
+                  Wei Liu
+                </h2>
+                <img className="headshot" src={wei} alt="" width="40%" />
+                <p className="developer">Developer</p>
                 <p>
                   Passionate Full Stack Developer with double majoring in
                   Technical Systems Management and Applied Mathematics and over
@@ -53,11 +60,14 @@ export default function AboutUs() {
 
           <div class="column">
             <div className="each-dev">
-              {/* <img src="/w3images/team3.jpg" alt="John" style="width:100%"> */}
               <div class="container">
-                <h2 style={{ paddingTop: "0.3em" }}>Yuki Mei</h2>
-                <img src={yuki} alt="" width="40%" />
-                <p class="title">Developer</p>
+                <h2
+                  style={{ paddingTop: "0.3em", textShadow: "2px 2px black" }}
+                >
+                  Yuki Mei
+                </h2>
+                <img className="headshot" src={yuki} alt="" width="40%" />
+                <p className="developer">Developer</p>
                 <p>
                   Yuki is a pharmacist who is aspiring to become a software
                   engineer! As fulfilling as it was guiding patients to live
@@ -73,11 +83,14 @@ export default function AboutUs() {
 
           <div class="column">
             <div className="each-dev">
-              {/* <img src="/w3images/team3.jpg" alt="John" style="width:100%"> */}
               <div class="container">
-                <h2 style={{ paddingTop: "0.3em" }}>Yuri Yoo</h2>
-                <img src={yuri} alt="" width="40%" />
-                <p class="title">Devloper</p>
+                <h2
+                  style={{ paddingTop: "0.3em", textShadow: "2px 2px black" }}
+                >
+                  Yuri Yoo
+                </h2>
+                <img className="headshot" src={yuri} alt="" width="40%" />
+                <p className="developer">Developer</p>
                 <p>
                   Yuri is a former dancer who is passionate about solving
                   problems and being creative. She is appreciative that she

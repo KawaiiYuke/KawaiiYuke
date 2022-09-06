@@ -38,9 +38,10 @@ function SinglePlaylistView() {
       );
     }
   }
+
   return (
     <div>
-      <div className="container" style={{ marginLeft: "24em" }}>
+      <div className="container" style={{ marginLeft: "19em" }}>
         <div className="table" style={{ color: "white" }}>
           <div>
             <h1 style={{ paddingTop: "1em", textShadow: "2px 4px black" }}>
@@ -60,6 +61,7 @@ function SinglePlaylistView() {
                 </button>
               </Link>
             </div>
+
             {singlePlaylist[0].track.id ? (
               <div style={{ paddingTop: "1em" }}>
                 <table

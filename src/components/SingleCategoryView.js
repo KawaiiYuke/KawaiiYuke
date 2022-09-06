@@ -37,7 +37,7 @@ function SingleCategoryView() {
             </button>
           </Link>
         </div>
-        {/* {singleCategoryState[0].id ? <h1>worked</h1> : <h1>not worked</h1>} */}
+
         {singleCategoryState[0].id ? (
           <div className="container">
             <div className="row align-items-center">
