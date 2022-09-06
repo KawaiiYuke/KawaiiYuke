@@ -19,7 +19,7 @@ export default function AboutUs() {
               <div class="container">
                 <h2 style={{ paddingTop: "0.3em" }}>Hang Yu</h2>
                 <img className="headshot" src={hang} alt="" width="40%" />
-                <p class="title">Developer</p>
+                <p className="developer">Developer</p>
                 <p>
                   Hang started out as a graphic designer and am looking for
                   other collaboration and innovation areas. She found software
@@ -36,7 +36,7 @@ export default function AboutUs() {
               <div class="container">
                 <h2>Wei Liu</h2>
                 <img className="headshot" src={wei} alt="" width="40%" />
-                <p class="title">Developer</p>
+                <p className="developer">Developer</p>
                 <p>
                   Passionate Full Stack Developer with double majoring in
                   Technical Systems Management and Applied Mathematics and over
@@ -55,7 +55,7 @@ export default function AboutUs() {
               <div class="container">
                 <h2>Yuki Mei</h2>
                 <img className="headshot" src={yuki} alt="" width="40%" />
-                <p class="title">Developer</p>
+                <p className="developer">Developer</p>
                 <p>
                   Yuki is a pharmacist who is aspiring to become a software
                   engineer! As fulfilling as it was guiding patients to live
@@ -74,7 +74,7 @@ export default function AboutUs() {
               <div class="container">
                 <h2>Yuri Yoo</h2>
                 <img className="headshot" src={yuri} alt="" width="40%" />
-                <p class="title">Devloper</p>
+                <p className="developer">Devloper</p>
                 <p>
                   Yuri is a former dancer who is passionate about solving
                   problems and being creative. She is appreciative that she
