@@ -9,14 +9,14 @@ export default function AboutUs() {
   return (
     <div className="about-us">
       <div>
-        <div class="about-section">
+        <div className="about-section">
           <h1 style={{ textShadow: "2px 2px black" }}>About Us</h1>
         </div>
 
-        <div class="row">
-          <div class="column">
+        <div className="row">
+          <div className="column">
             <div className="each-dev">
-              <div class="container">
+              <div className="container">
                 <h2
                   style={{ paddingTop: "0.3em", textShadow: "2px 2px black" }}
                 >
@@ -35,9 +35,9 @@ export default function AboutUs() {
             </div>
           </div>
 
-          <div class="column">
+          <div className="column">
             <div className="each-dev">
-              <div class="container">
+              <div className="container">
                 <h2
                   style={{ paddingTop: "0.3em", textShadow: "2px 2px black" }}
                 >
@@ -58,7 +58,7 @@ export default function AboutUs() {
             </div>
           </div>
 
-          <div class="column">
+          <div className="column">
             <div className="each-dev">
               <div className="container">
                 <h2
@@ -81,9 +81,9 @@ export default function AboutUs() {
             </div>
           </div>
 
-          <div class="column">
+          <div className="column">
             <div className="each-dev">
-              <div class="container">
+              <div className="container">
                 <h2
                   style={{ paddingTop: "0.3em", textShadow: "2px 2px black" }}
                 >
