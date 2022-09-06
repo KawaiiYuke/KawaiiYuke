@@ -39,58 +39,60 @@ const Navigation = () => {
         <Link to="/">
           <img src={logo} alt="" width="100%" />
         </Link>
-        <ul>
-          <li>
-            <Link to="/aboutus">
-              <img className="navIcon" src={room} alt="" />
-              About Us
-            </Link>
-          </li>
-          <li>
-            <Link to="/explore">
-              <img className="navIcon" src={explore} alt="" />
-              Explore
-            </Link>
-          </li>
-
-          {!signIn && (
+        {!logInState.loggedIn ? (
+          <ul>
             <li>
               <Link to="/signin">
                 <img className="navIcon" src={signin} alt="" />
                 Sign In
               </Link>
             </li>
-          )}
+          </ul>
+        ) : (
+          <ul>
+            <li>
+              <Link to="/aboutus">
+                <img className="navIcon" src={room} alt="" />
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link to="/explore">
+                <img className="navIcon" src={explore} alt="" />
+                Explore
+              </Link>
+            </li>
 
-          <li>
-            <Link to="/room">
-              <img className="navIcon" src={room} alt="" />
-              Room
-            </Link>
-          </li>
+            <li>
+              <Link to="/room">
+                <img className="navIcon" src={room} alt="" />
+                Room
+              </Link>
+            </li>
 
-          <li>
-            <Link to="/search">
-              <img className="navIcon" src={search} alt="" />
-              Search
-            </Link>
-          </li>
+            <li>
+              <Link to="/search">
+                <img className="navIcon" src={search} alt="" />
+                Search
+              </Link>
+            </li>
 
-          <li onClick={() => dispatch(loggingOut())}>
-            <Link to="/signout">
-              <img className="navIcon" src={signout} alt="" />
-              Sign Out
-            </Link>
-          </li>
-        </ul>
-        <div
-          className="menu"
-          onClick={() => {
-            setBar(!navBar);
-          }}
-        >
-          <img src={menu} alt="" />
-        </div>
+            <li onClick={() => dispatch(loggingOut())}>
+              <Link to="/signout">
+                <img className="navIcon" src={signout} alt="" />
+                Sign Out
+              </Link>
+            </li>
+            <div
+              className="menu"
+              onClick={() => {
+                setBar(!navBar);
+              }}
+            >
+              <img src={menu} alt="" />
+            </div>
+          </ul>
+        )}
       </div>
     </div>
   );
