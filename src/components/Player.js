@@ -6,7 +6,8 @@ import { doc, getDoc } from "firebase/firestore";
 
 export default function Player({ accessToken, trackUri }) {
   const [play, setPlay] = useState(false);
-  const reduxRoomId = useSelector((state) => state.room.roomId);
+  //const reduxRoomId = useSelector((state) => state.room.roomId);
+  const reduxRoomId = "Tx17PGWEutvw5c0sYkrW";
   useEffect(() => setPlay(true), [trackUri]);
   const [playlist, setPlaylist] = useState([]);
   console.log("playlist", playlist);
@@ -15,9 +16,7 @@ export default function Player({ accessToken, trackUri }) {
       const docRef = doc(db, "RoomPlaylist", reduxRoomId);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
-        //console.log("Document data:", docSnap.data().playlist);
         setPlaylist(docSnap.data().playlist.map((track) => track.uri));
-        //const urisList = docSnap.data().playlist.map(track=> track.uri)
       }
       //below is to get all room playlists
       // const q = query(collection(db, "RoomPlaylist"));

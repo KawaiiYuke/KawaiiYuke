@@ -11,27 +11,14 @@ import RoomPlaylist from "./RoomPlaylist";
 import Explore from "./Explore";
 import Player from "./Player";
 import app, { db } from "./VideoTest";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  collection,
-  addDoc,
-  doc,
-  setDoc,
-  updateDoc,
-  arrayUnion,
-  onSnapshot,
-  getDoc,
-  query,
-  getDocs,
-  where,
-  deleteField,
-} from "firebase/firestore";
+import { useSelector } from "react-redux";
+import { doc, getDoc } from "firebase/firestore";
 
 const Carousel = () => {
   const logInState = useSelector((state) => state.logIn);
   let accessToken = logInState?.accessToken;
-  //const reduxRoomId = useSelector((state) => state.room.roomId);
-  const reduxRoomId = "wd2C7ECCvhhYaxYVgWXl";
+  const reduxRoomId = useSelector((state) => state.room.roomId);
+  //const reduxRoomId = "wd2C7ECCvhhYaxYVgWXl";
   const [playlist, setPlaylist] = useState([]);
 
   useEffect(() => {
@@ -39,7 +26,6 @@ const Carousel = () => {
       const docRef = doc(db, "RoomPlaylist", reduxRoomId);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
-        //console.log("Document data:", docSnap.data().playlist);
         setPlaylist(docSnap.data().playlist);
       }
       //below is to get all room playlists

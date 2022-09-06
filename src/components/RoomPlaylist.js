@@ -8,26 +8,29 @@ import {
   setDoc,
   updateDoc,
   arrayUnion,
-  onSnapshot,
   getDoc,
-  query,
-  getDocs,
-  where,
   deleteField,
+  onSnapshot,
 } from "firebase/firestore";
 
 export default function RoomPlaylist() {
   //const reduxRoomId = useSelector((state) => state.room.roomId);
-  const reduxRoomId = "wd2C7ECCvhhYaxYVgWXl";
-
+  const reduxRoomId = "Tx17PGWEutvw5c0sYkrW";
   const [playlist, setPlaylist] = useState([]);
+
+  //const docRef = doc(db, "RoomPlaylist", reduxRoomId);
+  // const docSnap = onSnapshot(docRef);
+  // const unsub = onSnapshot(doc(db, "RoomPlaylist", reduxRoomId), (doc) => {
+  //   console.log("Current data: ", doc.data());
+  //   setPlaylist(doc.data().playlist);
+  // });
+
   useEffect(() => {
     async function callPlaylist(reduxRoomId) {
       const docRef = doc(db, "RoomPlaylist", reduxRoomId);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        //console.log("Document data:", docSnap.data().playlist);
-        setPlaylist(docSnap.data().playlist);
+      const getdocSnap = await getDoc(docRef);
+      if (getdocSnap.exists()) {
+        setPlaylist(getdocSnap.data().playlist);
       }
       //below is to get all room playlists
       // const q = query(collection(db, "RoomPlaylist"));
