@@ -58,7 +58,7 @@ export default function RoomPlaylist() {
       <div>
         {reduxRoomId ? (
           <div>
-            <h1>This is Playlist for room: {reduxRoomId}</h1>
+            <h1>Playlist: {reduxRoomId}</h1>
             <div style={{ paddingTop: "1em" }}>
               <table
                 style={{
