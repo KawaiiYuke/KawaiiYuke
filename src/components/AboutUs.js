@@ -18,7 +18,7 @@ export default function AboutUs() {
             <div className="each-dev">
               <div class="container">
                 <h2 style={{ paddingTop: "0.3em" }}>Hang Yu</h2>
-                <img src={hang} alt="" width="40%" />
+                <img className="headshot" src={hang} alt="" width="40%" />
                 <p class="title">Developer</p>
                 <p>
                   Hang started out as a graphic designer and am looking for
@@ -34,8 +34,8 @@ export default function AboutUs() {
           <div class="column">
             <div className="each-dev">
               <div class="container">
-                <h2 style={{ paddingTop: "0.3em" }}>Wei Liu</h2>
-                <img src={wei} alt="" width="40%" />
+                <h2>Wei Liu</h2>
+                <img className="headshot" src={wei} alt="" width="40%" />
                 <p class="title">Developer</p>
                 <p>
                   Passionate Full Stack Developer with double majoring in
@@ -53,8 +53,8 @@ export default function AboutUs() {
           <div class="column">
             <div className="each-dev">
               <div class="container">
-                <h2 style={{ paddingTop: "0.3em" }}>Yuki Mei</h2>
-                <img src={yuki} alt="" width="40%" />
+                <h2>Yuki Mei</h2>
+                <img className="headshot" src={yuki} alt="" width="40%" />
                 <p class="title">Developer</p>
                 <p>
                   Yuki is a pharmacist who is aspiring to become a software
@@ -71,10 +71,9 @@ export default function AboutUs() {
 
           <div class="column">
             <div className="each-dev">
-              {/* <img src="/w3images/team3.jpg" alt="John" style="width:100%"> */}
               <div class="container">
-                <h2 style={{ paddingTop: "0.3em" }}>Yuri Yoo</h2>
-                <img src={yuri} alt="" width="40%" />
+                <h2>Yuri Yoo</h2>
+                <img className="headshot" src={yuri} alt="" width="40%" />
                 <p class="title">Devloper</p>
                 <p>
                   Yuri is a former dancer who is passionate about solving

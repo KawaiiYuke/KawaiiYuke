@@ -177,7 +177,7 @@ function VideoTest() {
       {roomId && (
         <>
           <div className="buttomBtn">
-          <p className="room_id">
+            <p className="room_id">
               Room: {roomId} <br /> Participant ID: {participantId}
             </p>
             <button
@@ -187,7 +187,7 @@ function VideoTest() {
             >
               Copy joining code
             </button>
-            
+
             <button
               onClick={async () => {
                 // shareScreen({ options: { suppressVideo: true } });
