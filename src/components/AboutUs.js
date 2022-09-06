@@ -10,14 +10,18 @@ export default function AboutUs() {
     <div className="about-us">
       <div>
         <div class="about-section">
-          <h1>About Us</h1>
+          <h1 style={{ textShadow: "2px 2px black" }}>About Us</h1>
         </div>
 
         <div class="row">
           <div class="column">
             <div className="each-dev">
               <div class="container">
-                <h2 style={{ paddingTop: "0.3em" }}>Hang Yu</h2>
+                <h2
+                  style={{ paddingTop: "0.3em", textShadow: "2px 2px black" }}
+                >
+                  Hang Yu
+                </h2>
                 <img className="headshot" src={hang} alt="" width="40%" />
                 <p className="developer">Developer</p>
                 <p>
@@ -34,7 +38,11 @@ export default function AboutUs() {
           <div class="column">
             <div className="each-dev">
               <div class="container">
-                <h2>Wei Liu</h2>
+                <h2
+                  style={{ paddingTop: "0.3em", textShadow: "2px 2px black" }}
+                >
+                  Wei Liu
+                </h2>
                 <img className="headshot" src={wei} alt="" width="40%" />
                 <p className="developer">Developer</p>
                 <p>
@@ -53,7 +61,11 @@ export default function AboutUs() {
           <div class="column">
             <div className="each-dev">
               <div class="container">
-                <h2>Yuki Mei</h2>
+                <h2
+                  style={{ paddingTop: "0.3em", textShadow: "2px 2px black" }}
+                >
+                  Yuki Mei
+                </h2>
                 <img className="headshot" src={yuki} alt="" width="40%" />
                 <p className="developer">Developer</p>
                 <p>
@@ -72,9 +84,13 @@ export default function AboutUs() {
           <div class="column">
             <div className="each-dev">
               <div class="container">
-                <h2>Yuri Yoo</h2>
+                <h2
+                  style={{ paddingTop: "0.3em", textShadow: "2px 2px black" }}
+                >
+                  Yuri Yoo
+                </h2>
                 <img className="headshot" src={yuri} alt="" width="40%" />
-                <p className="developer">Devloper</p>
+                <p className="developer">Developer</p>
                 <p>
                   Yuri is a former dancer who is passionate about solving
                   problems and being creative. She is appreciative that she

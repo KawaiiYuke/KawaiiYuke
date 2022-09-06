@@ -64,7 +64,7 @@ function SinglePlaylistView() {
                 </button>
               </Link>
             </div>
-            {console.log("asdf", singlePlaylist)}
+
             {singlePlaylist[0].track.id ? (
               <div style={{ paddingTop: "1em" }}>
                 <table
