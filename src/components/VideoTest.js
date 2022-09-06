@@ -89,16 +89,9 @@ function VideoTest() {
   useEffect(() => {
     if (roomId) {
       dispatch(setReduxRoomId(roomId));
-
       const roomPlaylistRef = setDoc(doc(db, "RoomPlaylist", roomId), {
         playlist: [],
-        currentPlaying: {},
       });
-
-      // const roomPlaylistRef = setDoc(
-      //   doc(db, "RoomPlaylist", roomId, "playlist"),
-      //   []
-      // );
     }
   }, [roomId]);
 
@@ -133,7 +126,6 @@ function VideoTest() {
                 }}
               >
                 <p className="idTitle">{id}:</p>
-
                 <video
                   ref={(element) => {
                     if (element) {
@@ -197,7 +189,6 @@ function VideoTest() {
             <p className="room_id">
               Room: {roomId} <br /> Participant ID: {participantId}
             </p>
-
             <button
               onClick={() => {
                 navigator.clipboard.writeText(roomId);
@@ -214,7 +205,6 @@ function VideoTest() {
             >
               SHARE SCREEN
             </button>
-            <div>
               <button
                 onClick={() => {
                   leaveRoom();
@@ -223,7 +213,6 @@ function VideoTest() {
               >
                 Leave Room{" "}
               </button>
-            </div>
           </div>
         </>
       )}
