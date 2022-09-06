@@ -8,17 +8,15 @@ import "./css/Carousel.scss";
 import Home from "./Home";
 import { Form } from "react-bootstrap";
 import RoomPlaylist from "./RoomPlaylist";
-import Explore from "./Explore";
 import Player from "./Player";
-import app, { db } from "./VideoTest";
+import { db } from "./VideoTest";
 import { useSelector } from "react-redux";
-import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 
 const Carousel = () => {
   const logInState = useSelector((state) => state.logIn);
   let accessToken = logInState?.accessToken;
   const reduxRoomId = useSelector((state) => state.room.roomId);
-  //const reduxRoomId = "ZkbPky8S0YWyGlWHgn0d";
   const [playlist, setPlaylist] = useState([]);
 
   useEffect(() => {
@@ -27,26 +25,11 @@ const Carousel = () => {
       const getdocSnap = await getDoc(docRef);
       if (getdocSnap.exists()) {
         const res = getdocSnap.data();
-        if (res) setPlaylist(res.playlist);
+        if (res) setPlaylist(res.playlist.map((track) => track.uri));
       }
-      //below is to get all room playlists
-      // const q = query(collection(db, "RoomPlaylist"));
-      // const querySnapshot = await getDocs(q);
-      // const queryAllRoomPlaylistData = querySnapshot.docs.map((detail) => ({
-      //   ...detail.data(),
-      //   id: detail.id,
-      // }));
-      // console.log("queryData", queryAllRoomPlaylistData);
     }
     callPlaylist(reduxRoomId);
   }, []);
-
-  // useEffect(() => {
-  //   const unsub = onSnapshot(doc(db, "RoomPlaylist", reduxRoomId), (doc) => {
-  //     setPlaylist(doc.data().playlist);
-  //   });
-  //   return unsub;
-  // }, [reduxRoomId]);
 
   return (
     <React.Fragment>
@@ -68,7 +51,7 @@ const Carousel = () => {
         </Swiper>
       </div>
       <div>
-        <Player accessToken={accessToken} trackUri={playlist[0]?.uri} />
+        <Player accessToken={accessToken} trackUri={playlist?.uri} />
       </div>
     </React.Fragment>
   );
