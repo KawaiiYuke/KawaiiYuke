@@ -185,7 +185,7 @@ function VideoTest() {
       </div>
       {roomId && (
         <>
-          <div className="buttomBtn">
+          <div className="buttonBtn">
             <p className="room_id">
               Room: {roomId} <br /> Participant ID: {participantId}
             </p>
@@ -205,14 +205,14 @@ function VideoTest() {
             >
               SHARE SCREEN
             </button>
-              <button
-                onClick={() => {
-                  leaveRoom();
-                  dispatch(clearReduxRoomId(roomId));
-                }}
-              >
-                Leave Room{" "}
-              </button>
+            <button
+              onClick={() => {
+                leaveRoom();
+                dispatch(clearReduxRoomId(roomId));
+              }}
+            >
+              Leave Room{" "}
+            </button>
           </div>
         </>
       )}
