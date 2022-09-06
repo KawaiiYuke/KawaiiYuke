@@ -23,7 +23,7 @@ export default function TrackSearchResult({ track, chooseTrack }) {
       const playlistRef = await updateDoc(
         doc(db, "RoomPlaylist", reduxRoomId),
         {
-          playlist: arrayUnion({ title: track.title, id: track.id }),
+          playlist: arrayUnion(track),
         }
       );
     }

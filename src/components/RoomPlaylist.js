@@ -18,7 +18,7 @@ import {
 
 export default function RoomPlaylist() {
   //const reduxRoomId = useSelector((state) => state.room.roomId);
-  const reduxRoomId = "hBRl5buieKyMZ9U9Ur3m";
+  const reduxRoomId = "wd2C7ECCvhhYaxYVgWXl";
 
   const [playlist, setPlaylist] = useState([]);
   useEffect(() => {
