@@ -116,17 +116,15 @@ const Home = () => {
             )}
           </div>
 
-
-        {reduxRoomId ? (
-          ""
-        ) : (
-          <div>
-            <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
-          </div>
-        )}
-      </Container>
-
-    </div>
+          {reduxRoomId ? (
+            ""
+          ) : (
+            <div>
+              <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
+            </div>
+          )}
+        </Container>
+      </div>
     </div>
   );
 };
