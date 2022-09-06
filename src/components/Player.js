@@ -11,7 +11,7 @@ export default function Player({ accessToken, trackUri }) {
   const reduxPlaylist = useSelector((state) => state.room.playlist);
   useEffect(() => setPlay(true), [trackUri]);
   const [playlist, setPlaylist] = useState([]);
-  // console.log("playlist in player", playlist);
+  console.log("playlist in player", playlist);
   useEffect(() => {
     async function callPlaylist(reduxRoomId) {
       const docRef = doc(db, "RoomPlaylist", reduxRoomId);
@@ -33,14 +33,8 @@ export default function Player({ accessToken, trackUri }) {
     callPlaylist(reduxRoomId);
   }, [reduxPlaylist]);
 
-  // useEffect(() => {
-  //   const unsub = onSnapshot(doc(db, "RoomPlaylist", reduxRoomId), (doc) => {
-  //     setPlaylist(doc.data().playlist);
-  //   });
-  //   return unsub;
-  // }, [reduxRoomId]);
-
   if (!accessToken) return null;
+
   return (
     <div>
       {reduxRoomId ? (
