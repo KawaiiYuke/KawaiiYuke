@@ -1,11 +1,13 @@
-.single-track-view{
-    height: 100%;
- }
+/* .single-track-view{
+    height: 100vh;
+ } */
  .single-track-view .track-view {
      display:flex;
      justify-content: center;
      align-items: center;
      flex-direction: column;
+     margin-top: 2em;
+     text-shadow:2px 2px black ;
  }
  
  .single-track-view .track-info{
