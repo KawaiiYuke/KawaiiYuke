@@ -1,109 +1,16 @@
-.webcamRTC body {
-  background: #ffffff;
-
-}
-
-.webcamRTC #join-btn {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  margin-top: -50px;
-  margin-left: -100px;
-  font-size: 18px;
-  padding: 20px 40px;
-}
-
-.webcamRTC #video-streams {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-  height: 90vh;
-  width: 1400px;
-  margin: 0 auto;
-}
-
-
-.webcamRTC #stream-controls {
-  display: none;
-  justify-content: center;
-  margin-top: 0.5em;
-}
-.webcamRTC .home {
-  height: 100vh;
-  display: flex;
-  /*grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));*/
-  /*gap: 10vw;*/
-  padding: 30vh 20vw;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: center;
-}
-.webcamRTC .home > div {
-  width: 500px;
-  height: 380px;
-  /*background: url("../../images/background.jpg") no-repeat;*/
-  /*background-size: cover;*/
-  /*background-color: rgba(85,50,109,0.8);*/
-  /*border: 1px solid white;*/
-  margin: 0 10px;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  align-items: center;
-  justify-content: center;
-}
-.webcamRTC .home > div > button {
-  border: 1px solid #6938eb;
-  border-radius: 50px;
-  margin-top: 20px;
-  width: 90%;
-  transition: all 0.6s;
-  background-color: #6938eb;
-}
-.webcamRTC .home > div > button:hover {
-  border: 1px solid #6938eb;
-  background-color: white;
-  color: #6938eb;
-}
-.webcamRTC .home > div > input {
-  width: 90%;
-  text-indent: 10px;
-  border: 1px solid white;
-  border-radius: 50px;
-  outline: none;
-  height: 45px;
-}
-.webcamRTC .home > div > img {
-  margin-bottom: 20px;
-}
-.webcamRTC .userPwd {
-  width: 20%;
-  margin: auto;
-  padding: 5px 0;
-  border: 1px solid rgb(160, 0, 192);
-  color: rgb(72, 0, 87);
-  background-color: rgb(255, 255, 255);
-  font-size: 20px;
-  border-radius: 50px;
-}
-@media screen and (max-width: 1400px) {
-  #video-streams {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    width: 95%;
-  }
-}
 
 .VideoTest{
   width: 100%;
   min-height: 100vh;
 }
-.videoBox{
+.VideoTest .videoBox{
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
-.bigVideo{
+.VideoTest .bigVideo{
   width: 300px;
   height: 300px;
   position: relative;
@@ -111,7 +18,7 @@
   overflow: hidden;
   margin: 20px 0;
 }
-.bigVideo>video{
+.VideoTest .bigVideo>video{
   width: 500px;
   height: 500px;
   position: absolute;
@@ -120,33 +27,35 @@
   transform: translate(-50%, -50%);
   border: 1px solid white;
 }
-.sm_video{
+.VideoTest .sm_video{
   width: 800px;
   margin-top: 20px;
   display: grid;
   grid-template-columns: repeat(3,33%);
   justify-content: space-between;
+  
 }
-.activeVideo{
+.VideoTest .activeVideo{
   width: 1000px !important;
   position: fixed;
+  
   left: 50%;
   top: 50%;
   transform: translate(-50%,-50%);
   z-index: 999;
 }
-.sm_video>div{
+.VideoTest .sm_video>div{
   width: 100%;
   margin-bottom: 5px;
 }
-.sm_video>div>video{
+.VideoTest .sm_video>div>video{
   width: 100%;
 }
-.answer{
+.VideoTest .answer{
   width: 450px;
   margin: auto;
 }
-.answer>input{
+.VideoTest .answer>input{
   width: 100%;
   text-indent: 10px;
   border: 1px solid white;
@@ -154,13 +63,13 @@
   outline: none;
   height: 45px;
 }
-.answer>div{
+.VideoTest .answer>div{
   display: flex;
   justify-content: center;
   margin-top: 20px;
 
 }
-.answer>div>button{
+.VideoTest .answer>div>button{
   width: 48%;
   border-radius: 50px;
   transition: all 0.6s;
@@ -173,12 +82,12 @@
   border: 1px solid white;
   margin: 0 5px;
 }
-.answer>div>button:hover{
+.VideoTest .answer>div>button:hover{
   border: 1px solid #6938eb;
   background-color: white;
   color: #6938eb;
 }
-.idTitle{
+.VideoTest .idTitle{
   width: 100%;
   text-align: center;
   font-size: 12px;
@@ -186,11 +95,11 @@
   padding: 5px 0;
   border-bottom: 1px solid white;
 }
-.buttomBtn{
+.VideoTest .buttonBtn{
   width: 450px;
   margin: auto;
 }
-.buttomBtn>button{
+.VideoTest .buttonBtn>button{
   width: 48%;
   border-radius: 50px;
   transition: all 0.6s;
@@ -202,12 +111,12 @@
   cursor: pointer;
   border: 1px solid white;
 }
-.buttomBtn>button:hover{
+.VideoTest .buttonBtn>button:hover{
   border: 1px solid #6938eb;
   background-color: white;
   color: #6938eb;
 }
-.room_id{
+.VideoTest .room_id{
   color: white;
   text-align: left;
 }
