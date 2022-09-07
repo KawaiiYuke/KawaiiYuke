@@ -68,6 +68,7 @@ const roomReducer = (state = initialState, action) => {
         roomId: action.roomId,
       };
     case CLEAR_ROOM_ID:
+      window.localStorage.clear();
       return {
         ...state,
         roomId: "",
