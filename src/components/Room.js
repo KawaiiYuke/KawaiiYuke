@@ -10,9 +10,11 @@ const Room = () => {
   let accessToken = logInState?.accessToken;
   return (
     <div className="room">
-      <Carousel />
-      <VideoTest />
-      <Player accessToken={accessToken} />
+      <div className="roomComponents">
+        <Carousel />
+        <VideoTest />
+        <Player accessToken={accessToken} />
+      </div>
     </div>
   );
 };
