@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import { Navigation } from "swiper";
-import "swiper/css/navigation";
-import "swiper/css/effect-fade";
-import "./css/Carousel.scss";
-import Home from "./Home";
-import { Form } from "react-bootstrap";
-import RoomPlaylist from "./RoomPlaylist";
-import Player from "./Player";
-import { db } from "./VideoTest";
-import { useSelector } from "react-redux";
-import { doc, getDoc } from "firebase/firestore";
+import React, { useState, useEffect } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import { Navigation } from 'swiper';
+import 'swiper/css/navigation';
+import 'swiper/css/effect-fade';
+import './css/Carousel.scss';
+import Home from './Home';
+import RoomPlaylist from './RoomPlaylist';
+import { db } from './VideoTest';
+import { useSelector } from 'react-redux';
+import { doc, getDoc } from 'firebase/firestore';
 
 const Carousel = () => {
   const logInState = useSelector((state) => state.logIn);
@@ -21,11 +19,11 @@ const Carousel = () => {
 
   useEffect(() => {
     async function callPlaylist(reduxRoomId) {
-      const docRef = doc(db, "RoomPlaylist", reduxRoomId);
+      const docRef = doc(db, 'RoomPlaylist', reduxRoomId);
       const getdocSnap = await getDoc(docRef);
       if (getdocSnap.exists()) {
         const res = getdocSnap.data();
-        if (res) setPlaylist(res.playlist.map((track) => track.uri));
+        if (res) setPlaylist(res.playlist);
       }
     }
     callPlaylist(reduxRoomId);
@@ -33,7 +31,7 @@ const Carousel = () => {
 
   return (
     <React.Fragment>
-      <div className="swiperContainer" style={{ width: "50%" }}>
+      <div className="swiperContainer" style={{ width: '50%' }}>
         <Swiper
           modules={[Navigation]}
           navigation
@@ -49,9 +47,6 @@ const Carousel = () => {
             <RoomPlaylist />
           </SwiperSlide>
         </Swiper>
-      </div>
-      <div>
-        <Player accessToken={accessToken} trackUri={playlist?.uri} />
       </div>
     </React.Fragment>
   );

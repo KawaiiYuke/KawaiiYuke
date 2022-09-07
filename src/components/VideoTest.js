@@ -1,25 +1,13 @@
-import React, { useState, useEffect } from "react";
-import "./css/VideoTest.css";
-import { useWebRTCFirebase } from "usewebrtc";
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  doc,
-  data,
-  setDoc,
-} from "firebase/firestore";
-import { initializeApp } from "firebase/app";
-import { useSelector, useDispatch } from "react-redux";
-import { v4 as uuid } from "uuid";
-import { setReduxRoomId, clearReduxRoomId } from "../redux/roomPlaylist";
-
-import "firebase/compat/firestore";
-import { ReactComponent as HangupIcon } from "../icons/hangup.svg";
-import { ReactComponent as MoreIcon } from "../icons/more-vertical.svg";
-import { ReactComponent as CopyIcon } from "../icons/copy.svg";
-import icon from "../images/icon-no-bg.png";
-import vback from "../images/vback.gif";
+import React, { useState, useEffect } from 'react';
+import './css/VideoTest.css';
+import { useWebRTCFirebase } from 'usewebrtc';
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import { initializeApp } from 'firebase/app';
+import { useSelector, useDispatch } from 'react-redux';
+import { v4 as uuid } from 'uuid';
+import { setReduxRoomId, clearReduxRoomId } from '../redux/roomPlaylist';
+import 'firebase/compat/firestore';
+import vback from '../images/vback.gif';
 
 const participantId = uuid();
 
@@ -33,52 +21,35 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_APP_ID,
 };
 
-// firebase.initializeApp(firebaseConfig);
-
-// const firestore = firebase.firestore();
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
-// export const db = getFirestore(
-//   initializeApp({
-//     apiKey: process.env.REACT_APP_APIKEY,
-//     authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-//     databaseURL: process.env.REACT_APP_DATABASE_URL,
-//     projectId: process.env.REACT_APP_PROJECT_ID,
-//     storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-//     messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-//     appId: process.env.REACT_APP_APP_ID,
-//   })
-// );
 
 // Initialize WebRTC
 const servers = {
   iceServers: [
     {
-      urls: ["stun:stun1.l.google.com:19302", "stun:stun2.l.google.com:19302"],
+      urls: ['stun:stun1.l.google.com:19302', 'stun:stun2.l.google.com:19302'],
     },
   ],
   iceCandidatePoolSize: 10,
 };
 
-const pc = new RTCPeerConnection(servers);
+new RTCPeerConnection(servers);
 
 function VideoTest() {
   const [joinedRoom, setJoinedRoom] = useState(false);
-  const reduxRoomId = useSelector((state) => state.room.roomId);
+  useSelector((state) => state.room.roomId);
   const dispatch = useDispatch();
-  /* eslint-disable no-unused-vars */
   const {
     localStream,
     participants,
     shareScreen,
-    endScreenShare,
     createRoom,
     joinRoom,
     leaveRoom,
     roomId,
     setRoomId,
   } = useWebRTCFirebase({ db, participantId });
-  /* eslint-enable no-unused-vars */
 
   useEffect(() => {
     if (!roomId) {
@@ -89,7 +60,7 @@ function VideoTest() {
   useEffect(() => {
     if (roomId) {
       dispatch(setReduxRoomId(roomId));
-      const roomPlaylistRef = setDoc(doc(db, "RoomPlaylist", roomId), {
+      setDoc(doc(db, 'RoomPlaylist', roomId), {
         playlist: [],
       });
     }
@@ -118,10 +89,10 @@ function VideoTest() {
               <div
                 key={id}
                 onClick={(e) => {
-                  if (e.currentTarget.className.indexOf("activeVideo") != -1) {
-                    e.currentTarget.classList.remove("activeVideo");
+                  if (e.currentTarget.className.indexOf('activeVideo') !== -1) {
+                    e.currentTarget.classList.remove('activeVideo');
                   } else {
-                    e.currentTarget.classList.add("activeVideo");
+                    e.currentTarget.classList.add('activeVideo');
                   }
                 }}
               >
@@ -173,7 +144,7 @@ function VideoTest() {
                     await createRoom();
                     setJoinedRoom(true);
                   } catch (e) {
-                    alert("Failed to create room,", e.message);
+                    alert('Failed to create room,', e.message);
                   }
                 }}
               >
@@ -199,7 +170,6 @@ function VideoTest() {
 
             <button
               onClick={async () => {
-                // shareScreen({ options: { suppressVideo: true } });
                 shareScreen();
               }}
             >
@@ -211,7 +181,7 @@ function VideoTest() {
                 dispatch(clearReduxRoomId(roomId));
               }}
             >
-              Leave Room{" "}
+              Leave Room{' '}
             </button>
           </div>
         </>

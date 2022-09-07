@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Container, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCategoryList } from '../redux/browse';
@@ -8,7 +7,7 @@ import { loggingIn } from '../redux/logIn';
 import { useSearchParams } from 'react-router-dom';
 
 const Explore = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const code = searchParams.get('code');
 
   const logInState = useSelector((state) => state.logIn);

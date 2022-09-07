@@ -1,10 +1,9 @@
-
-.SignOut{
+.SignOut {
   width: 100%;
   min-height: 100vh;
   position: relative;
 }
-.title{
+.title {
   width: 100%;
   font-size: 30px;
   color: white;
@@ -13,24 +12,22 @@
   left: 50%;
   transform: translateX(-50%);
   text-shadow: black 2px 4px;
-
 }
-.ReLogin{
-    font-family: inherit;
-    font-weight: 500;
-    font-size: 16px;
-    padding: 0.7em 1.4em 0.7em 1.1em;
-    background: #ad5389;
-    background: linear-gradient(0deg, rgb(14, 122, 44) 0%, rgb(73, 182, 82) 100%);
-    border: none;
-    box-shadow: 0 0.7em 1.5em -0.5em #14a73e98;
-    letter-spacing: 0.05em;
-    border-radius: 20em;
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-
+.ReLogin {
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 0.7em 1.4em 0.7em 1.1em;
+  background: #ad5389;
+  background: linear-gradient(0deg, rgb(14, 122, 44) 0%, rgb(73, 182, 82) 100%);
+  border: none;
+  box-shadow: 0 0.7em 1.5em -0.5em #14a73e98;
+  letter-spacing: 0.05em;
+  border-radius: 20em;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
 }

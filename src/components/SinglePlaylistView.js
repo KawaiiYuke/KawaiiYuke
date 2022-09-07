@@ -24,18 +24,15 @@ function SinglePlaylistView() {
 
   async function handlePlaylist(track) {
     if (reduxRoomId) {
-      const playlistRef = await updateDoc(
-        doc(db, 'RoomPlaylist', reduxRoomId),
-        {
-          playlist: arrayUnion({
-            artist: track.track.artists[0].name,
-            title: track.track.name,
-            uri: track.track.uri,
-            albumUrl: track.track.album.images[2].url,
-            id: track.track.id,
-          }),
-        }
-      );
+      await updateDoc(doc(db, 'RoomPlaylist', reduxRoomId), {
+        playlist: arrayUnion({
+          artist: track.track.artists[0].name,
+          title: track.track.name,
+          uri: track.track.uri,
+          albumUrl: track.track.album.images[2].url,
+          id: track.track.id,
+        }),
+      });
     }
   }
 

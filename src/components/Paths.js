@@ -17,7 +17,7 @@ import { useSelector } from 'react-redux';
 import RoomPlaylist from './RoomPlaylist';
 
 const Paths = () => {
-  const logInState = useSelector((state) => state.logIn);
+  useSelector((state) => state.logIn);
 
   return (
     <Router>
