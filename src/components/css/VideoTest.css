@@ -87,10 +87,11 @@
 .VideoTest .idTitle {
   width: 100%;
   text-align: center;
-  font-size: 12px;
+  font-size: 20px;
   color: white;
   padding: 5px 0;
   border-bottom: 1px solid white;
+
 }
 .VideoTest .buttonBtn {
   width: 450px;
@@ -115,5 +116,7 @@
 }
 .VideoTest .room_id {
   color: white;
-  text-align: left;
+  text-align: center;
+  font-weight: bold;
+  padding-top: 1em;
 }
