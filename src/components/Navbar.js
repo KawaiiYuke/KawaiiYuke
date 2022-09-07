@@ -8,6 +8,7 @@ import signin from '../images/signin.png';
 import search from '../images/search.png';
 import signout from '../images/signout.png';
 import room from '../images/room.png';
+import about from "../images/about.png";
 import { useDispatch, useSelector } from 'react-redux';
 import { loggingOut } from '../redux/logIn';
 
@@ -50,7 +51,7 @@ const Navigation = () => {
           <ul>
             <li>
               <Link to="/aboutus">
-                <img className="navIcon" src={room} alt="" />
+                <img className="navIcon" src={about} alt="" />
                 About Us
               </Link>
             </li>
