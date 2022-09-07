@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import "./css/Navbar.css";
-import menu from "../images/menu.png";
-import logo from "../images/kawaii_logo.png";
-import explore from "../images/explore.png";
-import signin from "../images/signin.png";
-import search from "../images/search.png";
-import signout from "../images/signout.png";
-import room from "../images/room.png";
-import { useDispatch, useSelector } from "react-redux";
-import { loggingOut } from "../redux/logIn";
-
-import { AUTH_URL } from "./SignIn";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import './css/Navbar.css';
+import menu from '../images/menu.png';
+import logo from '../images/kawaii_logo.png';
+import explore from '../images/explore.png';
+import signin from '../images/signin.png';
+import search from '../images/search.png';
+import signout from '../images/signout.png';
+import room from '../images/room.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { loggingOut } from '../redux/logIn';
 
 const Navigation = () => {
   const dispatch = useDispatch();
@@ -35,7 +33,7 @@ const Navigation = () => {
 
   return (
     <div className="wrapper">
-      <div className="sidebar" style={{ width: navBar ? "50px" : "225px" }}>
+      <div className="sidebar" style={{ width: navBar ? '50px' : '225px' }}>
         <Link to="/">
           <img src={logo} alt="" width="100%" />
         </Link>
