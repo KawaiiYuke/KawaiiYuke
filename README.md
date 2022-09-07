@@ -22,10 +22,12 @@ We wanted to use the common parts of all our team members names along with the w
  <img src="https://media.giphy.com/media/AXKBcCbS5nD1YxcExH/giphy.gif"/>&nbsp;&nbsp;&nbsp;
 ### Create a room
 ---
+ <img src="https://media.giphy.com/media/ieb2RG6mKHZHL1xlqz/giphy.gif"/>&nbsp;&nbsp;&nbsp;
 ### Or join a room
 ---
-### Meet with friends and sing your heart out
----
+ <img src="https://media.giphy.com/media/AyGYKCeK52aClszOpX/giphy.gif"/>&nbsp;&nbsp;&nbsp;
+### Meet with friends and sing your heart out 🎤🎶
+
 
 
 
