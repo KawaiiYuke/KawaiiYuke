@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import "./css/RoomPlaylist.css";
 import { useSelector } from 'react-redux';
 import { db } from './VideoTest';
 import { doc, getDoc } from 'firebase/firestore';
@@ -25,7 +26,7 @@ export default function RoomPlaylist() {
       <div>
         {reduxRoomId ? (
           <div>
-            <h1>Room Playlist:</h1>
+            <h1 className="room_title">Room Playlist:</h1>
             <div style={{ paddingTop: '1em' }}>
               <table
                 style={{
@@ -55,7 +56,7 @@ export default function RoomPlaylist() {
             </div>
           </div>
         ) : (
-          <h1>Please join a room.</h1>
+          <h1 className="joinRoom">Please join a room.</h1>
         )}
       </div>
     </div>
