@@ -26,7 +26,7 @@ const Explore = () => {
   }, [logInState]);
 
   return (
-    <div style={{ marginLeft: '7em' }}>
+    <div>
       <h1
         style={{
           color: 'white',

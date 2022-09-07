@@ -22,7 +22,7 @@ const Paths = () => {
   return (
     <Router>
       <div className="allPaths">
-        <div>
+        <div className="navigationBar">
           <Navigation />
         </div>
         <div className="main_content">
