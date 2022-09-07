@@ -1,16 +1,15 @@
-
-.VideoTest{
-  width: 100%;
+.VideoTest {
+  width: 50%;
   min-height: 100vh;
 }
-.VideoTest .videoBox{
+.VideoTest .videoBox {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
-.VideoTest .bigVideo{
+.VideoTest .bigVideo {
   width: 300px;
   height: 300px;
   position: relative;
@@ -18,7 +17,7 @@
   overflow: hidden;
   margin: 20px 0;
 }
-.VideoTest .bigVideo>video{
+.VideoTest .bigVideo > video {
   width: 500px;
   height: 500px;
   position: absolute;
@@ -27,35 +26,34 @@
   transform: translate(-50%, -50%);
   border: 1px solid white;
 }
-.VideoTest .sm_video{
+.VideoTest .sm_video {
   width: 800px;
   margin-top: 20px;
   display: grid;
-  grid-template-columns: repeat(3,33%);
+  grid-template-columns: repeat(3, 33%);
   justify-content: space-between;
-  
 }
-.VideoTest .activeVideo{
+.VideoTest .activeVideo {
   width: 1000px !important;
   position: fixed;
-  
+
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   z-index: 999;
 }
-.VideoTest .sm_video>div{
+.VideoTest .sm_video > div {
   width: 100%;
   margin-bottom: 5px;
 }
-.VideoTest .sm_video>div>video{
+.VideoTest .sm_video > div > video {
   width: 100%;
 }
-.VideoTest .answer{
+.VideoTest .answer {
   width: 450px;
   margin: auto;
 }
-.VideoTest .answer>input{
+.VideoTest .answer > input {
   width: 100%;
   text-indent: 10px;
   border: 1px solid white;
@@ -63,13 +61,12 @@
   outline: none;
   height: 45px;
 }
-.VideoTest .answer>div{
+.VideoTest .answer > div {
   display: flex;
   justify-content: center;
   margin-top: 20px;
-
 }
-.VideoTest .answer>div>button{
+.VideoTest .answer > div > button {
   width: 48%;
   border-radius: 50px;
   transition: all 0.6s;
@@ -82,12 +79,12 @@
   border: 1px solid white;
   margin: 0 5px;
 }
-.VideoTest .answer>div>button:hover{
+.VideoTest .answer > div > button:hover {
   border: 1px solid #6938eb;
   background-color: white;
   color: #6938eb;
 }
-.VideoTest .idTitle{
+.VideoTest .idTitle {
   width: 100%;
   text-align: center;
   font-size: 12px;
@@ -95,11 +92,11 @@
   padding: 5px 0;
   border-bottom: 1px solid white;
 }
-.VideoTest .buttonBtn{
+.VideoTest .buttonBtn {
   width: 450px;
   margin: auto;
 }
-.VideoTest .buttonBtn>button{
+.VideoTest .buttonBtn > button {
   width: 48%;
   border-radius: 50px;
   transition: all 0.6s;
@@ -111,12 +108,12 @@
   cursor: pointer;
   border: 1px solid white;
 }
-.VideoTest .buttonBtn>button:hover{
+.VideoTest .buttonBtn > button:hover {
   border: 1px solid #6938eb;
   background-color: white;
   color: #6938eb;
 }
-.VideoTest .room_id{
+.VideoTest .room_id {
   color: white;
   text-align: left;
 }

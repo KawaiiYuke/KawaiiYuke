@@ -28,9 +28,7 @@ const Room = () => {
   return (
     <div className="room">
       <Carousel />
-
       <VideoTest />
-      {/* <Player accessToken={accessToken} trackUri={playlist[0]?.uri} /> */}
     </div>
   );
 };

@@ -6,9 +6,7 @@ import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import "./css/Carousel.scss";
 import Home from "./Home";
-import { Form } from "react-bootstrap";
 import RoomPlaylist from "./RoomPlaylist";
-import Player from "./Player";
 import { db } from "./VideoTest";
 import { useSelector } from "react-redux";
 import { doc, getDoc } from "firebase/firestore";
@@ -33,7 +31,7 @@ const Carousel = () => {
 
   return (
     <React.Fragment>
-      <div className="swiperContainer" style={{ width: "50%" }}>
+      <div className="swiperContainer" style={{ width: "70%" }}>
         <Swiper
           modules={[Navigation]}
           navigation
@@ -42,18 +40,14 @@ const Carousel = () => {
           loop
           className="myswiper"
         >
-          <SwiperSlide className="swiperslide">
+          <SwiperSlide className="swiperslide" style={{ width: "50%" }}>
             <Home />
           </SwiperSlide>
-          <SwiperSlide className="swiperslide">
+          <SwiperSlide className="swiperslide" style={{ width: "50%" }}>
             <RoomPlaylist />
           </SwiperSlide>
         </Swiper>
       </div>
-      {/* <div> */}
-      {/* <Player accessToken={accessToken} /> */}
-      {/* <Player accessToken={accessToken} trackUri={playlist[0]?.uri} /> */}
-      {/* </div> */}
     </React.Fragment>
   );
 };

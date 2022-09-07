@@ -9,7 +9,7 @@ import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import app, { db } from "./VideoTest";
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: process.env.REACT_APP_CLIENT_ID,
+  clientId: process.env.CLIENT_ID,
 });
 
 const Home = () => {

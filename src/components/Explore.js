@@ -1,15 +1,14 @@
-import React, { useEffect } from "react";
-import { Container, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { setCategoryList } from "../redux/browse";
-import { setSingleCategory } from "../redux/browse";
-import { loggingIn } from "../redux/logIn";
-import { useSearchParams } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCategoryList } from '../redux/browse';
+import { setSingleCategory } from '../redux/browse';
+import { loggingIn } from '../redux/logIn';
+import { useSearchParams } from 'react-router-dom';
 
 const Explore = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const code = searchParams.get("code");
+  const [searchParams] = useSearchParams();
+  const code = searchParams.get('code');
 
   const logInState = useSelector((state) => state.logIn);
   const categoryState = useSelector((state) => state.browse.categoryList);
@@ -27,12 +26,12 @@ const Explore = () => {
   }, [logInState]);
 
   return (
-    <div style={{ marginLeft: "7em" }}>
+    <div>
       <h1
         style={{
-          color: "white",
-          paddingTop: "1em",
-          textShadow: "2px 4px black",
+          color: 'white',
+          paddingTop: '1em',
+          textShadow: '2px 4px black',
         }}
       >
         Categories
@@ -52,7 +51,7 @@ const Explore = () => {
                 <Link
                   to={`/category/${category.id}`}
                   style={{
-                    textDecoration: "none",
+                    textDecoration: 'none',
                   }}
                 >
                   <img
@@ -60,17 +59,17 @@ const Explore = () => {
                     alt="icon"
                     className="img-fluid mb-3"
                     style={{
-                      borderRadius: "12rem",
-                      boxShadow: "25px 24px 30px black",
-                      paddingBottom: "0.5em",
+                      borderRadius: '12rem',
+                      boxShadow: '25px 24px 30px black',
+                      paddingBottom: '0.5em',
                     }}
                   />
                   <h3
                     style={{
-                      color: "white",
-                      paddingBottom: "1.5em",
-                      textShadow: "2px 4px black",
-                      fontSize: "23px",
+                      color: 'white',
+                      paddingBottom: '1.5em',
+                      textShadow: '2px 4px black',
+                      fontSize: '23px',
                     }}
                   >
                     {category.name}
