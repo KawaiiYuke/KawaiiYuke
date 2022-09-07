@@ -79,7 +79,6 @@ const Home = () => {
   }, [search, accessToken]);
 
   const [playlist, setPlaylist] = useState([]);
-  console.log("playlist", playlist);
   useEffect(() => {
     async function callPlaylist(reduxRoomId) {
       const docRef = doc(db, "RoomPlaylist", reduxRoomId);
