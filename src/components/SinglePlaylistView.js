@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import "./css/SinglePlaylistView.css";
-import { useSelector, useDispatch } from "react-redux";
-import { setSinglePlaylist, setTrack } from "../redux/browse";
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import './css/SinglePlaylistView.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSinglePlaylist, setTrack } from '../redux/browse';
 
-import { db } from "./VideoTest";
-import { doc, updateDoc, arrayUnion } from "firebase/firestore";
+import { db } from './VideoTest';
+import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
 
 function SinglePlaylistView() {
   const logInState = useSelector((state) => state.logIn);
@@ -24,38 +24,35 @@ function SinglePlaylistView() {
 
   async function handlePlaylist(track) {
     if (reduxRoomId) {
-      const playlistRef = await updateDoc(
-        doc(db, "RoomPlaylist", reduxRoomId),
-        {
-          playlist: arrayUnion({
-            artist: track.track.artists[0].name,
-            title: track.track.name,
-            uri: track.track.uri,
-            albumUrl: track.track.album.images[2].url,
-            id: track.track.id,
-          }),
-        }
-      );
+      await updateDoc(doc(db, 'RoomPlaylist', reduxRoomId), {
+        playlist: arrayUnion({
+          artist: track.track.artists[0].name,
+          title: track.track.name,
+          uri: track.track.uri,
+          albumUrl: track.track.album.images[2].url,
+          id: track.track.id,
+        }),
+      });
     }
   }
 
   return (
     <div>
-      <div className="container" style={{ marginLeft: "19em" }}>
-        <div className="table" style={{ color: "white" }}>
+      <div className="container" style={{ marginLeft: '19em' }}>
+        <div className="table" style={{ color: 'white' }}>
           <div>
-            <h1 style={{ paddingTop: "1em", textShadow: "2px 4px black" }}>
-              {" "}
+            <h1 style={{ paddingTop: '1em', textShadow: '2px 4px black' }}>
+              {' '}
               {playlistInfo.playlistName}
             </h1>
             <div className="d-flex justify-content-center">
               <Link
                 to={`/category/${categoryId.categoryId}`}
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: 'none' }}
               >
                 <button
                   className="button-return-categories"
-                  style={{ fontSize: ".9rem" }}
+                  style={{ fontSize: '.9rem' }}
                 >
                   Return to {categoryId.categoryName}
                 </button>
@@ -63,22 +60,22 @@ function SinglePlaylistView() {
             </div>
 
             {singlePlaylist[0].track.id ? (
-              <div style={{ paddingTop: "1em" }}>
+              <div style={{ paddingTop: '1em' }}>
                 <table
                   style={{
-                    background: "hsla(0, 100%, 90%, 0.3)",
+                    background: 'hsla(0, 100%, 90%, 0.3)',
                   }}
                 >
                   <thead>
-                    <tr style={{ fontSize: "15px" }}>
+                    <tr style={{ fontSize: '15px' }}>
                       <th>Album Cover</th>
-                      <th style={{ textAlign: "start", paddingLeft: "1em" }}>
+                      <th style={{ textAlign: 'start', paddingLeft: '1em' }}>
                         Track
                       </th>
-                      <th style={{ textAlign: "start", paddingLeft: "1em" }}>
+                      <th style={{ textAlign: 'start', paddingLeft: '1em' }}>
                         Artist
                       </th>
-                      <th style={{ textAlign: "start", paddingLeft: "3em" }}>
+                      <th style={{ textAlign: 'start', paddingLeft: '3em' }}>
                         Album
                       </th>
                     </tr>
@@ -103,14 +100,14 @@ function SinglePlaylistView() {
                                 </Link>
                               </td>
 
-                              <td style={{ textAlign: "left" }}>
+                              <td style={{ textAlign: 'left' }}>
                                 <Link
                                   to={`/track/${track.track.id}`}
                                   style={{
-                                    textDecoration: "none",
-                                    padding: "1em",
-                                    color: "white",
-                                    textShadow: "2px 1px black",
+                                    textDecoration: 'none',
+                                    padding: '1em',
+                                    color: 'white',
+                                    textShadow: '2px 1px black',
                                   }}
                                 >
                                   {track.track.name}
@@ -119,20 +116,20 @@ function SinglePlaylistView() {
 
                               <td
                                 style={{
-                                  textAlign: "left",
-                                  padding: "1em",
-                                  textShadow: "2px 1px black",
-                                  color: "white",
+                                  textAlign: 'left',
+                                  padding: '1em',
+                                  textShadow: '2px 1px black',
+                                  color: 'white',
                                 }}
                               >
                                 {track.track.artists[0].name}
                               </td>
                               <td
                                 style={{
-                                  textAlign: "left",
-                                  paddingLeft: "3em",
-                                  textShadow: "2px 1px black",
-                                  color: "white",
+                                  textAlign: 'left',
+                                  paddingLeft: '3em',
+                                  textShadow: '2px 1px black',
+                                  color: 'white',
                                 }}
                               >
                                 {track.track.album.name}
