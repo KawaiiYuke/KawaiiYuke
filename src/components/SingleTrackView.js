@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { setLyrics } from "../redux/browse";
-import "./css/SingleTrackView.css";
-import Player from "./Player";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { setLyrics } from '../redux/browse';
+import './css/SingleTrackView.css';
+import Player from './Player';
 
 function SingleTrackView() {
   const logInState = useSelector((state) => state.logIn);
@@ -32,7 +32,7 @@ function SingleTrackView() {
                 <img src={trackInfo.album.images[2].url} alt="album" />
                 <Link
                   to={`/playlists/${playlistInfo.playlistId}`}
-                  style={{ textDecoration: "none" }}
+                  style={{ textDecoration: 'none' }}
                 >
                   <div className="return-to-button">
                     <button className="button-return-categories">
@@ -40,13 +40,13 @@ function SingleTrackView() {
                     </button>
                   </div>
                 </Link>
-                <div className="text-center" style={{ whiteSpace: "pre" }}>
+                <div className="text-center" style={{ whiteSpace: 'pre' }}>
                   {lyrics}
                 </div>
               </div>
 
               {reduxRoomId ? (
-                ""
+                ''
               ) : (
                 <div>
                   <Player accessToken={accessToken} trackUri={trackInfo?.uri} />
