@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import './css/VideoTest.css';
-import { useWebRTCFirebase } from 'usewebrtc';
-import { getFirestore, doc, setDoc } from 'firebase/firestore';
-import { initializeApp } from 'firebase/app';
-import { useSelector, useDispatch } from 'react-redux';
-import { v4 as uuid } from 'uuid';
-import { setReduxRoomId, clearReduxRoomId } from '../redux/roomPlaylist';
-import 'firebase/compat/firestore';
-import vback from '../images/vback.gif';
+import React, { useState, useEffect } from "react";
+import "./css/VideoTest.css";
+import { useWebRTCFirebase } from "usewebrtc";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { initializeApp } from "firebase/app";
+import { useSelector, useDispatch } from "react-redux";
+import { v4 as uuid } from "uuid";
+import { setReduxRoomId, clearReduxRoomId } from "../redux/roomPlaylist";
+import "firebase/compat/firestore";
+import vback from "../images/vback.gif";
 
 const participantId = uuid();
 
@@ -28,7 +28,7 @@ export const db = getFirestore(app);
 const servers = {
   iceServers: [
     {
-      urls: ['stun:stun1.l.google.com:19302', 'stun:stun2.l.google.com:19302'],
+      urls: ["stun:stun1.l.google.com:19302", "stun:stun2.l.google.com:19302"],
     },
   ],
   iceCandidatePoolSize: 10,
@@ -60,7 +60,7 @@ function VideoTest() {
   useEffect(() => {
     if (roomId) {
       dispatch(setReduxRoomId(roomId));
-      setDoc(doc(db, 'RoomPlaylist', roomId), {
+      setDoc(doc(db, "RoomPlaylist", roomId), {
         playlist: [],
       });
     }
@@ -89,14 +89,14 @@ function VideoTest() {
               <div
                 key={id}
                 onClick={(e) => {
-                  if (e.currentTarget.className.indexOf('activeVideo') !== -1) {
-                    e.currentTarget.classList.remove('activeVideo');
+                  if (e.currentTarget.className.indexOf("activeVideo") !== -1) {
+                    e.currentTarget.classList.remove("activeVideo");
                   } else {
-                    e.currentTarget.classList.add('activeVideo');
+                    e.currentTarget.classList.add("activeVideo");
                   }
                 }}
               >
-                <p className="idTitle">{id}:</p>
+                <p className="idTitle">🎶🎶🎶</p>
                 <video
                   ref={(element) => {
                     if (element) {
@@ -144,7 +144,7 @@ function VideoTest() {
                     await createRoom();
                     setJoinedRoom(true);
                   } catch (e) {
-                    alert('Failed to create room,', e.message);
+                    alert("Failed to create room,", e.message);
                   }
                 }}
               >
@@ -157,15 +157,13 @@ function VideoTest() {
       {roomId && (
         <>
           <div className="buttonBtn">
-            <p className="room_id">
-              Room: {roomId} <br /> Participant ID: {participantId}
-            </p>
+            <p className="room_id">Room Joining Code: {roomId}</p>
             <button
               onClick={() => {
                 navigator.clipboard.writeText(roomId);
               }}
             >
-              Copy joining code
+              Copy Joining Code
             </button>
 
             <button
@@ -173,7 +171,7 @@ function VideoTest() {
                 shareScreen();
               }}
             >
-              SHARE SCREEN
+              Share Screen
             </button>
             <button
               onClick={() => {
@@ -181,7 +179,7 @@ function VideoTest() {
                 dispatch(clearReduxRoomId(roomId));
               }}
             >
-              Leave Room{' '}
+              Leave Room{" "}
             </button>
           </div>
         </>
