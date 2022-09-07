@@ -5,6 +5,8 @@ import TrackSearchResult from "./TrackSearchResult";
 import Player from "./Player";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import app, { db } from "./VideoTest";
 
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.REACT_APP_CLIENT_ID,
@@ -14,6 +16,7 @@ const Home = () => {
   const logInState = useSelector((state) => state.logIn);
   const reduxRoomId = useSelector((state) => state.room.roomId);
   const accessToken = logInState?.accessToken;
+  const reduxPlaylist = useSelector((state) => state.room.playlist);
 
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -75,6 +78,29 @@ const Home = () => {
     return () => (cancel = true);
   }, [search, accessToken]);
 
+  const [playlist, setPlaylist] = useState([]);
+  console.log("playlist", playlist);
+  useEffect(() => {
+    async function callPlaylist(reduxRoomId) {
+      const docRef = doc(db, "RoomPlaylist", reduxRoomId);
+      const getdocSnap = await getDoc(docRef);
+
+      if (getdocSnap.exists()) {
+        const res = getdocSnap.data();
+        if (res) setPlaylist(res.playlist.map((track) => track.uri));
+      }
+      //below is to get all room playlists
+      // const q = query(collection(db, "RoomPlaylist"));
+      // const querySnapshot = await getDocs(q);
+      // const queryAllRoomPlaylistData = querySnapshot.docs.map((detail) => ({
+      //   ...detail.data(),
+      //   id: detail.id,
+      // }));
+      // console.log("queryData", queryAllRoomPlaylistData);
+    }
+    if (reduxRoomId) callPlaylist(reduxRoomId);
+  }, [reduxPlaylist]);
+
   return (
     <div className="search-track">
       <div style={{ height: "100vh" }}>
@@ -117,7 +143,9 @@ const Home = () => {
           </div>
 
           {reduxRoomId ? (
-            ""
+            <div>
+              <Player accessToken={accessToken} trackUri={playlist?.uri} />
+            </div>
           ) : (
             <div>
               <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
