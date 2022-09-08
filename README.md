@@ -7,6 +7,8 @@ _What does "KawaiiYuke" mean anyways?_
 <br></br>
 We wanted to use the common parts of all our team members names along with the word 'Karaoke' and merge it together. We used the 'yu' in some of our names for 'yuke' and used the japanese word for 'cute', Kawaii, to use the 'w' and 'i' in our other team members name. Together, we came up with KawaiiYuke! 
 
+### [Video Demo](https://youtu.be/rwL1o_bJsFQ)
+
 ## Our Team
 ![Hang(1)](https://i.imgur.com/h5uy7jw.png) Hang Yu | ![Wei(1)](https://i.imgur.com/pnIfM4y.png) Wei Liu | ![Yuki(1)](https://i.imgur.com/J9qOpjV.png) Yuki Mei | ![Yuri(1)](https://i.imgur.com/oa9tYEM.png) Yuri Yoo |
 |     :---:     |     :---:     |     :---:     |     :---:     |
